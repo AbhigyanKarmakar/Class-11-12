@@ -1,0 +1,128 @@
+#include<iostream.h>
+#include<conio.h>
+#define arraypos(x) (int(array[startlen-(x)])-48)
+char ones[10][20]={
+					"",
+					"One ",
+					"Two ",
+					"Three ",
+					"Four ",
+					"Five ",
+					"Six ",
+					"Seven ",
+					"Eight ",
+					"Nine "
+				  };
+char tens[10][20]={
+					"",
+					"",
+					"Twenty ",
+					"Thirty ",
+					"Fourty ",
+					"Fifty ",
+					"Sixty " ,
+					"Seventy ",
+					"Eighty ",
+					"Ninety "
+				  };
+char teens[10][20]={
+					"Ten ",
+					"Eleven ",
+					"Twelve ",
+					"Thirteen ",
+					"Fourteen ",
+					"Fifteen ",
+					"Sixteen ",
+					"Seventeen ",
+					"Eighteen ",
+					"Nineteen ",
+				   };
+int strlen(char array[])                 //DIDNT WANNA INCLUDE STRING.H
+{                                        //FOR ONLY ONE FUNCTION
+  for (int i=0 ; array[i]!='\0' ; ++i);
+  return i;
+}
+void output(char array[10] , int len , int startlen)
+{
+  int chk=0;
+  switch(len)
+  {
+	case 9 :if(arraypos(9)!=1)
+			  cout<<tens[arraypos(9)];
+			else
+			{
+			  cout<<teens[arraypos(8)]<<"Crore(s) ";
+			  chk=1;
+			}
+			break;
+
+	case 8 :cout<<ones[arraypos(8)];
+			if((arraypos(9)||arraypos(8))&&(!chk))
+			  cout<<"Crore(s) ";
+			break;
+
+	case 7 :if(arraypos(7)!=1)
+			  cout<<tens[arraypos(7)];
+			else
+			{
+			  cout<<teens[arraypos(6)]<<"Lakh(s) ";
+			  chk=1;
+			}
+			break;
+
+	case 6 :cout<<ones[arraypos(6)];
+			if((arraypos(7)||arraypos(6))&&(!chk))
+			  cout<<"Lakh(s) ";
+			break;
+
+	case 5 :if(arraypos(5)!=1)
+			  cout<<tens[arraypos(5)];
+			else
+			{
+			  cout<<teens[arraypos(4)]<<"Thousand ";
+			  chk=1;
+			}
+			break;
+
+	case 4 :cout<<ones[arraypos(4)];
+			if((arraypos(5)||arraypos(4))&&(!chk))
+			  cout<<"Thousand ";
+			break;
+
+	case 3 :if(arraypos(3))
+			  cout<<ones[arraypos(3)]<<"Hundred ";
+			break;
+
+	case 2 :if(arraypos(2)!=1)
+			  cout<<tens[arraypos(2)];
+			else
+			{
+			  cout<<teens[arraypos(1)];
+			  chk=1;
+			}
+			break;
+
+	case 1 :cout<<ones[arraypos(1)]<<"\n";
+  }
+  if (len>=0)
+  {
+	if (!chk)
+	  output(array,len-1,strlen(array)); //RECURSIVE CALL
+	else
+	  output(array,len-2,strlen(array)); //AWESOME RITE??  NO??  AW COME ON!!
+  }
+}
+void main()
+{
+  clrscr();
+  char array[10];
+  cout<<"Enter number to be displayed in words (under 999999999): ";
+  cin.getline(array,10);
+  clrscr();
+  cout<<"Number : "<<array<<"\n\nNumber in Words : ";
+  if(array[0]=='0'&&strlen(array)==1)
+	cout<<"Zero\n\n\n";
+  else
+	output(array,strlen(array),strlen(array));
+  getch();
+}

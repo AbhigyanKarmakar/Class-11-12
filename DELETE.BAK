@@ -1,0 +1,37 @@
+#include<iostream.h>
+#include<conio.h>
+void main()
+{
+ clrscr();
+ int array[100],amount,replace,replacement;
+ cout<<"Enter Amount Of Numbers To Be Input : ";
+ cin>>amount;
+ cout<<"\nEnter The Numbers : \n";
+ for ( int i=1 ; i<=amount; i++ )
+    cin>>array[i];
+  clrscr();
+  cout<<"The Array of Numbers : ";
+ for (int j=1 ; j<=amount ; j++ )
+    cout<<array[j]<<" ";
+   cout<<"\nIntput The Number You Want To replace : ";
+   cin>>replace;
+   cout<<"\n Input number You want To Replace It By : ";
+   cin>>replacement;
+   for (int k=1 ; k<=amount ; k++)
+     {
+      if (array[k]==replace)
+       {
+	if(replacement!=0)
+	 array[k]=replacement;
+	else if(replacement==0)
+	 array[k]=array[k+1];
+	  if (k==amount)
+	  break;
+       }
+     }
+     clrscr();
+     cout<<"\nThe New Array is : ";
+    for (int l=1 ; l<=amount ; l++)
+      cout<<array[l]<<" ";
+ getch();
+}

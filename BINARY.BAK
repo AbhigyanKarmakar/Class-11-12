@@ -1,0 +1,57 @@
+#include <iostream.h>
+#include <conio.h>
+#include <math.h>
+#include <dos.h>
+void main()
+{
+  choice:
+  clrscr();
+  long int input , remainder=0, sum=0, quotient, choice,n=0,number=0;
+  cout<<"\t====================Binary/Octal Converter====================\n";
+  cout<<"\n         Press 2 to convert Decimal to Binary and 8 for octal conversion \n";
+  cout<<"\n              Choice                                          : ";
+  cin>>choice;
+  clrscr();
+  if (choice==2)
+  {
+    cout<<"\t       ================DIGIT BINARY RECOG 2.0================\n";
+    cout<<"\t\t Enter Number                               : ";
+  }
+  else if (choice==8)
+  {
+    cout<<"\t       ===============DIGIT OCTAL RECOG 2.0================\n";
+    cout<<"\t\t Enter Number                               : ";
+  }
+  else
+  {
+    cout<<"Error!!! Wrong Input!!! Try Again!";
+    delay (1500);
+    goto choice;
+  }
+  cin>>input;
+  do
+  {
+    quotient=input/choice;                   //Standard Style Binary Conversion
+    remainder=input%choice;
+    sum+=remainder;
+    input=quotient;
+    number+=(remainder*pow(10,n));
+    n++;
+  }
+  while (quotient!=0);
+  if (choice==8)
+  {
+    cout<<"\n\t\t=====================================================\n";
+    cout<<"\t\t Sum of Digits of Octal Form                 : "<<sum;
+    cout<<"\n\t\t=====================================================";
+    cout<<"\n\n\t\t The Number in Octal Form is\t\t     : "<<number;
+  }
+  else if (choice==2)
+  {
+    cout<<"\n\t\t=====================================================\n";
+    cout<<"\t\t Sum of Digits of Binary Form                : "<<sum;
+    cout<<"\n\t\t=====================================================";
+    cout<<"\n\n\t\t The Number in Binary Form is\t\t    : "<<number;
+  }
+ getch();
+}

@@ -1,0 +1,25 @@
+#include<iostream.h>
+#include<conio.h>
+#include<stdio.h>
+#include<string.h>
+#include<fstream.h>
+void main()
+{
+  clrscr();
+  char str[9];
+  strcpy(str,"Abhigyan");
+  fstream file("trial1.txt" , ios::out|ios::in);
+  file<<str;
+  int i=0,pos=0;
+  file.close();
+  char ch;
+  file.open("trial1.txt" , ios::out|ios::in);
+  while(!file.eof())
+  {
+    file.get(ch);
+    pos=file.tellg();
+  }
+  cout<<pos;
+  getch();
+}
+

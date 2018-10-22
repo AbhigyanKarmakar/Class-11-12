@@ -1,0 +1,22 @@
+#include<iostream.h>
+#include<conio.h>
+void main()
+{
+ clrscr();
+ int factorial( int );
+ int a,b;
+ cout<<"Enter the number : ";
+ cin>>a;
+ b=factorial(a);
+ cout<<"\n Factorial of the number :"<<b;
+ getch();
+}
+long int factorial( long int a )
+{
+ long int b=1;
+ for(int n=a ; n>0 ; n--)
+  {
+   b=b*n;
+  }
+ return b;
+}

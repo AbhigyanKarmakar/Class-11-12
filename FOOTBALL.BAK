@@ -1,0 +1,89 @@
+#include <stdio.h>
+#include <dos.h>
+#include <conio.h>
+#include <iostream.h>
+#include <string.h>
+void main()
+{
+ clrscr();
+ int ts;
+ struct teamstats
+ {
+  int fouls,red,yellow,goals,pens,shots,shoton,shotf,gconcede;
+  char start[11][30];
+  char reserve[6][30];
+ }t[2];
+ for (int j=0 ; j<2 ; j++)
+ {
+  clrscr();
+  cout<<"TEAM "<<j+1<<"\n";
+  cout<<"Starting Eleven\n";
+  for (int i=0 ; i<11 ; i++)
+  {
+   cout<<i+1<<". ";
+   gets(t[j].start[i]);
+  }
+  cout<<"Substitutes\n";
+  for (int k=0 ; k<6 ; k++)
+  {
+    cout<<k+1<<". ";
+    gets(t[j].start[k]);
+  }
+  cout<<"Fouls : ";
+  cin>>t[j].fouls;
+  cout<<"Red Cards : ";
+  cin>>t[j].red;
+  cout<<"Yellow Cards : ";
+  cin>>t[j].yellow;
+  cout<<"Goals Scored : ";
+  cin>>t[j].goals;
+  cout<<"Penalties Awarded : ";
+  cin>>t[j].pens;
+  cout<<"Shots : ";
+  cin>>t[j].shots;
+  cout<<"Shots On Target : ";
+  cin>>t[j].shoton;
+  cout<<"Shots Faced : ";
+  cin>>t[j].shotf;
+  cout<<"Goals Conceded : ";
+  cin>>t[j].gconcede;
+  }
+  clrscr();
+  cout<<"Select Team : ";
+  cin>>ts;
+  ts--;
+  cout<<"TEAM "<<ts+1<<"\n";
+  cout<<"Starting Eleven\n\n";
+  for (int i=0 ; i<11 ; i++)
+  {
+    cout<<i+1<<". "<<t[ts].start[i]<<"\t\t\t";
+    if ((i+1)%2==0)
+      cout<<"\n";
+  }
+  cout<<"\nSubstitutes\n\n";
+  for (int k=0 ; k<6 ; k++)
+  {
+    cout<<k+1<<". "<<(t[ts].start[k])<<"\t\t\t";
+    if (k%2==0)
+      cout<<"\n";
+  }
+  cout<<"\nFouls : ";
+  cout<<t[ts].fouls;
+  cout<<"\nRed Cards : ";
+  cout<<t[ts].red;
+  cout<<"\nYellow Cards : ";
+  cout<<t[ts].yellow;
+  cout<<"\nGoals Scored : ";
+  cout<<t[ts].goals;
+  cout<<"\nPenalties Awarded : ";
+  cout<<t[ts].pens;
+  cout<<"\nShots : ";
+  cout<<t[ts].shots;
+  cout<<"\nShots On Target : ";
+  cout<<t[ts].shoton;
+  cout<<"\nShots Faced : ";
+  cout<<t[ts].shotf;
+  cout<<"\nGoals Conceded : ";
+  cout<<t[ts].gconcede;
+  getch();
+}

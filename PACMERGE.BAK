@@ -1,0 +1,73 @@
+#include<conio.h>
+#include<fstream.h>
+class Matrix
+{
+  private:
+    int ARRAY[25][80];
+  public:
+    void input(int array[25][80]);
+    void output(void);
+    int Matrixreturn(int,int);
+    Matrix(void);
+}
+matrix;
+
+void Matrix::input(int array[25][80])
+{
+  for (int i=0 ; i<25 ; ++i)
+    for (int j=0 ; j<80 ; ++j)
+      ARRAY[i][j]=array[i][j];
+}
+
+void Matrix::output(void)
+{
+  for (int i=0 ; i<25 ; ++i)
+    for (int j=0 ; j<80 ; ++j)
+    {
+      if (ARRAY[i][j])
+      {
+	gotoxy(j+1,i+1);
+	cout<<char(ARRAY[i][j]);
+      }
+    }
+}
+
+Matrix::Matrix(void)
+{
+  for (int i=0 ; i<25 ; ++i)
+    for (int j=0 ; j<80 ; ++j)
+      ARRAY[i][j]=0;
+}
+
+int Matrix::Matrixreturn(int i , int j)
+{
+  return ARRAY[i][j];
+}
+
+void main()
+{
+  clrscr();
+  int size=0;
+  fstream file,file2;
+  char MAIN_DATABASE[15] , PART_DATABASE[15];
+  cout<<"Enter Name of Main Database : ";
+  cin.getline(MAIN_DATABASE , 14);
+  file.open(MAIN_DATABASE , ios::in|ios::out|ios::binary|ios::app);
+  cout<<"Enter Number of databases : ";
+  cin>>size;
+  for (int i=0 ; i<size ; ++i)
+  {
+    cout<<"Enter Name of database : ";
+    cin.getline(PART_DATABASE , 14);
+    file2.open(PART_DATABASE , ios::in|ios::out|ios::binary);
+    while(!file2.eof())
+    {
+      file2.read((char*)&matrix , sizeof(matrix));
+      if(!file2.eof())
+	file.write((char*)&matrix , sizeof(matrix));
+    }
+    file2.close();
+  }
+  getch();
+}
+

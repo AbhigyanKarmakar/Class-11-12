@@ -1,0 +1,26 @@
+#include<iostream.h>
+#include<conio.h>
+#include<stdio.h>
+#include<string.h>
+void main()
+{
+ clrscr();
+ long int input,i=1,inputduplicate,inputtmp;
+ cout<<"Enter Number : ";
+ cin>>input;
+ inputduplicate=input;
+ do
+ {
+  inputtmp=input;
+  input/=i;
+  if (input*i!=input)
+    break;
+    i++;
+ }
+ while (i!=inputduplicate);
+ if (i==inputduplicate)
+   cout<<"Not Prime ";
+ else
+   cout<<"Prime";
+ getch();
+}

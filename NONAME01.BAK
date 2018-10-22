@@ -1,0 +1,33 @@
+#include <iostream.h>
+#include<conio.h>
+void main()
+{
+ clrscr();
+ int p1,p2,p3,p4,p5,q1,q2,q3,q4,q5,amount;
+ cout<<" Enter price of rice: ";
+ cin>>price1;
+ cout<<" Enter price of oil:";
+ cin>>price2;
+ cout<<"enter price of chocolate:";
+ cin>>price3;
+ cout<<"enter price of oats:";
+ cin>>price4;
+ cout<<"enter price of chicken:";
+ cin>>price5;
+ clrscr();
+ cout<<"enter quantity of rice:";
+ cin>>quantity1;
+ cout<<"enter quantity of oil:";
+ cin>>quantity2;
+ cout<<"enter quantity of chocolates:";
+ cin>>quantity3;
+ cout<<"enter quantity of oats:";
+
+ cout<<"volume="<<volume;
+ cout<<"total surface area="<<totalsurfacearea;
+ cout<<"lateral surface area="<<lateralsurfacearea ;
+ getch();
+ }
+
+
+

@@ -1,0 +1,31 @@
+#include<iostream.h>
+#include<conio.h>
+#include<process.h>
+void main()
+{
+ clrscr();
+ int scarray[1000];
+ char array[1000];
+ for(int input=0,score=0,boink=0 ; input>=0 ; input++)
+ {
+  array[input]=getch();
+  cout<<array[input]<<"";
+  score++;
+  if (array[input]=='.')
+  {
+   scarray[boink]=score-1;
+   score=0;
+   boink++;
+  }
+  if (array[input]==',')
+  break;
+ }
+  cout<<scarray[boink];
+
+
+
+
+
+
+getch();
+}

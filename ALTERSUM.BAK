@@ -1,0 +1,56 @@
+#include <iostream.h>
+#include <conio.h>
+int Altersum (int array[100][100],int row,int column)
+{
+  int sum=0;
+  if (row%2==0)
+    for (int i=0,j=0 ; ; i+=2)
+    {
+      if (i>=row)
+      {
+	j++;
+	i=0;
+	if (j==column)
+	  break;
+      }
+      sum+=array[j][i];
+    }
+  else
+    for (int i=0,j=0 ; ; i+=2)
+    {
+       if (i>=row)
+       {
+	 j++;
+	 i=(j%2);
+	 if (j==column)
+	   break;
+       }
+       sum+=array[j][i];
+    }
+  return sum;
+}
+void main()
+{
+ clrscr();
+ int array[100][100],row,column,altsum;
+ cout<<"Enter Row Size : ";
+ cin>>row ;
+ cout<<"Enter Column Size : ";
+ cin>>column;
+ cout<<"Your "<<row<<" x "<<column<<" Matrix has been Created !!!\n";
+ for (int i=0,j=0 ; i<=row ; i++)
+ {
+   if (i==row)
+   {
+     i=0;
+     j++;
+     if (j==column)
+       break;
+   }
+   cout<<"Enter Element of Row "<<j+1<<" : ";
+   cin>>array[j][i];
+ }
+ altsum=Altersum(array,row,column);
+ cout<<"Sum Of Alternate Elements : "<<altsum;
+ getch();
+}

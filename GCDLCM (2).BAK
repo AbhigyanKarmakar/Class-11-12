@@ -1,0 +1,39 @@
+#include<iostream.h>
+#include<conio.h>
+void main()
+{
+ clrscr();
+
+ long int gcd,multip,lcm,a,b;
+ long int lo, dangor;
+ cout<<"Enter 1st Number : ";
+ cin>>a;
+ cout<<"Enter 2nd Number : ";
+ cin>>b;
+ if(a>b)
+ {
+  dangor=a;
+ }
+ else if(a<=b)
+ {
+  dangor=b;
+ }
+
+
+  for(lo=1 ; lo<=dangor ; lo++)
+   {
+    if (a%lo==0&&b%lo==0)
+    {
+     gcd=lo;
+    }
+
+
+
+   }
+ multip=a*b;
+ lcm=multip/gcd;
+ cout<<"The LCM is = "<<lcm;
+ cout<<"\nThe GCD is = "<<gcd;
+
+getch();
+}

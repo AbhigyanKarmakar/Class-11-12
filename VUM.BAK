@@ -1,0 +1,26 @@
+#include<iostream.h>
+#include<conio.h>
+void main()
+{
+clrscr();
+int num1 =0, num2=0, sum=0,difu=0, prod=0,kosu=0, men=0;
+cout<<"Enter 1st number :";
+cin>>num1;
+cout<<"Enter 2nd number :";
+cin>>num2;
+sum = num1 + num2;
+difu = num1 - num2;
+prod=num1 * num2;
+kosu = num1/num2;
+men=(num1 + num2)/2;
+cout<<num1<<" + "<<num2<<" = "<<sum;
+cout<<"\n"<<num1<<" - "<<num2<<" = "<<difu;
+cout<<"\n"<<num1<<" x "<<num2<<" = "<<prod;
+cout<<"\n"<<num1<<" / "<<num2<<" = "<<kosu;
+cout<<"\nThe Sum is        "<<sum;
+cout<<"\nThe Difference is "<<difu;
+cout<<"\nThe Product is    "<<prod;
+cout<<"\nThe Quotient is   "<<kosu;
+cout<<"\nThe Average is    "<<men;
+getch();
+}

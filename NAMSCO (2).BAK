@@ -1,0 +1,71 @@
+#include<iostream.h>
+#include<conio.h>
+#include<iomanip.h>
+#include<string.h>
+#include<dos.h>
+#include<process.h>
+#include<stdio.h>
+ void main()
+ {
+  clrscr();
+  char inp[100];
+  int input=0,word=0,score=0,point[100],self=0,out[1000];
+  do
+  {
+   inp[input]=getch();
+   cout<<inp[input];
+   score++;
+   if(int(inp[input])==13)
+   {
+    //cout<<"\n ";
+    //cout<<inp[input];
+    cout<<"         Characters : ";
+    point[self]=score-1;
+    score=0;
+    cout<<point[self];
+    cout<<"\n";
+    self++;
+    word++;
+   }
+
+  }
+while(inp[input]!='.');
+int j[10000];
+for(int zero=0 ; zero<=10000 ; zero++)
+ {
+  j[zero]=0;
+  for (int ini=0 ; ini<=10000 ; ini++)
+  {
+    if(inp[ini]==inp[zero])
+    {
+     j[ini]++;
+    }
+    else
+    {
+     continue;
+    }
+  }
+ }
+
+getch();
+
+ for(int dao=0 ; dao<=10000 ; dao++)
+ {
+  if (j[dao]!=0)
+  {
+   cout<<"Name With "<<dao<<" Letters : "<<j[dao];
+  }
+  else
+  cout<<"";
+ }
+  clrscr();
+  cout<<"\nExit ? Press Y for YES and N for NO";
+  char ihwlisaannikki;
+  SHAMITAB:
+  ihwlisaannikki=getch();
+  if (ihwlisaannikki=='y')
+  exit (0);
+  else
+  goto SHAMITAB;
+
+ }

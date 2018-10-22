@@ -1,0 +1,40 @@
+#include<fstream.h>
+#include<conio.h>
+#include<stdio.h>
+#include<string.h>
+void output(int array[] , int size)
+{
+  for(int i=0 ; i<size ; ++i)
+	cout<<array[i]<<"  ";
+  cout<<'\n';
+}
+void swap(int &a , int &b)
+{
+  int temp=a;
+  a=b;
+  b=temp;
+}
+void insertion_sort(int array[] , int size)
+{
+  for(int i=0 ; i<size-1 ; ++i)
+  {
+	if(array[i]>array[i+1])
+	{
+	  while(array[i+1]<array[i]&&i>=0)
+	  {
+		swap(array[i+1],array[i]);
+		i--;
+	  }
+	  output(array,size);
+	}
+  }
+}
+void main()
+{
+  clrscr();
+  int array[]={1,2,3,4,8,7,6,5};
+  output(array,8);
+  insertion_sort(array,8);
+  getch();
+}
+

@@ -1,0 +1,46 @@
+#include<iostream.h>
+#include<conio.h>
+#include<stdio.h>
+void main()
+{
+ int j=1;
+ clrscr();
+ struct stdnt
+ {
+  char name[30];
+  char standard[10];
+  char section;
+  int percentage;
+  char address[40];
+ };
+ stdnt s[30];
+ for (int i=0 ; i<3 ; i++)
+ {
+  cout<<"Student : "<<i+1<<"\n";
+  cout<<"Enter Name :";
+  gets(s[i].name);
+  cout<<"Enter Class : ";
+  gets(s[i].standard);
+  cout<<"Enter Section : ";
+  cin>>s[i].section;
+  if(s[i].section=='/')
+  break;
+  else
+  continue;
+  cout<<"Enter Address Of Student : ";
+  gets(s[i].address);
+  cout<<"Enter Final Term Percentage : ";
+  cin>>s[i].percentage;
+  cout<<"\n\n\n\n\n\n";
+  j++;
+ }
+ for (int out=0 ; out<j ; out++)
+ {
+  cout<<"Student "<<out+1;
+  cout<<"\n Name : "<<s[out].name<<"\n Class : "<<s[out].standard<<"\n Section : "<<s[out].section<<"\n Address : "<<s[out].address<<"\n Final Percentage : "<<s[i].percentage<<"%";
+  cout<<"\n\n\n\n";
+ }
+
+
+ getch();
+}

@@ -1,0 +1,80 @@
+#include<iostream.h>
+#include<conio.h>
+#include<stdio.h>
+#include<string.h>
+int CI (int a , int b , int c)
+{}                    //Gaja Func. to satisfy compiler
+class account
+{
+  public:
+  int time;
+  void input(){}      //Just To remove errors and test the output
+  void output(){}
+  int money;
+};
+int menu()
+{
+  int choice=0;
+  cout<<"WELCOME TO BORPETA FISHING CLUB BANK OF INDIA (Totally Legit)"
+      <<"\nYou Must Create an account with us (that's right you HAVE TO)"
+      <<"\nAccounts On Offer"
+      <<"\n1.Savings"
+      <<"\n2.Current"
+      <<"\nPlease Select one of the above (or we will kill you :))"
+      <<"\nChoice : ";
+  cin>>choice;
+  return choice-1;
+}
+class current : public account
+{
+  int pencounter;
+  public:
+    void output()
+    {
+      clrscr();
+      cout<<"ACCOUNT TYPE : Current";
+      account::output();
+      cout<<"\nPenalty Imposed : ";
+      if (money<1000)
+	cout<<"Rs.500";
+      else
+	cout<<"Nil";
+    }
+    void pen_chk()
+    {
+      if (money<1000)
+      {
+	cout<<"\nWARNING!! Balance is below mininum allowed "
+	    <<"penalty of 500 has been cut!!";
+	money-=500;
+      }
+    }
+}c1;
+class savings : public account
+{
+  public:
+    void output()
+    {
+      clrscr();
+      account::output();
+      cout<<"ACCOUNT TYPE : Savings"
+	  <<"\nCompound Interest Recieved : "<<CI(money,6,time);
+    }
+}s1;
+void main()
+{
+  clrscr();
+  if (!menu())
+  {
+    savings s1;
+    s1.input();
+    s1.output();
+  }
+  else
+  {
+    current c1;
+    c1.input();
+    c1.output();
+  }
+  getch();
+}

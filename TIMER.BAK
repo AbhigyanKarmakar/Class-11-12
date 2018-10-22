@@ -1,0 +1,18 @@
+#include<iostream.h>
+#include<conio.h>
+#include<stdio.h>
+#include<dos.h>
+void main()
+{
+ clrscr();
+ struct  time t;
+ do
+ {
+  gettime(&t);
+  printf("The current time is: %2d:%02d:%02d\n",
+	 t.ti_hour, t.ti_min, t.ti_sec);
+  delay(1000);
+  clrscr();
+ }
+ while(!kbhit());    //Waits For A Keyboard Button To Be Pressed
+}

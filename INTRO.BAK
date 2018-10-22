@@ -1,0 +1,30 @@
+#include<dos.h>
+#include<conio.h>
+#include<stdio.h>
+#include<string.h>
+#include<fstream.h>
+void INTRO()
+{
+  const int TEXT_SPEED=50;
+  fstream file;
+  file.open("INTRO.txt",131);
+  char ch;
+  int i=1;
+  while(!file.eof())
+  {
+	file.get(ch);
+	i++;
+	if(!file.eof())
+	  cout<<ch;
+	if(!kbhit())
+	  delay(TEXT_SPEED);
+  }
+  getch();
+}
+void main()
+{
+  clrscr();
+  INTRO();
+  getch();
+}
+

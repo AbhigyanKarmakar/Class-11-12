@@ -1,0 +1,159 @@
+#include<ctype.h>
+#include<conio.h>
+#include<iostream.h>
+#include<string.h>
+#include<process.h>
+void main()
+{
+clrscr();
+
+     START:
+     clrscr();
+     long double wt=0;
+     char nm[100], frs, res, up, low, up1, alup, allow, cnd,  cond, lw, upp;
+     int Z[100], sum=0, ch, i, j, k, l, m, n, spcnd;
+     cout<<"\t      =======================CAPPIN_em=======================\n";
+     cout<<"\t       Enter your name (You may not include symbols        : \n";
+     cout<<"\t\t\t        ";
+     cin>>nm;
+     int lim=strlen(nm)-1;
+     cout<<"\t      There are "<<lim+1<<" letters in your name....."<<"\n";
+     frs=nm[0];
+     up1=toupper(frs);
+     goto CHOOSE;
+
+
+     CHOOSE:
+     cout<<"\t      =======================================================\n";
+     cout<<"\t       Choose from the following functions to perform.....\n";
+     cout<<"\t 		            Choose WISELY.....                 \n\n";
+     cout<<"\t                  1.Capitalize First Letter.\n";
+     cout<<"\t                  2.Capitalize all Letters.\n";
+     cout<<"\t                  3.De-capitalize all Letters.\n";
+     cout<<"\t                  4.Toggle all the Letter.\n";
+     cout<<"\t                  5.All of the above functions.\n\n";
+     cout<<"\t       Enter the number corresponding to your choice here : ";
+     cin>>ch;
+     cout<<"\n\t  ";
+     if (ch==1)
+	goto CAPN_FIRST;
+     else if (ch==2)
+	goto CAPN_ALL;
+     else if (ch==3)
+	goto LOWN_ALL;
+     else if (ch==4)
+	goto TOGGLE;
+     else if (ch==5)
+     {
+	clrscr();
+	goto CAPN_FIRST;
+     }
+     else
+	goto INV_DOOM;
+
+
+     CAPN_FIRST:
+     cout<<"\n\t      =========================================================\n";
+     cout<<"\n\t\t\t\t      ";
+     for (i=0; i<=lim; i++)
+     {
+	 if (i==0)
+	    cout<<up1;
+	 else
+	    cout<<nm[i];
+     }
+     cout<<"\n";
+     if (ch!=5)
+	goto PRE_DOOM;
+
+     CAPN_ALL:
+     cout<<"\n\t      =========================================================\n";
+     cout<<"\n\t\t\t\t      ";
+     for (k=0; k<=lim; k++)
+     {
+	 up=nm[k];
+	 alup=toupper(up);
+	 cout<<alup;
+     }
+     cout<<"\n";
+     if (ch!=5)
+	goto PRE_DOOM;
+
+     LOWN_ALL:
+     cout<<"\n\t      =========================================================\n";
+     cout<<"\n\t\t\t\t      ";
+     for (l=0; l<=lim; l++)
+     {
+	 low=nm[l];
+	 allow=tolower(low);
+	 cout<<allow;
+     }
+     cout<<"\n";
+     if (ch!=5)
+	goto PRE_DOOM;
+
+     TOGGLE:
+     cout<<"\n\t      =========================================================\n";
+     cout<<"\n\t\t\t\t      ";
+     for (n=0; n<=lim; n++)
+	 Z[n]=int(nm[n]);
+     for (m=0; m<=lim; m++)
+     {
+	 cond=Z[m];
+	 lw=tolower(cond);
+	 upp=toupper(cond);
+	 if (cond>=65&&cond<=90)
+	    cout<<lw;
+	 else if (cond>=97&&cond<=122)
+	    cout<<upp;
+     }
+     cout<<"\n";
+     if (ch!=5)
+	goto PRE_DOOM;
+
+
+     PRE_DOOM:
+     cout<<"\n\t      =========================================================\n";
+     cout<<"\t       Do you want to retry?? if YES, enter y, else enter n : \n";
+     cout<<"\t                                  ";
+     goto PRE_PRE_DOOM;
+
+     PRE_PRE_DOOM:
+     cin>>res;
+     if (res=='y')
+	goto START;
+     else if (res=='n')
+	goto DOOM;
+     else
+     {
+	sum++;
+	if (sum==1)
+	   clrscr();
+	if (sum%13==0)
+	   clrscr();
+	cout<<"\n\t          INVALID INPUT..... Enter a Valid Input.... ";
+	goto PRE_PRE_DOOM;
+     }
+
+
+     DOOM:
+     cout<<"\n\n\t\t\t            BYE-BYE !!";
+     cout<<"\n\t      =========================================================\n";
+     while (wt<100000)
+     {
+	   wt+=0.01;
+     }
+     exit(0);
+
+     INV_DOOM:
+     long double wait=0;
+     cout<<"\n\t          INVALID INPUT..... Enter a Valid Input.... ";
+     while (wait<100000)
+     {
+	   wait+=0.01;
+     }
+     goto START;
+
+
+getch();
+}

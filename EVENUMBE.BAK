@@ -1,0 +1,9 @@
+#include<iostream.h>
+#include<conio.h>
+void main()
+{
+clrscr();
+for( int n=22; n<=50; n=n+2)
+cout<<n<<"\n";
+getch();
+}

@@ -1,0 +1,31 @@
+#include <iostream.h>
+#include <conio.h>
+#include <dos.h>
+void main()
+{
+ unsigned short choice;
+ long int input;
+ Start:
+ clrscr();
+ cout<<"Select Input\n1.Hexadecimal\n2.Decimal\nChoice : ";
+ cin>>choice;
+ if (choice==1)
+ {
+  cout<<"Enter Number in Hexadecimal Form : ";
+  cin>>hex>>input;
+  cout<<"Number in Decimal Form : "<<input;
+ }
+ else if (choice==2)
+ {
+  cout<<"Enter Number in Decimal Form : ";
+  cin>>input;
+  cout<<"Number in Hexadecimal Form : "<<hex<<input;
+ }
+ else
+ {
+  cout<<"ERROR !!! WRONG INPUT !!! TRY AGAIN !!!";
+  delay(1500);
+  goto Start;
+ }
+ getch();
+}

@@ -1,0 +1,77 @@
+#include <iostream.h>
+#include <conio.h>
+#include <string.h>
+#include <stdio.h>
+void main()
+{
+ struct phone
+ {
+  int area,exch,num;
+ };
+ struct employee
+ {
+  char name[50];
+  phone ph;
+  int memno;
+ }e[100];
+ clrscr();
+ int a,b=1,j=0,i=0,d;
+ long long ago[10]; //In a Galaxy Far away...........
+ char search[50];
+ for (i=0 ; 1 ; i++)   //Loop's Exit Statement is inside body
+ {
+  clrscr();
+  cout<<"Enter Name : ";
+  gets(e[i].name);
+  a=strcmpi(e[i].name,"exit");
+  if (a==0)
+   goto Exit;
+  cout<<"Enter Membership Number : ";
+  cin>>e[i].memno;
+  Area:
+  cout<<"Enter Phone Area Code (3-Digit): ";
+  cin>>e[i].ph.area;
+  if (e[i].ph.area>999||e[i].ph.area<100)
+  {
+    cout<<"Error Number Out Of Range Try Again!!!";
+    goto Area;
+  }
+  Exchange:
+  cout<<"Enter Phone Exchange Number (4-Digit): ";
+  cin>>e[i].ph.exch;
+  if (e[i].ph.exch>9999||e[i].ph.exch<1000)
+  {
+    cout<<"Error Number Out Of Range Try Again!!!";
+    goto Exchange;
+  }
+  Number:
+  cout<<"Enter Serial Number Of Phone Number (3-Digit) : ";
+  cin>>e[i].ph.num;
+  if (e[i].ph.num>999||e[i].ph.num<100)
+  {
+    cout<<"\nError Number Out Of Range Try Again!!!\n";
+    goto Number;
+  }
+ }
+ Exit:
+ clrscr();
+ cout<<"Search : ";
+ gets(search);
+ for(j=0 ; j<=i ; j++)
+ {
+   b=strcmpi(e[j].name,search);
+   if (b==0)
+     break;
+ }
+ clrscr();
+ if (b!=0)
+ {
+   cout<<"Error Name Not in Database!!!";
+   goto End;
+ }
+ cout<<"Name : "<<e[j].name;
+ cout<<"\nMembership Number : "<<e[j].memno;
+ cout<<"\nPhone Number : "<<e[j].ph.area<<e[j].ph.exch<<e[j].ph.num;
+ End:
+ getch();
+}

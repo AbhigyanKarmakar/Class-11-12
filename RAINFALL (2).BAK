@@ -1,0 +1,23 @@
+#include<iostream.h>
+#include<conio.h>
+#include<dos.h>
+#include<stdio.h>
+void main()
+{
+ clrscr();
+ char name[10];
+ gets(name);
+for(int n=0; n<10 ; n++)
+{
+ gotoxy(6,9);
+ cout<<name;
+ gotoxy(6,12);
+ cout<<name;
+
+}
+
+
+
+
+ getch();
+}

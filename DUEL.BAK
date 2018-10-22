@@ -1,0 +1,69 @@
+#include<dos.h>
+#include<conio.h>
+#include<stdio.h>
+#include<string.h>
+#include<fstream.h>
+const int HOGUN_GUN_X=3;
+const int MURUGUN_GUN_X=60;
+const int GUN_Y=1;
+const int BULLET_DELAY=50;
+void BULLET(int x , int y)
+{
+  if(x==HOGUN_GUN_X)    //HOGUN SHOOTS
+  {
+	while(x!=MURUGUN_GUN_X)
+	{
+	  gotoxy(x-1,y);
+	  cout<<"  ";
+	  gotoxy(x++,y);
+	  cout<<"=>";
+	  delay(BULLET_DELAY);
+	}
+  }
+  else                  //MURUGUN SHOOTS
+  {
+	while(x!=HOGUN_GUN_X)
+	{
+	  gotoxy(x+1,y);
+	  cout<<"  ";
+	  gotoxy(x--,y);
+	  cout<<"<=";
+	  delay(BULLET_DELAY);
+	}
+  }
+}
+void SHOT(int state)
+{
+  if(state==0)
+	BULLET(MURUGUN_GUN_X,GUN_Y);
+  if(state==1)
+	BULLET(HOGUN_GUN_X,GUN_Y);
+  if(state==2);//ADD SOMETHING HERE ABOUT CROWD NBEATING UP HOGUN
+}
+int DUEL()
+{
+  const int CLOCK_X=78 , CLOCK_Y=1;
+  const int CLOCK_COLOR=7;         //USE FEATURE LATER
+  for(int i=3 ; i>=0 ; --i)
+  {
+	gotoxy(CLOCK_X,CLOCK_Y);
+	delay(1000);
+	cout<<i;
+	if(kbhit())
+	  return 2;        //SHOT DURING COUNTDOWN
+  }
+  delay(400);
+  if(kbhit())
+	return 1;          //CORRECT TIMED SHOT
+  return 0;            //NO SHOT IN TIME
+}
+void main()
+{
+  clrscr();
+  gotoxy(5,5);
+  //cout<<DUEL();
+  SHOT(DUEL());
+  getch();
+  getch();
+}
+

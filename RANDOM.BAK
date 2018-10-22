@@ -1,0 +1,58 @@
+#include <iostream.h>   //CODE BY ABHIGYAN KARMAKAR
+#include <conio.h>
+#include <stdlib.h>
+#include <dos.h>
+#include <process.h>
+#include <stdio.h>
+void main()
+{
+  int a,b,choice,answer,i ;
+  char *string;
+  Restart:
+  textcolor(15);
+  clrscr();
+  cout<<"Count the number of words flashed !!!";
+  clrscr();
+  cout<<"Enter Words To be Flashed : ";
+  gets (string);
+  gotoxy(1,1);
+  delay(1000);
+   clrscr();
+  randomize();
+  for (i=0 ; i<random(40-5+1)+1 ; i++)
+  {
+   a=random(80);   //Screen Size is 80x25 characters
+   b=random(25);
+   gotoxy(a,b);
+   textcolor(random(16-3+1)+1);
+   cout<<"Catch me";
+   delay(500);
+   clrscr();
+  }
+  textcolor(15);  //15 Sets Text Colour Back To White
+  clrscr();
+  cout<<"Enter your answer : ";
+  cin>>choice;
+  clrscr();
+  if(choice==i)
+  {
+     cout<<"You Were Correct !!!";
+     cout<<"To Play Again Press 1 Press Anything Else to Exit \nChoice : ";
+     cin>>answer;
+     if(answer==1)
+       goto Restart;
+     else
+       exit(0);
+  }
+  else
+  {
+     cout<<"Wrong Answer !!!";
+     cout<<"\nTo Try Again Press 1 Press Anything Else to Exit \nChoice : ";
+     cin>>answer;
+     if(answer==1)
+       goto Restart;
+     else
+       exit(0);
+  }
+}
+

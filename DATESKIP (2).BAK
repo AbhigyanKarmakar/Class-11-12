@@ -1,0 +1,42 @@
+#include<iostream.h>
+#include<conio.h>
+#include<dos.h>
+void main()
+{
+ clrscr();
+ int month[12],seqdate=0,skip;
+ struct date
+ {
+  int dd;
+  int mm;
+  int yy;
+ };
+ date day;
+ month[0]=31;
+ month[1]=28;
+ month[2]=31;
+ month[3]=30;
+ month[4]=31;
+ month[5]=30;
+ month[6]=31;
+ month[7]=31;
+ month[8]=30;
+ month[9]=31;
+ month[10]=30;
+ month[11]=31;
+ cout<<"Enter Date : ";
+ cin>>day.dd;
+ cout<<"Enter Month : ";
+ cin>>day.mm;
+ cout<<"Enter Year : ";
+ cin>>day.yy;
+ day.mm--;
+ for (int i=0 ; i<day.mm ; i++)
+ {
+  seqdate+=month[i];
+ }
+ cout<<"Enter Days You Want To Skip : ";
+ cin>>skip;
+ seqdate+=skip;
+ getch();
+}

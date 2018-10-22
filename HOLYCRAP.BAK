@@ -1,0 +1,21 @@
+#include<incall.h>
+#include<conio.h>
+#include<stdio.h>
+#include<string.h>
+void main()
+{
+  clrscr();
+  char a='N',b='A',c='Y',d='G',e='I',f='H',g='B',h='A'; //,i='i',j='j';
+  //int x=int(&x),y=int(&y),z=int(&z);
+  cout<<&h<<"\n";
+      //<<&b<<"\n"
+      //<<&c<<"\n"
+      //<<&d<<"\n"
+      //<<&e<<"\n"
+      //<<&f<<"\n"
+      //<<&g<<"\n"
+      //<<&h<<"\n"
+      //<<&i<<"\n"
+      //<<&j<<"\n";
+  getch();
+}

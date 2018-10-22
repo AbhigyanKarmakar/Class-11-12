@@ -1,0 +1,132 @@
+#include<iostream.h>
+#include<conio.h>
+#include<stdio.h>
+#include<string.h>
+#include<stdlib.h>
+char ones[10][20]={
+		    "",
+		    "One ",
+		    "Two ",
+		    "Three ",
+		    "Four ",
+		    "Five ",
+		    "Six ",
+		    "Seven ",
+		    "Eight ",
+		    "Nine "
+		  };
+char tens[10][20]={
+		    "",
+		    "",
+		    "Twenty ",
+		    "Thirty ",
+		    "Fourty ",
+		    "Fifty ",
+		    "Sixty " ,
+		    "Seventy ",
+		    "Eighty ",
+		    "Ninety "
+		  };
+char teens[10][20]={
+		     "Ten ",
+		     "Eleven ",
+		     "Twelve ",
+		     "Thirteen ",
+		     "Fourteen ",
+		     "Fifteen ",
+		     "Sixteen ",
+		     "Seventeen ",
+		     "Eighteen ",
+		     "Nineteen ",
+		   };
+void output(char array[10] , int len , int startlen)
+{
+  int chk=0;
+  switch(len)
+  {
+    case 9 :if((int(array[startlen-9])-48!=1))
+	    {
+	      cout<<tens[int(array[startlen-9])-48];
+	      if ((int(array[startlen-8])-48))
+		cout<<"Crore(s)";
+	    }
+	    else
+	    {
+	      cout<<teens[int(array[startlen-8])-48]<<"Crore(s) ";
+	      chk=1;
+	      break;
+	    }
+	    break;
+    case 8 :if(int(array[startlen-8])-48)
+	      cout<<ones[int(array[startlen-8])-48]<<"Crore(s) ";
+	    break;
+    case 7 :if((int(array[startlen-7])-48!=1))
+	    {
+	      cout<<tens[int(array[startlen-7])-48];
+	      if (!(int(array[startlen-6])-48))
+		cout<<"Lakh(s)";
+	    }
+	    else
+	    {
+	      cout<<teens[int(array[startlen-6])-48]<<"Lakh(s) ";
+	      chk=1;
+	      break;
+	    }
+	    break;
+    case 6 :if(int(array[startlen-6])-48)
+	      cout<<ones[int(array[startlen-6])-48]<<"Lakh(s) ";
+	    break;
+    case 5 :if((int(array[startlen-5])-48!=1))
+	    {
+	      cout<<tens[int(array[startlen-5])-48];
+	      if (!(int(array[startlen-4])-48))
+		cout<<"Thousands(s)";
+	    }
+	    else
+	    {
+	      cout<<teens[int(array[startlen-4])-48]<<"Thousand(s)";
+	      chk=1;
+	      break;
+	    }
+	    break;
+    case 4 :if(int(array[startlen-4])-48)
+	      cout<<ones[int(array[startlen-4])-48]<<"Thousand(s) ";
+	    break;
+    case 3 :if(int(array[startlen-3])-48)
+	      cout<<ones[int(array[startlen-3])-48]<<"Hundred ";
+	    break;
+    case 2 :if((int(array[startlen-2])-48!=1))
+	      cout<<tens[int(array[startlen-2])-48];
+	    else
+	    {
+	      cout<<teens[int(array[startlen-1])-48];
+	      chk=1;
+	      break;
+	    }
+	    break;
+    case 1 :cout<<ones[int(array[startlen-1])-48];
+  }
+  if (len>=0)
+  {
+    if (!chk)
+      output(array,len-1,strlen(array)); //RECURSIVE CALL
+    else
+      output(array,len-2,strlen(array)); //AWESOME RITE??  NO??  AW COME ON!!
+  }
+  else
+  {
+    cout<<"\n\n\n";
+    system("pause");
+  }
+}
+void main()
+{
+  clrscr();
+  char array[10];
+  cout<<"Enter number to be displayed in words (under 999999999): ";
+  gets(array);
+  cout<<"\n";
+  output(array,strlen(array),strlen(array));
+}
+
+

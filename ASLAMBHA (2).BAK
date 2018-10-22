@@ -1,0 +1,29 @@
+#include<iostream.h>
+#include<stdlib.h>
+#include<dos.h>
+#include<conio.h>
+void main()
+{
+clrscr();
+long double guess=0,bhata,n=1, score=0;
+aslambhai:
+randomize();
+guess=random(11);
+//cout<<guess;
+cout<<"Guess a number from 1-10 \n";
+cin>>bhata;
+if (bhata==guess)
+{
+  cout<<"Toi Jikili Dekhun";
+  score++;
+  goto aslambhai;
+}
+else if(bhata!=guess&&n<4)
+{
+  cout<<"\nAko Trei Mar";
+  n++;
+  goto aslambhai;
+}
+
+getch();
+}

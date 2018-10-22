@@ -1,0 +1,404 @@
+/*
+ * ----------------------------------------------------------------------------
+ * File     : SudokuSolver.cpp
+ * Author   : Bhuwan Khattar (BhuwanKhattar.com)
+ * Created  : Not so long ago, in a galaxy not too far away...
+ * Revision : 42
+ * ----------------------------------------------------------------------------
+ */
+ 
+#define BGI_PATH "C:\\tc\\bgi" // Please change this accordingly. (Is there a better way to do this is?)
+// Header files
+#include <conio.h>
+#include <dos.h>
+#include <graphics.h>
+#include <iostream.h>
+#include <stdio.h>
+#include <stdlib.h>
+// Defining some keycodes.
+#define K_BKSPC 8
+#define K_CTRL_R 18
+#define K_ESC 27
+#define K_F5 319
+#define K_UP 328
+#define K_LEFT 331
+#define K_RIGHT 333
+#define K_DOWN 336
+#define K_DEL 339
+ 
+// Just some declarations.
+typedef enum bool { false, true }; // TC++ doesn't have a bool data type. Let's define it on our own.
+int i,j,x1,y1,x2,y2,cellHeight,cellWidth;
+enum {EMPTY, USER_DEFINED, LOGIC_FIND, BRUTE_FORCED};
+struct { int type, value; } cell[9][9];
+bool canEditCell(int x, int y),
+    isComplete(),
+    isValid(int x, int y, int number),
+    logicStep1(),
+    logicStep2();
+int cursorAtCell(int x, int y);
+void bruteForce(),
+    clearCell(int x, int y),
+    drawSudoku(),
+    solveUsingLogic(),
+    updateCell(int x, int y, int number, int color=WHITE);
+ 
+void main(){
+    clrscr(); // Let's clear everything.
+    int i,j,x,y; // Just some declarations
+    // Initiallizing all cells as empty.
+    for(i=0;i<9;i++)
+        for(j=0;j<9;j++){
+            cell[i][j].value=0;
+            cell[i][j].type=EMPTY;
+        }
+    // Initiallizing Graphics Driver
+    int gdriver = DETECT, gmode, errorcode;
+    initgraph(&gdriver, &gmode, BGI_PATH);
+    errorcode = graphresult();
+    if (errorcode != grOk){ // If we got an error. Display it and exit.
+        printf("Graphics error: %s\n", grapherrormsg(errorcode));
+        printf("Press any key to halt:");
+        getch();
+        exit(1);
+    }
+    // Okay. Graphics works. Let's draw the Sudoku Grid
+    drawSudoku();
+    i=0; j=0; // Reset i and j to 0.
+    while(1){ // Infinite Loop
+        int keycode = cursorAtCell(i,j);
+        if(!keycode) keycode = 256+getch(); // Hack to add support for extended ASCII Codes
+        if(keycode==K_DOWN){
+            if(i<8) i++;
+        }else if(keycode==K_UP){
+            if(i>0) i--;
+        }else if(keycode==K_LEFT){
+            if(j>0) j--;
+        }else if(keycode==K_RIGHT){
+            if(j<8) j++;
+        }else if((keycode>='1')&&(keycode<='9')){ // If the key pressed is a valid number(1-9)
+            clearCell(i,j);
+            updateCell(i,j, keycode-'0'); // Update current cell with the number corresponding to the ASCII key code
+        }else if((keycode==K_BKSPC)||(keycode==K_DEL)){
+            clearCell(i,j);
+        }else if(keycode==K_CTRL_R){
+            int error=0;
+            // Let's loop through all the cells and see if they're valid enteries.
+            for(x=0;x<9;x++)
+                for(y=0;y<9;y++)
+                    if(!isValid(x,y,cell[x][y].value)){
+                        updateCell(x,y,cell[x][y].value,RED);
+                        error=1;
+                    }
+            if(!error){ // Okay. Everything is fine. Time to solve.
+                // Loop through all the cells. If it has a value, it must be user-defined.
+                for(x=0;x<9;x++)
+                    for(y=0;y<9;y++)
+                        if(cell[x][y].value!=0)
+                            cell[x][y].type=USER_DEFINED;
+                solveUsingLogic(); // Let's try to solve using defined logics.
+                if(!isComplete()){ // If it didn't work.
+                    setcolor(RED); // Add formatting
+                    outtextxy(10,10,"Couldn't solve using defined logic. Attempting to brute force..."); // Print message
+                    bruteForce();
+                }
+                if(isComplete()){ // Reached a solution.
+                    drawSudoku(); // Redraw sudoku with the solution.
+                    setcolor(WHITE); // Add formatting
+                    outtextxy(10,10,"Sudoku Solved. Press any key to clear sudoku and restart."); // Print message
+                }else{
+                    setcolor(RED); // Add formatting
+                    outtextxy(10,20,"Couldn't find a solution."); // Print message
+                    outtextxy(20,30,"Press F5 to change values and try again."); // Print message
+                    outtextxy(20,40,"Or press any other key to clear sudoku and restart."); // Print message
+                }
+                keycode = getch();
+                if(!keycode) keycode = 256+getch(); // Hack to add support for extended ASCII Codes
+                if((keycode==K_F5) && !(isComplete())){ // If a solution wasn't reached and the user pressed F5, let's revert back to the original user entered grid.
+                    for(x=0;x<9;x++)
+                        for(y=0;y<9;y++)
+                            if(cell[x][y].type!=USER_DEFINED)
+                                clearCell(x,y);
+                }else // Okay. Safe to empty the grid.
+                    for(x=0;x<9;x++)
+                        for(y=0;y<9;y++)
+                            clearCell(x,y);
+                i=0;j=0; // Return to the first cell.
+                drawSudoku();
+            }else{
+                settextstyle(0,0,1); setcolor(RED); // Add formatting
+                outtextxy(10,10,"Conflicting values(highlighted in red) found. Change and try again."); // Print message
+            }
+        }else if(keycode==K_ESC){ // Time to exit.
+            break; // End infinite loop. Oh, the irony!
+        }
+    }
+}
+ 
+void updateCell(int x, int y, int number, int color ){ // Updates cell(x,y) in the grid with number. Default color is white.
+    // Let's convert the number from int to string.
+    char number_string[1];
+    sprintf(number_string, "%d", number);
+    // Add formatting.
+    setcolor(color);
+    settextstyle(0,0,2);
+    outtextxy(x1+16+y*cellHeight, y1+10+x*cellWidth, number_string); // Write in the cell
+    cell[x][y].value=number; // Update the sudoku array
+}
+ 
+void clearCell(int x, int y){ // Empties cell(x,y) in the grid.
+    // Since we cannot erase, we'll overwrite the number with itself but with the background color.
+    // Let's convert the current number in the cell from int to string.
+    char number_string[1];
+    sprintf(number_string, "%d", cell[x][y].value);
+    // Add formatting. Using background color to achieve erasing effect.
+    setcolor(LIGHTGRAY);
+    settextstyle(0,0,2);
+    outtextxy(x1+16+y*cellHeight, y1+10+x*cellWidth, number_string); // Over-writing to erase.
+    // Update the sudoku array and cell type.
+    cell[x][y].value=0;
+    cell[x][y].type=EMPTY;
+}
+ 
+int cursorAtCell(int x, int y){ // Puts a cursor in the cell(x,y) in the grid. Returns keycode when a key is hit.
+    // We shall use the underscore character for the cursor. To achieve blinking effect, we shall alternate the color of the cursor between white and the background color every 100ms.
+    char cur_string[2] = "_";
+    int color = LIGHTGRAY;
+    while(1){ // Infinite loop.
+        (color==WHITE)?(color=LIGHTGRAY):(color=WHITE); // Alternate cursor color to achieve blinking effect.
+        // Add formatting.
+        setcolor(color);
+        settextstyle(0,0,2);
+        outtextxy(x1+16+y*cellHeight, y1+10+x*cellWidth+2, cur_string); // Add cursor
+        if(kbhit()){ // Oops. Someone hit a key. Time to stop the blinking.
+            if(color==WHITE){ // Wait. Before we get out of this loop, we must "erase the cursor". For this, we must make sure the color of the cursor is same as the background color.
+                setcolor(LIGHTGRAY);
+                outtextxy(x1+16+y*cellHeight, y1+10+x*cellWidth+2, cur_string);
+            }
+            break; // Okay. It's fine to break out of the loop now.
+        }
+        delay(100); // Let's wait 100ms before updating the cursor in order to make the blinking visible.
+    }
+    return getch(); // Return the key pressed so that we can process it.
+}
+ 
+void drawSudoku(){ // Draws the sudoku grid. Also adds text and numbers.
+    cleardevice(); // Let's clear everything on the screen.
+    clrscr();
+    // Getting and setting co-ordinate values
+    x1 = getmaxx()/5;
+    y1 = getmaxy()/5;
+    x2 = 4*getmaxx()/5;
+    y2 = 4*getmaxy()/5;
+    cellHeight = (x2 - x1)/9;
+    cellWidth = (y2 - y1)/9;
+    // Define background and pen colors
+    setbkcolor(LIGHTGRAY);
+    setcolor(DARKGRAY);
+    rectangle(x1-3, y1-3, x2+3, y2+3); // Draw the outer border of the grid.
+    rectangle(x1, y1, x2, y2); // Draw the inner border of the grid.
+    // Loop to draw vertical lines
+    for(int i=1; i<9; i++){
+        line((x1+i*cellHeight), y1, (x1+i*cellHeight), y2);
+        if(i==3||i==6) // And highlight the 3rd and 6th line
+            line((x1+i*cellHeight+3), y1, (x1+i*cellHeight+3), y2);
+    }
+    // Loop to draw horizontal lines
+    for(i=1; i<9; i++){
+        line(x1, (y1+i*cellWidth), x2, (y1+i*cellWidth));
+        if(i==3||i==6) // And highlight the 3rd and 6th line
+            line(x1, (y1+i*cellWidth+3), x2, (y1+i*cellWidth+3));
+    }
+    // Loop to fill the cells with numbers
+    for(i=0; i<9; i++)
+        for(j=0; j<9; j++){
+            if(cell[i][j].value!=0){ // If the cell isn't empty
+                int color=WHITE; // Let's define the color
+                if(cell[i][j].type==BRUTE_FORCED) color=BLUE;
+                else if(cell[i][j].type==LOGIC_FIND) color=GREEN;
+                updateCell(i,j, cell[i][j].value, color); // Write the number in the cell
+            }
+        }
+    // Now let's add a title and some instructions.
+    // Add formatting.
+    setcolor(WHITE);
+    settextstyle(0,0,3);
+    outtextxy(x1+40, y1-30, "Sudoku Solver"); // Co-ordinates found by experimentation. Let's hope this displays fine on all screens.
+    // Instead of placing all instructions manually, let's put them in a structure and loop to place them.
+    struct {char message[80]; int size; int color;} Messages[] = {{"Instructions",2,WHITE},
+                                                                  {"1. Use arrows keys to navigate and fill up all the known cells.",1,WHITE},
+                                                                  {"2. Press Ctrl+R to solve the sudoku.",1,WHITE},{"3. Press Esc to exit.",1,WHITE},
+                                                                  {"White: User Entered Values",1,WHITE},{"Green: Found Using Logic",1,GREEN},
+                                                                  {"Blue: Found Using Brute Force",1,BLUE},{"Red: Invalid Values",1,RED}};
+    int x=10, y=y1+10+9*cellWidth; // Initial x and y co-ordinates
+    for(i=0; i<8; i++){
+        settextstyle(0,0,Messages[i].size);
+        setcolor(Messages[i].color);
+        outtextxy(x, y, Messages[i].message);
+        y += textheight(Messages[i].message)+2; // Update y co-ordinate based on current message's height
+    }
+}
+ 
+bool isValid(int x, int y, int number){ // Check if the number in the cell(x,y) on the grid is valid.
+    if(number==0) // If the number is 0, that means the cell is empty. It's valid. Return true.
+        return true;
+    // Check for conflicts in the column.
+    for(int i=0;i<9;i++)
+        if(i!=x && cell[i][y].value == number) // Checking the cell for conflicts with itself doesn't make sense, does it?
+            return false;
+    // Check for conflicts in the row.
+    for(int j=0; j<9; j++)
+        if(j!=y && cell[x][j].value == number) // Checking the cell for conflicts with itself doesn't make sense, does it?
+            return false;
+    // Check for conflicts in the box.
+    int bx = (x/3)*3; // X coordinate of first cell in the box.
+    int by = (y/3)*3; // Y coordinate of first cell in the box.
+    for(i=0;i<3;i++)
+        for(j=0; j<3; j++)
+            if((!(bx+i==x && by+j==y)) && cell[bx+i][by+j].value == number) // Checking the cell for conflicts with itself doesn't make sense, does it?
+                return false;
+    // Okay, if we're here means that there are no conflicts. This is a valid move. Let's return true.
+    return true;
+}
+ 
+bool canEditCell(int x, int y){ // Checks if the cell is safe to be editing while bruteforcing.
+    if(cell[x][y].type==USER_DEFINED||cell[x][y].type==LOGIC_FIND) // If the cell was filled by the user or filled on the basis of basic logic, we better not touch it.
+        return false;
+    // If not, we're fine.
+    return true;
+}
+ 
+void bruteForce(){ // Brute-forces empty cells with all possible values until a solution is reached.
+    // We're going to work through all possible values seiuentially until a solution or contradiction is reached.
+    int i=0,x,y;
+    bool flag; // Initializing some variables.
+    while(i<81){ // Loop until we've crossed the last cell.
+        // Let's find the x and y co-ordinates
+        x = i/9; y = i%9;
+        if(canEditCell(x,y)){
+            flag=false; // Flag to see whether the cell was edited.
+            for(int j=cell[x][y].value+1;j<10;j++){ // Loop through all possible values.
+                if(isValid(x,y,j)){
+                    cell[x][y].value=j;
+                    cell[x][y].type=BRUTE_FORCED;
+                    flag=true;
+                    break; // We found a value that fits, time to break out of the loop and move to the next cell.
+                }
+            }
+        }
+        if(!flag){ // Oops, we didn't find any value to fit in the cell.
+            if(canEditCell(x,y)) cell[x][y].value=0; // Let's empty this cell, if we're allowed to edit it.
+            i--; // And go back to the previous cell.
+        }
+        else
+            i++; // We found a valid move. Next cell, here we come!
+        if(i==-1) // Oops, we can't go the cell previous to the first cell.
+            break; // No solution exists. Must break out of the loop.
+    }
+}
+ 
+bool isComplete(){ // Checks if all the cells in the sudoku have been filled.
+    for(i=0;i<9;i++)
+        for(j=0;j<9;j++)
+            if(cell[i][j].value==0)
+                return false;
+    return true;
+}
+ 
+bool logicStep1(){ // A.k.a there is only one possibility
+    int i,j,k,count,number;
+    bool flag=false;
+    // Loop through all the cells
+    for(i=0;i<9;i++)
+        for(j=0;j<9;j++){
+            if(cell[i][j].value==0){ // If it's empty
+                count = 0; // Number of possible values for this cell.
+                for(k=1;k<10;k++) // Let's loop from 1 to 9.
+                    if(isValid(i,j,k)){ // And if it's valid in this cell
+                        count++; // Number of possibilities++
+                        number=k; // Let's store this number for now. We might need it later on.
+                    }
+                if(count==1){ // There's only one possibility for this cell. Yay!
+                    cell[i][j].value=number; // This is why we stored that number.
+                    cell[i][j].type=LOGIC_FIND;
+                    flag=true; // We found something when this function was called.
+                }
+            }
+        }
+    if(flag)
+        return logicStep1(); // This wasn't a futile call. Let's do it again.
+    else
+        return false; // This was a futile call
+}
+ 
+bool logicStep2(){ // A.k.a it only fits here.
+    bool flag=false;
+    // Let's loop through the columns and check if any value fits in only one of the cells
+    for(int c=0;c<9;c++){
+        int no[]={0,0,0,0,0,0,0,0,0,0}, pos[]={0,0,0,0,0,0,0,0,0}; // Sorry I wasted 2 bytes.
+        for(int r=0;r<9;r++)
+            if(cell[r][c].value==0)
+                for(int k=1;k<10;k++)
+                    if(isValid(r,c,k)){
+                        no[k]++;
+                        pos[k]=r;
+                    }
+        for(int k=1; k<10; k++) // Loop from 1 to 9.
+            if(no[k]==1){ // This number only fits at one place. Let's put it there.
+                cell[pos[k]][c].value=k;
+                cell[pos[k]][c].type=LOGIC_FIND;
+                flag=true;
+            }
+    }
+    // And now the rows
+    for(int r=0;r<9;r++){
+        int no[]={0,0,0,0,0,0,0,0,0,0},pos[]={0,0,0,0,0,0,0,0,0};
+        for(int c=0;c<9;c++)
+            for(int k=1;k<10;k++)
+                if(cell[r][c].value==0)
+                    if(isValid(r,c,k)){
+                        no[k]++;
+                        pos[k]=c;
+                    }
+        for(k=1; k<10; k++)
+            if(no[k]==1){
+                cell[r][pos[k]].value=k;
+                cell[r][pos[k]].type=LOGIC_FIND;
+                flag=true;
+            }
+    }
+    // Also the boxes.
+    int no[]={0,0,0,0,0,0,0,0,0},posx[]={0,0,0,0,0,0,0,0,0},posy[]={0,0,0,0,0,0,0,0,0};
+    for(int i=0;i<3;i++)
+        for(int j=0;j<3;j++){
+            for(r=i*3;r<i*3+3;r++)
+                for(c=j*3;c<j*3+3;c++)
+                    if(cell[r][c].value==0)
+                        for(int k=1;k<10;k++)
+                            if(isValid(r,c,k)){
+                                no[k]++;
+                                posx[k]=r;
+                                posy[k]=c;
+                            }
+            for(int k=1; k<10; k++)
+                if(no[k]==1){
+                    cell[posx[k]][posy[k]].value=k;
+                    cell[posx[k]][posy[k]].type=LOGIC_FIND;
+                    flag=true;
+                }
+        }
+    if(flag)
+        return logicStep2(); // This wasn't a futile call. Let's do it again.
+    else
+        return false; // This was a futile call
+}
+ 
+void solveUsingLogic(){ // Keeps on calling the two defined logic functions until the calls become futile.
+    bool flag1 = logicStep1();
+    bool flag2 = logicStep2();
+    if((flag1||flag2) && !isComplete())
+        solveUsingLogic();
+    else
+        drawSudoku(); // Let's update the sudoku with all that we have.
+}
+// Oops. Line not found =P.

@@ -1,0 +1,164 @@
+#include<dos.h>
+#include<conio.h>
+#include<stdio.h>
+#include<string.h>
+#include<fstream.h>
+int block_check(int input)
+{
+  int block[]={221,222,215,22,61,45,95,205,240,46};//Remove some blocks
+  for(int i=0 ; i<10/*No. of blocks*/ ; ++i)
+	if (input==block[i])
+	  return 1;
+  return 0;
+}
+struct cl_matrix   //Matrix with intrinsic color properties
+{
+  int val;
+  int color;
+};
+class Matrix
+{
+  private:
+	cl_matrix ARRAY[25][80];//Main maze matrix  Console screen is 80x25
+	int Pi,Pj,Ei,Ej; //Do this feature
+  public:
+	void input(int, int, int, int);
+	void output(void);
+	void AI(int , int , int , int , int);
+	void floodfill(int , int);
+	void voidfill(void);
+	void fill(int,int);
+	int Matrixreturn(int,int);
+	Matrix(void);
+}
+matrix;
+int Matrix::Matrixreturn(int i , int j)
+{
+  return ARRAY[i][j].val;
+}
+
+void Matrix::output(void)
+{
+  for (int i=0 ; i<25 ; ++i)
+	for (int j=0 ; j<80 ; ++j)
+	  if (ARRAY[i][j].val==1||ARRAY[i][j].val==2)
+	  {
+		textcolor(ARRAY[i][j].color);
+		gotoxy(j+1,i+1);
+		cprintf("%d",ARRAY[i][j].val);
+	  }
+}
+
+Matrix::Matrix(void)             //Constructor
+{
+  for (int i=0 ; i<25 ; ++i)
+	for (int j=0 ; j<80 ; ++j)
+	{
+	  ARRAY[i][j].val=0;
+	  ARRAY[i][j].color=0;
+	}
+}
+
+void Matrix::input(int i , int j , int val , int color)
+{
+  ARRAY[i][j].val=val;
+  ARRAY[i][j].color=color;
+}
+void Matrix::voidfill(void)
+{
+  for (int i=0 ; i<25 ; ++i)
+	for (int j=0 ; j<80 ; ++j)
+	{
+	  ARRAY[i][j].val=0;
+	  ARRAY[i][j].color=0;
+	}
+}
+void Matrix::AI(int Playeri , int Playerj , int i , int j , int hit)
+{               //call with AI(....., kbhit())
+  int speed=50;
+  if (hit)
+	return;
+  this->voidfill();
+  this->input(Playeri,Playerj,1,7); //***IMP.
+  this->floodfill(Playeri,Playerj); //All other i,j is for the enemy
+  this->input(i,j,2,7);
+  this->output();
+  int a[4];
+  a[0]=ARRAY[i+1][j].val;
+  a[1]=ARRAY[i-1][j].val;
+  a[2]=ARRAY[i][j+1].val;
+  a[3]=ARRAY[i][j-1].val;
+  for(int n=0 ; n<4 ; ++n)
+	if(a[n]==1)  //1 is player character ascii code    //ad blockcheck here
+	  return;
+  int small=32000;
+  for(n=0 ; n<4 ; ++n)
+	if(a[n]<small&&a[n])
+	  small=a[n];
+
+  if(ARRAY[i+1][j].val==small)
+  {
+	this->input(i+1 , j , ARRAY[i][j].val , ARRAY[i][j].color);
+	//this->input(i , j , 100 , 0);
+	//this->output();
+	delay(speed);
+	this->AI(Playeri, Playerj , i+1 , j , kbhit());
+  }
+
+  else if(ARRAY[i-1][j].val==small)
+  {
+	this->input(i-1 , j , ARRAY[i][j].val , ARRAY[i][j].color);
+	//this->input(i , j , 100 , 0);
+	//this->output();
+	delay(speed);
+	this->AI(Playeri, Playerj , i-1 , j , kbhit());
+  }
+
+  else if(ARRAY[i][j+1].val==small)
+  {
+	this->input(i , j+1 , ARRAY[i][j].val , ARRAY[i][j].color);
+	//this->input(i , j , 100 , 0);
+	//this->output();
+	delay(speed);
+	this->AI(Playeri, Playerj , i , j+1 , kbhit());
+  }
+
+  else if(ARRAY[i][j-1].val==small)
+  {
+	this->input(i , j-1 , ARRAY[i][j].val , ARRAY[i][j].color);
+	//this->input(i , j , 100 , 0);
+	//this->output();
+	delay(speed);
+	this->AI(Playeri, Playerj , i , j-1 , kbhit());
+  }
+  else return;
+}
+void Matrix::fill(int i , int j)
+{
+  for(int m=i ; m<25 ; m++)
+	if(!ARRAY[m][j].val)
+	  ARRAY[m][j].val=ARRAY[m-1][j].val+1;
+  for(m=i ; m>=0 ; m--)
+	if(!ARRAY[m][j].val)
+	  ARRAY[m][j].val=ARRAY[m+1][j].val+1;
+  for(m=j ; m<80 ; m++)
+	if(!ARRAY[i][m].val)
+	  ARRAY[i][m].val=ARRAY[i][m-1].val+1;
+  for(m=j ; m>=0 ; m--)
+	if(!ARRAY[i][m].val)
+	  ARRAY[i][m].val=ARRAY[i][m+1].val+1;
+}
+void Matrix::floodfill(int i , int j)
+{
+  this->fill(i,j);
+  for(int n=0 ; n<80 ; n++)
+	  fill(i,n);
+}
+void main()
+{
+  clrscr();
+  matrix.input(19,27,1,7);   //REMEMBER TO ADD BLOCKS TO AI ALGORITHM
+  matrix.input(24,2,2,7);    //I.E. ADD EM AFTER VOIDFILL
+  matrix.AI(19,27,24,2,kbhit());
+  getch();
+}

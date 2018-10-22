@@ -1,0 +1,11 @@
+#include<iostream.h>
+#include<conio.h>
+void main()
+{
+clrscr();
+int n=5,a;
+a=n+ ++n+n;
+cout<<""<<a;
+cout<<n;
+getch();
+}

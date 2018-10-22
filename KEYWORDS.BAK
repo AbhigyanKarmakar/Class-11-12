@@ -1,0 +1,12 @@
+alignas      bool       default      export   for       inline     namespace
+alignof      break      delete       extern   friend    int        new
+asm          case       double       false    goto      long       no except
+auto         catch      do           float    if        mutable    nullptr
+char         char_16t   class        const    constexpr const_cast continue
+decltype     protected  else         enum     explicit  operator   private
+public       register   return       short    signed    sizeof     static
+struct       switch     template     this     throw     true       try
+typedef      typeid     typename     union    unsigned  using      virtual
+void         volatile   wchar_t      while    char32_t
+dynamic_cast            static_assert         reinterpret_cast
+static_cast             thread_local

@@ -1,0 +1,11 @@
+#include<iostream.h>
+#include<conio.h>
+void main()
+{
+clrscr();
+int a;
+cout<<"enter the no";
+cin>>a;
+
+getch();
+}

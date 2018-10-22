@@ -1,0 +1,23 @@
+#include<iostream.h>
+#include<conio.h>
+#include<stdio.h>
+#include<string.h>
+class matrix
+{
+  public:
+    int length ,b,h;
+    matrix operator + (matrix &m1)
+    {
+      matrix m2;
+      m2.length=m1.length+this->length;
+      m2.b=m1.b+this->b;
+      m2.h=m1.h+this->h;
+      return m2;
+    }
+}m1,m2;
+void main()
+{
+  clrscr();
+  m1+m2;
+  getch();
+}

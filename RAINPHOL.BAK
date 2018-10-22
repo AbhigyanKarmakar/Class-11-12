@@ -1,0 +1,25 @@
+#include <iostream.h>      //CODE BY ABHIGYAN KARMAKAR
+#include <conio.h>
+#include <stdio.h>
+#include <string.h>
+#include <dos.h>
+void main()
+{
+ char string1[81];
+ int x=0,y=0;
+ clrscr();
+ cout<<"Enter a String : ";
+ gets(string1);
+ clrscr();
+ cout<<string1;
+ for (x=1 ; x<=strlen(string1) ; x++)
+   for ( y=1 ; y<25 ; y++)
+   {
+    gotoxy(x,y-1);
+    cout<<" ";
+    gotoxy (x,y);
+    cout<<string1[x-1];
+    delay(50);
+   }
+ getch();
+}

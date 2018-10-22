@@ -1,0 +1,40 @@
+#include<iostream.h>
+#include<conio.h>
+void main()
+{
+clrscr();
+long double bhil, rem, realrem, elec;
+
+cin>>elec;
+if (elec>120)
+{
+  if (elec>=240)
+  {
+     rem=elec-240;
+     realrem=rem*7;
+     bhil=594+750+realrem;
+  }
+  else if (elec<240)
+  {
+     rem=elec-120;
+     realrem=rem*6.25;
+     bhil=594+realrem;
+  }
+  else if (elec==120)
+     bhil=594;
+}
+else if (elec<120)
+  bhil=elec*4.95;
+cout<<"\n";
+cout<<bhil;
+
+
+
+
+
+
+
+
+
+getch();
+}

@@ -1,0 +1,38 @@
+#include<iostream.h>
+#include<conio.h>
+#include<dos.h>
+#include<process.h>
+#include<string.h>
+
+void main()
+{
+ clrscr();
+
+     int lim, rmv;
+     cout<<"Enter Limit : ";
+     cin>>lim;
+     int nm[100];
+     for (int j=0; j<=lim; j++)
+     {
+	 cin>>nm[j];
+     }
+     cout<<"\nEnter position removal : ";
+     cin>>rmv;
+     for (int i=rmv; i<=lim; i++)
+     {
+	 nm[i]=nm[i+1];
+     }
+     cout<<"\n";
+     for (int k=0; k<lim; k++)
+	 cout<<nm[k];
+
+
+
+
+
+
+
+
+
+ getch();
+}

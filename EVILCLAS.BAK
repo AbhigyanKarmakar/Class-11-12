@@ -1,0 +1,33 @@
+#include<iostream.h>
+#include<conio.h>
+#include<stdio.h>
+#include<string.h>
+class trial              //#Note : The Following code is not
+{                        //        for the faint of heart
+  private:               //        or Uncrazy people
+    int hidden;          //        Scroll down only if you are crazy
+  public:                //        or can atleast appreciate craziness
+    trial()
+    {
+      hidden=89;
+    }
+    void display()
+    {
+      cout<<hidden;
+    }
+}
+h1;
+void main()
+{
+  clrscr();
+  trial *class_ptr;
+  class_ptr=&h1;
+  cout<<"Immutable Value : ";
+  h1.display();
+  cout<<"\n\nOr is it...???";
+  cout<<"\nEnter A new value : ";
+  scanf("%d",class_ptr);
+  printf("Muahaha New Value is : %d\n",(*class_ptr));
+  //h1.display();//Dont believe me?? Uncomment this line and see for yourself
+  getch();
+}

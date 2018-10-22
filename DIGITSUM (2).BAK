@@ -1,0 +1,83 @@
+#include<iostream.h>
+#include<conio.h>
+#include<math.h>
+void main()
+{
+clrscr();
+long int gha,quanta=0,  a=0, o=0, sum=0, q=69,h, d,dhaba,y,g,pal=0,yuni,dasgupta;
+cout<<"\t\t===============DIGIT SUMMER RECOG 2.0================\n";
+cout<<"\t\t Enter Number                               : ";
+cin>>a;
+dasgupta=a;
+if(a!=69)
+{
+cout<<"\t\t The Digits in reverse order are            : ";
+
+for ( d=10; q!=0; d=d*1)
+{
+  q=a/d;
+  o=a%d;
+  cout<<o;
+  sum=sum+o;
+  a=q;
+  quanta++;
+}
+cout<<"\n\t\t=====================================================\n";
+cout<<"\t\t Sum of Digits is                           : "<<sum;
+cout<<"\n\t\t=====================================================";
+}
+
+else if(a=69)
+{
+cout<<"      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Shammitab%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n";
+cout<<"      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Shammitab%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n";
+cout<<"      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Shammitab%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n";
+cout<<"      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Shammitab%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n";
+cout<<"      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Shammitab%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n";
+cout<<"      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Shammitab%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n";
+cout<<"      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Shammitab%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n";
+cout<<"      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Shammitab%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n";
+cin>>gha;
+cout<<"\n";
+cout<<"\n"<<"[CLASSIFIED]**THE PRESIDENT IS IN DANGER**";
+cout<<"\n"<<"**THE COUNTRY IS RECRUITING YOU FOR YOUR SERVICES**";
+cout<<"\n"<<"**YOUR NEW IDENTITY IS JEROME BOATENG**";
+cout<<"\n"<<"**AN AFRICAN-CHINESE BLUE-BLACK HOMOSEXUAL POKEMON UNDER DISGUISE**";
+cout<<"\n"<<"**DONT WORRY ABOUT THE COPY-RIGHT STUFF**";
+cout<<"\n"<<"**WE GOT IT UNDER CONTROL**";
+cout<<"\n"<<"**YOU SHALL NOW BE TRANSFERRED TO THE DESERTS OF KAZAKHSTHAN**";
+cout<<"\n"<<"**YOU SHALL RECEIVE YOUR INTEL THERE, FROM AGENT TUKLI UP NORTH**";
+cout<<"\n"<<"**AGENT TUKLI IS TOO INCONSPICUOUS FOR EVEN US TO DECIFER HER LOCATION**";
+cout<<"\n"<<"**HENCE, IT IS ALL UP TO YOU TO TRACK HER DOWN**";
+cout<<"\n"<<"**YOU MAY ENCOUNTER THE FOLLOWING THREATS**";
+cout<<"\n"<<"**PHUSKA-WALA LVL2.0 (PROPHET SUIT INCLUDED)**";
+cout<<"\n"<<"**FLYING IRON-ZOMBIES**";
+cout<<"\n"<<"**ALQUEDA**";
+cout<<"\n"<<"**NARENDRA MODI BUBBLE-HEADS**";
+cout<<"\n"<<"**WE HAVE NARROWED YOUR SEARCH CRITERIA TO: MIDDLE-EAST**";
+cout<<"\n"<<"**THIS MESSAGE WILL TERMINATE IN: NEVER**[CLASSIFIED]";
+}
+cout<<"\t\t\t\t Number of Digits is                        : "<<quanta;
+cout<<"\n";
+yuni=dasgupta;
+yuni=yuni*10;
+for (int f=0,ry=quanta; ry!=0; ry--,f++)
+{
+   g=pow(10,ry);
+   dhaba=yuni/g;
+   y=yuni%g;
+   h=pow(10,f);
+   pal=pal + dhaba*h;
+   yuni=y;
+}
+if (pal==dasgupta)
+{
+  cout<<"\n\t\t\t    IT IS A PALINDROME !!";
+}
+else
+{
+  cout<<"\n\t\t\t    IT IS A NOT PALINDROME !!";
+}
+
+getch();
+}

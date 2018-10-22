@@ -1,0 +1,78 @@
+#include<iostream.h>
+#include<conio.h>
+#include<dos.h>
+#include<process.h>
+void main()
+{
+clrscr();
+
+     int rows, column, nFS[10][10], inp, res=0, rr, cc;
+     cout<<"Enter Matrix grid size : \n";
+     gotoxy (40,3);
+     cout<<"x";
+     gotoxy (38,3);
+     cin>>rows;
+     gotoxy (42,3);
+     cin>>column;
+     clrscr();
+     int row=12/rows, col=60/column;
+     for (int m=0, slr=col; m<column, slr<=60; m++, slr+=col)
+     {
+	 gotoxy (slr,1);
+	 cout<<m;
+     }
+     for (int n=0, slc=row; n<rows, slc<=12; n++, slc+=row)
+     {
+	 gotoxy (1,slc);
+	 cout<<n;
+     }
+     for (int i=0, r=row; i<rows, r<=12; i++, r+=row)
+     {
+	 for (int j=0, c=col; j<column, c<=60; j++, c+=col)
+	 {
+	     gotoxy (c,r);
+	     cin>>nFS[i][j];
+	 }
+     }
+     cout<<"\n\nEnter Number : ";
+     cin>>inp;
+     for (int ppp=0; ppp<rows; ppp++)
+     {
+	 for (int qqq=0; qqq<column; qqq++)
+	 {
+	     if (inp==nFS[ppp][qqq])
+	     {
+
+		res++;
+		cout<<"\nLOCATION NO."<<res<<" : "<<"("<<ppp<<","<<qqq<<")";
+		continue;
+	     }
+	 }
+     }
+     if (res==0)
+	cout<<"\nNo such input....";
+
+     delay(4000);
+     clrscr();
+     gotoxy (37,13);
+     cout<<"BYE-BYE !";
+     delay(2000);
+     exit(0);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+getch();
+}

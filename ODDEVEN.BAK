@@ -1,0 +1,52 @@
+#include<iostream.h>
+#include<conio.h>
+void main()
+{
+clrscr();
+int a[10],b,k;
+cout<<"Enter any 6 numbers\n";
+for(int o=0;o<6;o++)
+{ cin>>a[o];
+  cout<<"\n";
+}
+for(int n=0;n<6;n++)
+{ for(int i=n+1;i<6;i++)
+   { if (a[i]%2=0)
+      { b=a[n];
+	a[n]=a[i];
+	a[i]=b;
+	break;
+      }
+      else
+      { continue;
+      }
+   }
+}
+cout<<"The required output\n";
+for(int w=0;w<6;w++)
+{ for(int u=5;u>w;u--)
+  {  if( (a[u]%2==0) && (a[u-1]%==0) )
+      { if (a[u]<a[u-1])
+	{ k=a[u];
+	  a[u]=a[u-1];
+	  a[u-1]=k;
+	 }
+	 else
+	 { continue;
+	 }
+       }
+      if( (a[u]%2!=0) && (a[u-1]%!=0) )
+      { if (a[u]<a[u-1])
+	{ k=a[u];
+	  a[u]=a[u-1];
+	  a[u-1]=k;
+	 }
+	 else
+	 { continue;
+	 }
+       }
+   }
+   cout<<a[w]<<"\n";
+}
+getch();
+}

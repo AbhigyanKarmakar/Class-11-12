@@ -1,0 +1,31 @@
+#include<iostream.h>
+#include<conio.h>
+void main()
+{
+clrscr();
+int sum(int ,int),dif( int , int),prod( int,int);
+int a,b,s,d,p;
+cout<<" ENter the 1st no.:";
+cin>>a;
+cout<<"\n Enter the 2nd no.:";
+cin>>b;
+s=sum(a,b);
+d=dif(a,b);
+p=prob(a,b);
+cout<<"\n SUM:"<<s;
+cout<<"\n DIFFERENCE:" <<d;
+cout<<"\n PRODUCT:"<<p;
+getch();
+}
+int sum(int a ,int b)
+{ int s=a+b;
+  return s;
+}
+int dif( int a , int b )
+{ int d=a-b;
+  return d;
+}
+int prod( int a ,int b )
+{ int p=a*b;
+  return p;
+}

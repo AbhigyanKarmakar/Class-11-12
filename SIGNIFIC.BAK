@@ -1,0 +1,17 @@
+#include<iostream.h>
+#include<conio.h>
+void main()
+{
+clrscr();
+int a,b=0,n=0,c=0;
+cout<<"enter the nn";
+cin>>a;
+for(;a!=0;)
+{ b=a%10;
+  n=n+1;
+  a=a/10;
+}
+c=(b*10)+n;
+cout<<"the number is"<<c;
+getch();
+}

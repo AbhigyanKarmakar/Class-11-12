@@ -1,0 +1,69 @@
+#include <dos.h>
+#include <conio.h>
+#include <iostream.h>
+void main()
+{
+	long double celcius,fahrenheit,choice,kelvin;
+	Choice:
+	clrscr();
+	cout<<"Choose";
+	cout<<"\n1. Fahrenheit to Celcius";
+	cout<<"\n2. Celcius to Fahrenheit";
+	cout<<"\n3. Fahrenheit to Kelvin";
+	cout<<"\n4. Celcius to Kelvin";
+	cout<<"\n5. Kelvin to Celcius";
+	cout<<"\n6. Kelvin to Fahrenheit";
+	cout<<"\nChoice : ";
+	cin>>choice;
+	if (choice==1)
+	{
+		cout<<"\nEnter Temperature in Fahrenheit : ";
+		cin>>fahrenheit;
+		celcius=0.566*(fahrenheit-32);
+		cout<<"Temperature = "<<celcius<<"\370C";
+	}
+	else if (choice==2)
+	{
+		cout<<"\nEnter Temperature in Celcius : ";
+		cin>>celcius;
+		fahrenheit=1.8*celcius+(32);
+		cout<<"Temperature = "<<fahrenheit<<"\370F";
+	}
+	else if (choice==3)
+	{
+		cout<<"\nEnter Temperature in Fahrenheit : ";
+		cin>>fahrenheit;
+		celcius=0.566*(fahrenheit-32);
+		kelvin=celcius+273.15;
+		cout<<"Temperature = "<<kelvin<<" K";
+	}
+	else if (choice==4)
+	{
+		cout<<"\nEnter Temperature in Celcius : ";
+		cin>>celcius;
+		kelvin=celcius+273.15;
+		cout<<"Temperature = "<<kelvin<<" K";
+	}
+	else if (choice==5)
+	{
+		cout<<"\nEnter Temperature in Kelvin : ";
+		cin>>kelvin;
+		celcius=kelvin-273.15;
+		cout<<"Temperature = "<<fahrenheit<<"\370C";
+	}
+	else if (choice==6)
+	{
+		cout<<"\nEnter Temperature in Kelvin : ";
+		cin>>kelvin;
+		celcius=kelvin-273.15;
+		fahrenheit=1.8*celcius+(32);
+		cout<<"Temperature = "<<fahrenheit<<"\370F";
+	}
+	else
+	{
+		cout<<"Sorry Wrong Choice Try Again !!!";
+		delay(1500);
+		goto Choice;
+	}
+	getch();
+}

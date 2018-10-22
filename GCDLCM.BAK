@@ -1,0 +1,23 @@
+#include<iostream.h>
+#include<conio.h>
+void main()
+{
+ clrscr();
+ long int gcd,multiple,lcm,num1,num2,lo, larger;
+ cout<<"Enter 1st Number : ";
+ cin>>num1;
+ cout<<"Enter 2nd Number : ";
+ cin>>num2;
+ if(num1>num2)
+   larger=num1;
+ else if(num1<=num2)
+   larger=num2;
+ for( lo=1 ; lo<=larger ; lo++ )
+   if (num1%lo==0&&num2%lo==0)
+     gcd=lo;
+ multiple=num1*num2;
+ lcm=multiple/gcd;
+ cout<<"The LCM is = "<<lcm;
+ cout<<"\nThe GCD/HCF is = "<<gcd;
+ getch();
+}

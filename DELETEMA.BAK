@@ -1,0 +1,95 @@
+#include<iostream.h>
+#include<conio.h>
+#include<iomanip.h>
+#include<stdlib.h>
+#include<stdio.h>
+#include<math.h>
+#include<string.h>
+#include<dos.h>
+#include<ctype.h>
+#include<complex.h>
+#include<mem.h>
+#include<new.h>
+#include<limits.h>
+#include<malloc.h>
+#include<io.h>
+#include<graphics.h>
+#include<generic.h>
+#include<fstream.h>
+#include<float.h>
+#include<errno.h>
+#include<dirent.h>
+#include<direct.h>
+#include<dir.h>
+#include<assert.h>
+#include<bcd.h>
+#include<bios.h>
+#include<alloc.h>
+void main()
+{
+ clrscr();
+ int matrix[100][100],x=1,y=1,xm,ym,matrixsize;
+ char a;
+ AKOMAR:
+ cout<<"Enter The Grid Size Of The Matrix";
+ cout<<"\nRow Size : ";
+ cin>>xm;
+ cout<<"\nColumn Size : ";
+ cin>>ym;
+ clrscr();
+ cout<<"Your "<<xm<<" x "<<ym<<" Matrix Has Been Intialised !\nTo Change Size Press r to proceed press y";
+ a=getch();
+ if(a=='r'||a=='R')
+ goto AKOMAR;
+ else
+  {
+   cout<<"\nEnter The Numbers To Form The Matrix\n";
+   int matrixsize9;
+   matrixsize=xm*ym;
+   for(int loop1=1,i=0,j=0 ; loop1<=matrixsize ; loop1++,j++)
+    {
+     cout<<"Enter Number : ";
+     cin>>matrix[i][j];
+     if(j==xm)
+     j=0;
+     if(j==xm)
+     i++;
+
+    }
+    clrscr();
+   for(int outloop=1,xo=1,yo=1 ; outloop<=matrixsize ; outloop++)
+    {
+     xo++;
+
+     cout<<"\n"<<matrix[yo][xo];
+
+     if(xo==xm)
+     {
+      xo=0;
+      yo++;
+     }
+
+
+    }
+  }
+
+
+
+
+/*
+ //EXITSTRATEGY:
+ cout<<"\n\n\n\tExit ? Press Y for YES and N for NO";
+ char aexit;
+ SHAMITAB:
+ aexit=getch();
+ if (aexit=='y')
+ exit (0);
+ else
+ goto SHAMITAB;
+ //else if (a=='n')
+ //goto EXITSTRATEGY;
+*/
+clrscr();
+cout<<matrix[2][2];
+getch();
+}

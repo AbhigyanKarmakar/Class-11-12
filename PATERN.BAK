@@ -1,0 +1,24 @@
+#include<iostream.h>
+#include<conio.h>
+void main()
+{
+clrscr();
+cout<<"        &    ";
+cout<<"\n";
+for(int n=1;n<=5;n++)
+{ for(int j=5;j>=n;j--)
+  {
+   cout<<" ";
+
+ }
+cout<<" &";
+ for(int k=1;k<=n;k++)
+  {
+   cout<<"  ";
+  }
+cout<<" &";
+cout<<"\n";
+}
+cout<<" & & & & & & & &";
+ getch();
+ }

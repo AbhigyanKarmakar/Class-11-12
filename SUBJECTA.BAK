@@ -1,0 +1,23 @@
+#include<iostream.h>
+#include<conio.h>
+void main()
+{
+clrscr();
+int num1=0,num2=0,num3=0,num4=0,num5=0 ,sum=0,per=0;
+cout<<"Enter Marks of First Subject = ";
+cin>>num1;
+cout<<"Enter Marks Of Second Subject = ";
+cin>>num2;
+cout<<"Enter Marks Of Third Subject = ";
+cin>>num3;
+cout<<"Enter Marks Of Fourth Subject = ";
+cin>>num4;
+cout<<"Enter Marks Of Fifth Subject = ";
+cin>>num5;
+sum=num1+num2+num3+num4+num5;
+per=(num1+num2+num3+num4+num5)/5;
+cout<<"Total Marks"<<sum;
+cout<<"\nPercentage"<<per;
+cout<<"%";
+getch();
+}

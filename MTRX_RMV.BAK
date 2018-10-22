@@ -1,0 +1,64 @@
+#include<iostream.h>
+#include<conio.h>
+#include<process.h>
+#include<dos.h>
+void main()
+{
+clrscr();
+
+     int col, row, nm[10][10], rmv, res=0,x,y;
+     cout<<"Enter Grid : ";
+     gotoxy (40,2);
+     cout<<"x";
+     gotoxy (38,2);
+     cin>>col;
+     gotoxy (42,2);
+     cin>>row;
+     cout<<"\n";
+     x=row;
+     y=col;
+     for (int i=0, r=5; i<row; i++, r+=2)
+     {
+	 for (int j=0, c=37; j<col; j++, c+=3)
+	 {
+	     gotoxy (c,r);
+	     cin>>nm[i][j];
+	 }
+	 cout<<"\n";
+     }
+     cout<<"Enter Number(s) You want to delete : ";
+     cin>>rmv;
+
+
+     for (int e=0, rr=5; e<row; e++, rr+=2)
+     {
+	 for (int f=0, cc=37; f<col; f++, cc+=3)
+	 {
+	     gotoxy (cc,rr);
+	     if (nm[e][f]==rmv)
+	     {
+		cout<<" ";
+		continue;
+	     }
+	     cout<<nm[e][f];
+	 }
+     }
+
+
+
+// for(int rr=0 ; )
+
+
+
+
+
+
+
+
+
+
+
+
+
+getch();
+}

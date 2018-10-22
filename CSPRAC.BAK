@@ -1,0 +1,18 @@
+#include<iostream.h>
+#include<conio.h>
+#include<stdio.h>
+#include<string.h>
+void main()
+{
+  char array[100];
+  clrscr();
+  cout<<"Input First Line of Pattern : ";
+  gets(array);
+  clrscr();
+  for (int i=0 ; i<strlen(array) ; i+=2)
+  {
+   cout<<array<<"\n";
+   array[i]=' ';
+  }
+  getch();
+}

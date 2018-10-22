@@ -1,0 +1,50 @@
+#include <iostream.h>
+#include <conio.h>
+#include <dos.h>
+long double factorial(int f)
+{
+  long double i=f;
+  if (f!=0)
+  {
+   do
+   {
+     f--;
+     i*=f;
+   }
+   while(f-1!=0);
+   return i;
+  }
+  else
+   return 1;
+}
+void main()
+{
+  Start:
+  clrscr();
+  int input,choice;
+  Input:
+  cout<<"Enter Number To Calculate Its Factorial : ";
+  cin>>input;
+  if (input>1754)
+  {
+    cout<<"Input Too Large Try a Smaller Number !!! ";
+    delay(1000);
+    clrscr();
+    goto Input;
+  }
+  else if (input<0)
+  {
+    cout<<"Input Cannot Be Less Than 0 !!!";
+    delay(1000);
+    clrscr();
+    goto Input;
+  }
+  cout<<input<<"! = "<<factorial(input)<<"\nEnter 1 To Restart Press Anything Else To Exit\nChoice : ";
+  cin>>choice;
+  if (choice==1)
+    goto Start;
+  else
+    goto Exit;
+  getch();
+  Exit:
+}

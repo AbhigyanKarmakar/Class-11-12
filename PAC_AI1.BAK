@@ -1,0 +1,173 @@
+#include<iostream.h>
+#include<conio.h>
+#include<stdio.h>
+#include<string.h>
+#include<dos.h>
+struct cl_matrix   //Matrix with intrinsic color properties
+{
+  int val;
+  int color;
+};
+class Matrix
+{
+  private:
+    cl_matrix ARRAY[25][80];//Main maze matrix  Console screen is 80x25
+  public:
+    void input(int i , int j ,int val , int color);
+    void output(void);
+    void AI(int , int , int , int , int);
+    void floodfill(int , int);
+    int Matrixreturn(int,int);
+    Matrix(void);
+}
+matrix;
+int Matrix::Matrixreturn(int i , int j)
+{
+  return ARRAY[i][j].val;
+}
+
+void Matrix::output(void)
+{
+  for (int i=0 ; i<25 ; ++i)
+    for (int j=0 ; j<80 ; ++j)
+      if (ARRAY[i][j].val)
+      {
+	textcolor(ARRAY[i][j].color);//cprintf is better suited to printing
+	gotoxy(j+1,i+1);             //diff colors
+	cout<<ARRAY[i][j].val;
+	//cprintf("%c",ARRAY[i][j].val);
+      }
+}
+
+Matrix::Matrix(void)             //Constructor
+{
+  for (int i=0 ; i<25 ; ++i)
+    for (int j=0 ; j<80 ; ++j)
+    {
+      ARRAY[i][j].val=0;
+      ARRAY[i][j].color=0;
+    }
+}
+
+void Matrix::input(int i , int j , int val , int color)
+{
+  ARRAY[i][j].val=val;
+  ARRAY[i][j].color=color;
+}
+
+void Matrix::floodfill(int i , int j)
+{
+  if( !i || !j || i==25 || j==80 )
+    return;
+
+  int DOWN=0,UP=0,RIGHT=0,LEFT=0;
+
+  if( ARRAY[i][j].val != ( ARRAY[i+1][j].val + 1 ) ) //If Current != Lower+1
+  {
+    ARRAY[i+1][j].val=ARRAY[i][j].val+1;
+    DOWN=1;
+  }
+
+  if( ARRAY[i][j].val != ( ARRAY[i-1][j].val + 1 ) ) //If Current != Upper+1
+  {
+    ARRAY[i-1][j].val=ARRAY[i][j].val+1;
+    UP=1;
+  }
+
+  if( ARRAY[i][j].val != ( ARRAY[i][j+1].val + 1 ) ) //If Current != Right+1
+  {
+    ARRAY[i][j+1].val=ARRAY[i][j].val+1;
+    RIGHT=1;
+  }
+
+  if( ARRAY[i][j].val != ( ARRAY[i][j-1].val + 1 ) ) //If Current != Left+1
+  {
+    ARRAY[i][j-1].val=ARRAY[i][j].val+1;
+    LEFT=1;
+  }
+
+  if(DOWN)
+    floodfill(i+1 , j);
+  else
+    return;
+
+  if(UP)
+    floodfill(i-1 , j);
+  else
+    return;
+
+  if(RIGHT)
+    floodfill(i , j+1);
+  else
+    return;
+
+  if(LEFT)
+    floodfill(i , j-1);
+  else
+    return;
+}
+
+void Matrix::AI(int Playeri , int Playerj , int i , int j , int hit)
+{               //call with AI(....., kbhit())
+  if (hit)
+    return;
+  delay(300);
+  this->floodfill(Playeri,Playerj); //All other i,j is for the enemy
+  int a[4];
+  a[0]=ARRAY[i+1][j].val;
+  a[1]=ARRAY[i-1][j].val;
+  a[2]=ARRAY[i][j+1].val;
+  a[3]=ARRAY[i][j-1].val;
+  for(int n=0 ; n<4 ; ++n)
+    if(a[n]==2)  //2 is player character ascii code
+      return;
+  int small=32000;
+  for(n=0 ; n<4 ; ++n)
+    if(a[n]<small)
+      small=a[n];
+
+  if(ARRAY[i+1][j].val==small)
+  {
+    this->input(i+1 , j , ARRAY[i][j].val , ARRAY[i][j].color);
+    this->input(i , j , 0 , 0);
+    this->output();
+    this->AI(Playeri, Playerj , i+1 , j , kbhit());
+  }
+
+  else if(ARRAY[i-1][j].val==small)
+  {
+    this->input(i-1 , j , ARRAY[i][j].val , ARRAY[i][j].color);
+    this->input(i , j , 0 , 0);
+    this->output();
+    this->AI(Playeri, Playerj , i-1 , j , kbhit());
+  }
+
+  else if(ARRAY[i][j+1].val==small)
+  {
+    this->input(i , j+1 , ARRAY[i][j].val , ARRAY[i][j].color);
+    this->input(i , j , 0 , 0);
+    this->output();
+    this->AI(Playeri, Playerj , i , j+1 , kbhit());
+  }
+
+  else if(ARRAY[i][j-1].val==small)
+  {
+    this->input(i , j-1 , ARRAY[i][j].val , ARRAY[i][j].color);
+    this->input(i , j , 0 , 0);
+    this->output();
+    this->AI(Playeri, Playerj , i , j-1 , kbhit());
+  }
+  else return;
+}
+void main()
+{
+  clrscr();
+  matrix.input(6,6,2,7);
+  matrix.input(24,70,1,7);
+  matrix.output();
+  getch();
+  matrix.AI(6,6,24,70,kbhit());
+  matrix.output();
+  getch();
+}
+

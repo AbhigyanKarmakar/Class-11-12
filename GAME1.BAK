@@ -1,0 +1,177 @@
+#include<dos.h>
+#include<conio.h>
+#include<stdio.h>
+#include<stdlib.h>
+#include<fstream.h>
+#include<limits.h>
+int SHIP_X=25;
+int SHIP_Y=5;
+const int SHIP=222;
+const int X_MAX=80;  //Screen width is 80 cells
+const int Y_MAX=24;  //Screen height is 24 cells
+struct cl_matrix     //Matrix with intrinsic colour properties
+{
+  int val;
+  int colour;
+};
+class Matrix
+{
+  private:
+	cl_matrix ARRAY[Y_MAX][X_MAX];//Main maze matrix  Console screen is 80x24
+  public:
+	void input(int , int , int , int);
+	void output(void);
+	void fill(int , int);
+	void boxfill(int , int , int , int);
+	void drawship(int , int);
+	void removeship(int , int);
+	void drawlines(int , int , int);
+	void gamemove(void);
+	int colour_ret(int , int);
+	int val_ret(int , int);
+	Matrix(void);
+}
+matrix;
+int Matrix::val_ret(int i , int j)
+{
+  return ARRAY[i][j].val;
+}
+int Matrix::colour_ret(int i , int j)
+{
+  return ARRAY[i][j].colour;
+}
+void Matrix::output(void)
+{
+  for (int i=0 ; i<Y_MAX ; ++i)
+	for (int j=0 ; j<X_MAX ; ++j)
+	  //if (ARRAY[i][j].val)
+	  {
+		gotoxy(j+1,i+1);
+		textcolor(ARRAY[i][j].colour);
+		cprintf("%c",ARRAY[i][j].val);
+	  }
+}
+
+Matrix::Matrix(void)             //Constructor
+{
+  this->fill(0,0);
+}
+
+void Matrix::input(int i , int j , int val , int colour)
+{
+  ARRAY[i][j].val=val;
+  ARRAY[i][j].colour=colour;
+}
+
+void Matrix::drawlines(int region , int type , int colour)
+{
+  textcolor(colour); //Damned americans
+  if(region==1)
+  {
+	int j=X_MAX-1;
+	for(int i=0 ; i<type+random(random(4)+5) ; ++i)
+	  this->input(i,j,219,colour);
+  }
+  if(region==2)
+  {
+	int j=X_MAX-1;
+	for(int i=Y_MAX ; i>Y_MAX-type+random(random(5)+4) ; --i)
+	  this->input(i,j-1,219,colour);
+  }
+}
+void Matrix::drawship(int i , int j)
+{
+  this->input(i,j,219,4);
+  this->input(i,j+1,int('>'),4);
+}
+
+void Matrix::removeship(int i , int j)
+{
+  this->input(i,j,0,0);
+  this->input(i,j+1,0,0);
+}
+void Matrix::boxfill(int y , int x , int block , int colour)
+{
+  while(this->val_ret(y,x)!=block) y--;
+  while(this->val_ret(y,x)==block) x--;   x++; //Off by one correction
+  x++;  y++;  //1st blank point in box    //Improve logic
+  for(int i=y ; this->val_ret(i,x)!=block ; i++)
+	for(int j=x ; this->val_ret(i,j)!=block ; j++)
+	  this->input(i,j,block,colour);
+}
+
+void Matrix::fill(int block , int colour)
+{
+  for (int i=0 ; i<Y_MAX ; ++i)
+	for (int j=0 ; j<X_MAX ; ++j)
+	  this->input(i,j,block,colour);
+}
+void Matrix::gamemove(void)
+{
+  this->output();
+  long int counter=0;
+  int jumpstate=0;
+  int inix , iniy , top=0;
+  char move='\0';
+  getch();
+  while(move!='x')
+  {
+	randomize();
+	this->drawlines(rand()%2+1,random((rand()%14)+1)+1,random(counter%15));
+	this->input(random(Y_MAX),random(X_MAX),219,5);
+	this->drawlines(rand()%2+1,random((rand()%14)+1)+1,random(counter%15));
+	while(kbhit())
+	{
+	  if(!jumpstate)
+	  move=getch();
+	  if(jumpstate)
+		move=' ';
+	  switch(move)
+	  {
+		case 'W':
+		case 'w':       //Move Ship UP
+				  if(SHIP_Y)
+					--SHIP_Y;
+				  break;
+		case 'S':
+		case 's':       //Move Ship DOWN
+				  if(SHIP_Y<Y_MAX)
+					++SHIP_Y;
+				  break;
+		case 'A':
+		case 'a':       //Move Ship LEFT
+				  if(SHIP_X)
+					--SHIP_X;
+				  break;
+		case 'D':
+		case 'd':       //Move Ship RIGHT
+				  if (SHIP_X<X_MAX)
+					++SHIP_X;
+				  break;
+	  }
+	}
+	++counter;
+	if(counter==LONG_MAX) counter=0;
+	if(!(counter%10))
+	  for(int i=0 ; i<Y_MAX ; ++i)
+		for(int j=0 ; j<X_MAX ; ++j)
+		  if(j)
+		  {
+			if(matrix.val_ret(i,j)!=222)
+			  matrix.input(i,j-1,matrix.val_ret(i,j),matrix.colour_ret(i,j));
+			else
+			  matrix.input(i,j+1,matrix.val_ret(i,j),matrix.colour_ret(i,j));
+			matrix.input(i,j,0,0);
+		  }
+	matrix.drawship(SHIP_Y,SHIP_X);
+	matrix.output();
+	matrix.removeship(SHIP_Y,SHIP_X);
+  }
+}
+void main()
+{
+  clrscr();
+  matrix.gamemove();
+  getch();
+}
+

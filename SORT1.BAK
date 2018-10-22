@@ -1,0 +1,52 @@
+#include<iostream.h>
+#include<conio.h>
+#include<string.h>
+#include<stdio.h>
+#include<limits.h>
+int find_largest(int array[] , int size , int beg)
+{
+  int big=INT_MIN , index;
+  for (int i=beg ; i<size ; i++)
+	if(array[i]>big)
+	{
+	  big=array[i];
+	  index=i;
+	}
+  return index;
+}
+void swap (int &a , int &b)
+{
+  int temp;
+  temp=a;
+  a=b;
+  b=temp;
+  return;
+}
+void input(int array[] , int size)
+{
+  for(int i=0 ; i<size ; ++i)
+  {
+	cout<<"Enter Element "<<i+1<<" : ";
+	cin>>array[i];
+  }
+}
+void output(int array[] , int size)
+{
+  for(int i=0 ; i<size ; ++i)
+	cout<<"Element "<<i+1<<" : "<<array[i]<<'\n';
+}
+void selection_sort(int array[] , int size)
+{
+   for (int i=0 ; i<size ; i++)
+	 swap(array[i],array[find_largest(array,size,i)]);
+}
+void main()
+{
+  clrscr();
+  int array[10];
+  input(array , 10);
+  selection_sort(array , 10);
+  //cout<<find_largest(array,10,0);
+  output(array,10);
+  getch();
+}

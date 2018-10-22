@@ -1,0 +1,30 @@
+#include <iostream.h>
+#include <conio.h>
+int primechk (int input)
+{
+ int chkstate=1;
+ for (int i=2 ; i<input ; i++)
+  if (input%i==0)
+  {
+    chkstate=0;
+    break;
+  }
+  return chkstate;
+}
+void main()
+{
+ clrscr();
+ int input;
+ cout<<"Enter Number : ";
+ cin>>input;
+ if (input%2!=0)
+ {
+  if (primechk(input)==1)
+   cout<<"Given Number is Odd and Prime !!! ";
+  else
+   cout<<"Given Number is Odd But not Prime !!!";
+ }
+  else
+  cout<<"Given Number is Even and Not Prime !!!";
+ getch();
+}

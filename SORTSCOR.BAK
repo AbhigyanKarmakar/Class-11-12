@@ -1,0 +1,29 @@
+#include<iostream.h>
+#include<conio.h>
+struct examinee
+{
+ int roll;
+ char name[30];
+ double score;
+}m[500];
+void main()
+{
+clrscr();
+int n;
+double x, sortscore(double,int);
+cout<<"Enter no. of students :";
+cin>>n;
+for (int i=0; i<n; i++)
+ {
+   cout<<"Enter roll no. :";
+   cin>>m[i].roll;
+   cout<<"Enter name :";
+   cin>>m[i].name;
+   cout<<"Enter score:";
+   cin>>m[i].score;
+ }
+clrscr();
+cout<<"ROLL NO.\t"<<"NAME\t\t\t"<<"SCORE";
+
+getch();
+}

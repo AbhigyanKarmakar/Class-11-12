@@ -1,0 +1,21 @@
+#include<incall.h>
+void main()
+{
+ char array[30];
+ int i=0,len,pot=10;
+ cin.getline(array,30);
+ for( i=0 ; array[i]=='\0'; i++)
+ len=i-1;
+ for (int j=0,k=len ; j<=(len+1)/2 ; j++,k--)
+ {
+  if (array[j]==array[k])
+  continue;
+  else
+  pot=0;
+ }
+ if (pot==0)
+ cout<<"NOT";
+ else
+ cout<<"Pallu";
+getch();
+}

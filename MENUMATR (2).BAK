@@ -1,0 +1,154 @@
+#include<iostream.h>
+#include<conio.h>
+#include<process.h>
+#include<dos.h>
+void main()
+{
+clrscr();
+
+     int colD, rowR, nm[10][10], rmv, resD=0, inpB;
+     int rows, column, nFS[10][10], inp, res=0, cc;
+     int row=12/rows, col=60/column;
+     int m, slr, n, slc, i, r, j, c, ppp, qqq, ii, rrrr, jD, cD;
+     int e,grr, f, cc;
+
+     START:
+     cout<<"\nEnter Choice : ";
+     cout<<"\n1. Search ";
+     cout<<"\n2. Replace ";
+     cout<<"\n3. DESTROY...!! ";
+     cout<<"\n4. Just delete ";
+     cout<<"\n5. Exit ";
+     cin>>inpB;
+     if (inpB==1)
+	goto SEARCH;
+     if (inpB==2)
+	goto REPLACE;
+     if (inpB==3)
+	goto DESTROY;
+     if (inpB==4)
+	goto DELETE;
+     if (inpB==5)
+	goto DOOM;
+
+
+     SEARCH:
+     cout<<"Enter Matrix grid size : \n";
+     gotoxy (40,3);
+     cout<<"x";
+     gotoxy (38,3);
+     cin>>rows;
+     gotoxy (42,3);
+     cin>>column;
+     clrscr();
+     for (m=0, slr=col; m<column, slr<=60; m++, slr+=col)
+     {
+	 gotoxy (slr,1);
+	 cout<<m;
+     }
+     for (n=0, slc=row; n<rows, slc<=12; n++, slc+=row)
+     {
+	 gotoxy (1,slc);
+	 cout<<n;
+     }
+     for (i=0, r=row; i<rows, r<=12; i++, r+=row)
+     {
+	 for (j=0, c=col; j<column, c<=60; j++, c+=col)
+	 {
+	     gotoxy (c,r);
+	     cin>>nFS[i][j];
+	 }
+     }
+     cout<<"\n\nEnter Number : ";
+     cin>>inp;
+     for (ppp=0; ppp<rows; ppp++)
+     {
+	 for (qqq=0; qqq<column; qqq++)
+	 {
+	     if (inp==nFS[ppp][qqq])
+	     {
+
+		res++;
+		cout<<"\nLOCATION NO."<<res<<" : "<<"("<<ppp<<","<<qqq<<")";
+		continue;
+	     }
+	 }
+     }
+     if (res==0)
+	cout<<"\nNo such input....";
+/*
+     delay(4000);
+     clrscr();
+     gotoxy (37,13);
+     cout<<"BYE-BYE !";
+     delay(2000);
+     exit(0);
+*/
+
+
+     DELETE:
+     cout<<"Enter Grid : ";
+     gotoxy (40,2);
+     cout<<"x";
+     gotoxy (38,2);
+     cin>>colD;
+     gotoxy (42,2);
+     cin>>rowR;
+     cout<<"\n";
+     for (ii=0, rrrr=5; ii<rowR; ii++, rrrr+=2)
+     {
+	 for (jD=0, cD=37; jD<colD; jD++, cD+=3)
+	 {
+	     gotoxy (cD,rrrr);
+	     cin>>nm[ii][jD];
+	 }
+	 cout<<"\n";
+     }
+
+     clrscr();
+     cout<<"Enter Number(s) You want to delete : ";
+     cin>>rmv;
+     for (e=0, grr=5; e<rowR; e++, grr+=2)
+     {
+	 for (f=0, cc=37; f<colD; f++, cc+=3)
+	 {
+	     gotoxy (cc,grr);
+	     if (nm[e][f]==rmv)
+	     {
+		cout<<" ";
+		continue;
+	     }
+	     cout<<nm[e][f];
+	 }
+     }
+
+     DOOM:
+
+
+
+
+     DESTROY:
+
+
+
+
+
+     REPLACE:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+getch();
+}

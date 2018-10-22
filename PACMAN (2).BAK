@@ -1,0 +1,397 @@
+#include<iostream.h>
+#include<conio.h>
+#include<process.h>
+#include<stdlib.h>
+#include<dos.h>
+void main()
+{
+clrscr();
+
+   int score=0;
+   START:
+   clrscr();
+   char inp;
+   int x=30, y=10, rndmx1, rndmy1, rndmx2, rndmy2;
+   int rndmx3, rndmy3, rndmx4, rndmy4, rndmx5, rndmy5;
+   int bmx1, bmy1, bmx2, bmy2;
+   gotoxy (1,1);
+   cout<<score;
+   randomize();
+   rndmx1=random(78);
+   rndmy1=random(23);
+   gotoxy (rndmx1,rndmy1);
+   cout<<"B";
+   rndmx2=random(78);
+   rndmy2=random(23);
+   gotoxy (rndmx2,rndmy2);
+   cout<<"B";
+   rndmx3=random(78);
+   rndmy3=random(23);
+   gotoxy (rndmx3,rndmy3);
+   cout<<"B";
+   rndmx4=random(78);
+   rndmy4=random(23);
+   gotoxy (rndmx4,rndmy4);
+   cout<<"B";
+   rndmx5=random(78);
+   rndmy5=random(23);
+   gotoxy (rndmx5,rndmy5);
+   cout<<"B";
+   bmx1=random(78);
+   bmy1=random(23);
+   gotoxy (bmx1,bmy1);
+   cout<<"X";
+   bmx2=random(78);
+   bmy2=random(23);
+   gotoxy (bmx2,bmy2);
+   cout<<"X";
+   gotoxy (30,10);
+   cout<<"A";
+   while (1==1)
+   {
+     inp=getch();
+     if (inp=='w')
+     {
+	if (y==2)
+	{
+	   gotoxy (x,2);
+	   cout<<" ";
+	   gotoxy (x,24);
+	   cout<<"A";
+	   y=24;
+	   gotoxy (1,1);
+	   cout<<score;
+	}
+	else
+	{
+	   if (x==rndmx1&&y==rndmy1)
+	   {
+	      ++score;
+	      rndmx1=100;
+	      rndmy1=100;
+	      if (score%3==0)
+		 goto START;
+	   }
+	   if (x==rndmx2&&y==rndmy2)
+	   {
+	      ++score;
+	      rndmx2=100;
+	      rndmy2=100;
+	      if (score%3==0)
+		 goto START;
+	   }
+	   if (x==rndmx3&&y==rndmy3)
+	   {
+	      ++score;
+	      rndmx3=100;
+	      rndmy3=100;
+	      if (score%3==0)
+		 goto START;
+	   }
+	   if (x==rndmx4&&y==rndmy4)
+	   {
+	      ++score;
+	      rndmx4=100;
+	      rndmy4=100;
+	      if (score%3==0)
+		 goto START;
+	   }
+	   if (x==rndmx5&&y==rndmy5)
+	   {
+	      ++score;
+	      rndmx5=100;
+	      rndmy5=100;
+	      if (score%3==0)
+		 goto START;
+	   }
+	   if (x==bmx1&&y==bmy1)
+	   {
+	      gotoxy (35,13);
+	      cout<<"KABOOM !!";
+	      bmx1=100;
+	      bmy1=100;
+	      delay (2000);
+	      score=0;
+	      goto START;
+	   }
+	   if (x==bmx2&&y==bmy2)
+	   {
+	      gotoxy (35,13);
+	      cout<<"KABOOM !!";
+	      bmx2=100;
+	      bmy2=100;
+	      delay (2000);
+	      score=0;
+	      goto START;
+	   }
+	   gotoxy (x,y);
+	   cout<<" ";
+	   gotoxy (x,--y);
+	   cout<<"A";
+	   gotoxy (1,1);
+	   cout<<score;
+	}
+     }
+     if (inp=='a')
+     {
+	if (x==2)
+	{
+	   gotoxy (2,y);
+	   cout<<" ";
+	   gotoxy (79,y);
+	   cout<<"A";
+	   x=79;
+	   gotoxy (1,1);
+	   cout<<score;
+	}
+	else
+	{
+	   if (x==rndmx1&&y==rndmy1)
+	   {
+	      ++score;
+	      rndmx1=100;
+	      rndmy1=100;
+	      if (score%3==0)
+		 goto START;
+	   }
+	   if (x==rndmx2&&y==rndmy2)
+	   {
+	      ++score;
+	      rndmx2=100;
+	      rndmy2=100;
+	      if (score%3==0)
+		 goto START;
+	   }
+	   if (x==rndmx3&&y==rndmy3)
+	   {
+	      ++score;
+	      rndmx3=100;
+	      rndmy3=100;
+	      if (score%3==0)
+		 goto START;
+	   }
+	   if (x==rndmx4&&y==rndmy4)
+	   {
+	      ++score;
+	      rndmx4=100;
+	      rndmy4=100;
+	      if (score%3==0)
+		 goto START;
+	   }
+	   if (x==rndmx5&&y==rndmy5)
+	   {
+	      ++score;
+	      rndmx5=100;
+	      rndmy5=100;
+	      if (score%3==0)
+		 goto START;
+	   }
+	   if (x==bmx1&&y==bmy1)
+	   {
+	      gotoxy (35,13);
+	      cout<<"KABOOM !!";
+	      bmx1=100;
+	      bmy1=100;
+	      delay (2000);
+	      score=0;
+	      goto START;
+	   }
+	   if (x==bmx2&&y==bmy2)
+	   {
+	      gotoxy (35,13);
+	      cout<<"KABOOM !!";
+	      bmx2=100;
+	      bmy2=100;
+	      delay (2000);
+	      score=0;
+	      goto START;
+	   }
+	   gotoxy (x,y);
+	   cout<<" ";
+	   gotoxy (--x,y);
+	   cout<<"A";
+	   gotoxy (1,1);
+	   cout<<score;
+	}
+     }
+     if (inp=='d')
+     {
+	if (x==79)
+	{
+	   gotoxy (79,y);
+	   cout<<" ";
+	   gotoxy (2,y);
+	   cout<<"A";
+	   x=1;
+	   gotoxy (1,1);
+	   cout<<score;
+	}
+	else
+	{
+	   if (x==rndmx1&&y==rndmy1)
+	   {
+	      ++score;
+	      rndmx1=100;
+	      rndmy1=100;
+	      if (score%3==0)
+		 goto START;
+	   }
+	   if (x==rndmx2&&y==rndmy2)
+	   {
+	      ++score;
+	      rndmx2=100;
+	      rndmy2=100;
+	      if (score%3==0)
+		 goto START;
+	   }
+	   if (x==rndmx3&&y==rndmy3)
+	   {
+	      ++score;
+	      rndmx3=100;
+	      rndmy3=100;
+	      if (score%3==0)
+		 goto START;
+	   }
+	   if (x==rndmx4&&y==rndmy4)
+	   {
+	      ++score;
+	      rndmx4=100;
+	      rndmy4=100;
+	      if (score%3==0)
+		 goto START;
+	   }
+	   if (x==rndmx5&&y==rndmy5)
+	   {
+	      ++score;
+	      rndmx5=100;
+	      rndmy5=100;
+	      if (score%3==0)
+		 goto START;
+	   }
+	   if (x==bmx1&&y==bmy1)
+	   {
+	      gotoxy (35,13);
+	      cout<<"KABOOM !!";
+	      bmx1=100;
+	      bmy1=100;
+	      delay (2000);
+	      score=0;
+	      goto START;
+	   }
+	   if (x==bmx2&&y==bmy2)
+	   {
+	      gotoxy (35,13);
+	      cout<<"KABOOM !!";
+	      bmx2=100;
+	      bmy2=100;
+	      delay (2000);
+	      score=0;
+	      goto START;
+	   }
+	   gotoxy (x,y);
+	   cout<<" ";
+	   gotoxy (++x,y);
+	   cout<<"A";
+	   gotoxy (1,1);
+	   cout<<score;
+	}
+     }
+     if (inp=='s')
+     {
+	if (y==24)
+	{
+	   gotoxy (x,24);
+	   cout<<" ";
+	   gotoxy (x,2);
+	   cout<<"A";
+	   y=1;
+	   gotoxy (1,1);
+	   cout<<score;
+	}
+	else
+	{
+	   if (x==rndmx1&&y==rndmy1)
+	   {
+	      ++score;
+	      rndmx1=100;
+	      rndmy1=100;
+	      if (score%3==0)
+		 goto START;
+	   }
+	   if (x==rndmx2&&y==rndmy2)
+	   {
+	      ++score;
+	      rndmx2=100;
+	      rndmy2=100;
+	      if (score%3==0)
+		 goto START;
+	   }
+	   if (x==rndmx3&&y==rndmy3)
+	   {
+	      ++score;
+	      rndmx3=100;
+	      rndmy3=100;
+	      if (score%3==0)
+		 goto START;
+	   }
+	   if (x==rndmx4&&y==rndmy4)
+	   {
+	      ++score;
+	      rndmx4=100;
+	      rndmy4=100;
+	      if (score%3==0)
+		 goto START;
+	   }
+	   if (x==rndmx5&&y==rndmy5)
+	   {
+	      ++score;
+	      rndmx5=100;
+	      rndmy5=100;
+	      if (score%3==0)
+		 goto START;
+	   }
+	   if (x==bmx1&&y==bmy1)
+	   {
+	      gotoxy (35,13);
+	      cout<<"KABOOM !!";
+	      bmx1=100;
+	      bmy1=100;
+	      delay (2000);
+	      score=0;
+	      goto START;
+	   }
+	   if (x==bmx2&&y==bmy2)
+	   {
+	      gotoxy (35,13);
+	      cout<<"KABOOM !!";
+	      bmx2=100;
+	      bmy2=100;
+	      delay (2000);
+	      score=0;
+	      goto START;
+	   }
+	   gotoxy (x,y);
+	   cout<<" ";
+	   gotoxy (x,++y);
+	   cout<<"A";
+	   gotoxy (1,1);
+	   cout<<score;
+	}
+     }
+     if (inp=='b')
+     {
+	clrscr();
+	gotoxy(35,13);
+	cout<<"YOUR SCORE : "<<score;
+	delay (2000);
+	exit(0);
+     }
+
+   }
+
+
+
+getch();
+}
+
+

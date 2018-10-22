@@ -1,0 +1,18 @@
+#include<iostream.h>
+#include<conio.h>
+#include<stdio.h>
+#include<string.h>
+void main()
+{
+ clrscr();
+ char *input;
+ int sum;
+ cout<<"Enter Number : ";
+ gets(input);
+ cout<<"Number Of Digits : "<<strlen(input);
+ cout<<"Sum of Digits : ";
+ for (int i=0 ; i<strlen(input) ; i++)
+   sum+=int(input[i]);
+ cout<<sum;
+ getch();
+}

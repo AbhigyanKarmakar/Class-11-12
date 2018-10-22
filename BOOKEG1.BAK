@@ -1,0 +1,44 @@
+#include<iostream.h>
+#include<conio.h>
+#include<stdio.h>
+#include<string.h>
+#include<fstream.h>
+class sample
+{
+    int x;
+  public:
+    sample(int i)
+    {
+      x=i;
+      cout<<"Constructor Obj "<<i<<"\n";
+    }
+    ~sample()
+    {
+      cout<<"Destructor Obj "<<x<<"\n";
+    }
+    void put_x(int i)
+    {
+      x=i;
+    }
+    int get_x(void)
+    {
+      this->x=x;//useless statement just to check syntax
+      return x;
+    }
+};
+void afunc(sample s1)
+{
+  s1.put_x(2);
+  cout<<"Local X = "<<s1.get_x()<<"\n";
+}
+void main()
+{
+  clrscr();
+  sample s(1);
+  cout<<"X main() = "<<s.get_x()<<"\n";
+  afunc(s);
+  cout<<"Main()"<<"\n";
+  cout<<"X = "<<s.get_x()<<"\n";
+  getch();
+}
+

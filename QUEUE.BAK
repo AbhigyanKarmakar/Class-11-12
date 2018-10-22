@@ -1,0 +1,61 @@
+Q.SHOW AN IMPLEMENTATION OF QUEUES.
+
+#include<iostream.h>
+#include<conio.h>
+void display(int array[] ,int beginning ,  int end)
+{
+  int i=beginning;
+  while(i!=end) cout<<array[i++]<<'\n';
+}
+int menu(void)
+{
+  int choice=0;
+  cout<<"1.Insert\n"
+	  <<"2.Delete\n"
+	  <<"3.Exit\n\nChoice : ";
+  cin>>choice;
+  return choice;
+}
+void insert(int array[], int beginning , int &end , int size , int element)
+{
+  if(end==size-1)
+	cout<<"\nStack Overflow!!";
+  else
+	array[end++]=element;
+  display(array,beginning,end);
+}
+void Delete(int array[] , int &beginning , int end)
+{
+  if(beginning!=end)
+  {
+	cout<<"Element Deleteped : "<<array[beginning]<<"\n\n";
+	beginning++;
+  }
+  else
+	cout<<"Stack Underflow!!";
+  display(array,beginning,end);
+}
+void main()
+{
+  int array[5] , size=5 , beginning=0 , end=0;
+  clrscr();
+  START:
+  getch();
+  clrscr();
+  int choice=menu();
+  if(choice==1)
+  {
+	int element;
+	cout<<"Enter Element : ";
+	cin>>element;
+	insert(array , beginning , end , size , element);
+	goto START;
+  }
+  else if(choice==2)
+  {
+	Delete(array,beginning,end);
+	goto START;
+  }
+  else goto EXIT;
+  EXIT:
+}

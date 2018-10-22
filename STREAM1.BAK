@@ -1,0 +1,20 @@
+#include<iostream.h>
+#include<conio.h>
+#include<stdio.h>
+#include<string.h>
+#include<fstream.h>
+void main()
+{
+  clrscr();
+  fstream f;
+  char ch='\0';
+  f.open("stream1.txt" , ios::in|ios::out|ios::binary);
+  f<<"Oh yea Junk Data";
+  f.seekg(0);
+  while (!f.eof())
+  {
+    f.get(ch);
+    cout<<ch;
+  }
+  getch();
+}

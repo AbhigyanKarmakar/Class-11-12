@@ -1,0 +1,21 @@
+#include <iostream.h>
+#include <conio.h>
+#include <string.h>
+#include <stdio.h>
+void main()
+{
+ clrscr();
+ char *string,dup[50];
+ cout<<"Enter String To Be Reversed : ";
+ gets(string);
+ for (int j=0,l=strlen(string) ; j<strlen(string) ; j++,l--)
+  dup[l-1]=string[j];
+ int i=0;
+ do
+ {
+  cout<<dup[i];
+  i++;
+ }
+ while (dup[i]!='\0');
+ getch();
+}

@@ -1,0 +1,180 @@
+#include<dos.h>
+#include<conio.h>
+#include<stdio.h>
+#include<string.h>
+#include<fstream.h>
+const int SCREEN_Y_MAX=24 , SCREEN_X_MAX=80 ;
+const int PLAYER=1 , ENEMY=2;
+int block_check(int input)
+{
+  int block[]={221,222,215,22,61,45,95,205,240,46};//Remove some blocks
+  for(int i=0 ; i<10/*No. of blocks*/ ; ++i)
+	if (input==block[i])
+	  return 1;
+  return 0;
+}
+struct cl_matrix   //Matrix with intrinsic color properties
+{
+  int val;
+  int color;
+};
+class Matrix
+{
+  private:
+	cl_matrix ARRAY[SCREEN_Y_MAX][SCREEN_X_MAX];//Main maze matrix  Console screen is 80x25
+	int Playeri,Playerj,Enemyi,Enemyj; //Do this feature later
+  public:
+	void input(int, int, int, int, int);
+	void output(void);
+	void AI(int , int , int , int , int);
+	void floodfill(int , int);
+	void voidfill(void);
+	void fill(int,int);
+	int Matrixreturn(int,int);
+	Matrix(void);
+}
+matrix;
+int Matrix::Matrixreturn(int i , int j)
+{
+  return ARRAY[i][j].val;
+}
+
+void Matrix::output(void)
+{                                  //WHAT IF OUTPUT ONLY DRAWS P_E OBJ
+  for (int i=0 ; i<SCREEN_Y_MAX ; ++i)//AND THEN LOADS MAP AND STARTS BY VOIDFILL
+	for (int j=0 ; j<SCREEN_X_MAX ; ++j)
+	  //if (i==Playeri||i==Enemyi)
+	  {
+		textcolor(7);//(ARRAY[i][j].color);
+		gotoxy(j+1,i+1);
+		cprintf("%c",ARRAY[i][j].val); // %d is int %c is char
+	  }
+}
+
+Matrix::Matrix(void)             //Constructor
+{
+  Playeri=Playerj=Enemyi=Enemyj=0;
+  for (int i=0 ; i<SCREEN_Y_MAX ; ++i)
+	for (int j=0 ; j<SCREEN_X_MAX ; ++j)
+	{
+	  ARRAY[i][j].val=0;
+	  ARRAY[i][j].color=0;
+	}
+}
+
+void Matrix::input(int i , int j , int val , int color , int P_Echk=0)
+{
+  if(P_Echk==PLAYER)
+  {
+	this->input(Playeri,Playerj,0,0);
+	Playeri=i;
+	Playerj=j;
+  }
+  else if(P_Echk==ENEMY)
+  {
+	this->input(Enemyi,Enemyj,0,0);
+	Enemyi=i;
+	Enemyj=j;
+  }
+  ARRAY[i][j].val=val;
+  ARRAY[i][j].color=color;
+}
+void Matrix::voidfill(void)
+{
+  for (int i=0 ; i<SCREEN_Y_MAX ; ++i)
+	for (int j=0 ; j<SCREEN_X_MAX ; ++j)
+	{
+	  ARRAY[i][j].val=0;
+	  ARRAY[i][j].color=0;
+	}
+}
+void Matrix::AI(int Playeri , int Playerj , int i , int j , int hit)
+{               //call with AI(....., kbhit())
+  int speed=50;
+  if (hit)
+	return;
+  fstream file;
+  file.open("l1.dat" , 131);
+  file.read( (char*)&matrix , sizeof(matrix));
+  this->input(Playeri,Playerj,PLAYER,7,PLAYER);
+  this->input(i,j,ENEMY,7,ENEMY);
+  this->output();
+  int a[4];
+  a[0]=ARRAY[i+1][j].val;
+  a[1]=ARRAY[i-1][j].val;
+  a[2]=ARRAY[i][j+1].val;
+  a[3]=ARRAY[i][j-1].val;
+  for(int n=0 ; n<4 ; ++n)
+	if(a[n]==1)  //1 is player character ascii code    //add blockcheck here
+	  return;
+  int small=32000;
+  for(n=0 ; n<4 ; ++n)
+	if(a[n]<small&&a[n])
+	  small=a[n];
+  this->input(i , j , 100 , 5);
+  if(ARRAY[i+1][j].val==small)
+  {
+	this->input(i+1 , j , ARRAY[i][j].val , ARRAY[i][j].color , ENEMY);
+	delay(speed);
+	this->AI(Playeri, Playerj , i+1 , j , kbhit());
+  }
+
+  else if(ARRAY[i-1][j].val==small)
+  {
+	this->input(i-1 , j , ARRAY[i][j].val , ARRAY[i][j].color , ENEMY);
+	delay(speed);
+	this->AI(Playeri, Playerj , i-1 , j , kbhit());
+  }
+
+  else if(ARRAY[i][j+1].val==small)
+  {
+	this->input(i , j+1 , ARRAY[i][j].val , ARRAY[i][j].color , ENEMY);
+	delay(speed);
+	this->AI(Playeri, Playerj , i , j+1 , kbhit());
+  }
+
+  else if(ARRAY[i][j-1].val==small)
+  {
+	this->input(i , j-1 , ARRAY[i][j].val , ARRAY[i][j].color , ENEMY);
+	delay(speed);
+	this->AI(Playeri, Playerj , i , j-1 , kbhit());
+  }
+  else return;
+}
+void Matrix::fill(int i , int j)
+{
+  for(int m=i ; m<SCREEN_Y_MAX ; m++)
+	if(!ARRAY[m][j].val)
+	  ARRAY[m][j].val=ARRAY[m-1][j].val+1;
+  for(m=i ; m>=0 ; m--)
+	if(!ARRAY[m][j].val)
+	  ARRAY[m][j].val=ARRAY[m+1][j].val+1;
+  for(m=j ; m<SCREEN_X_MAX ; m++)
+	if(!ARRAY[i][m].val)
+	  ARRAY[i][m].val=ARRAY[i][m-1].val+1;
+  for(m=j ; m>=0 ; m--)
+	if(!ARRAY[i][m].val)
+	  ARRAY[i][m].val=ARRAY[i][m+1].val+1;
+}
+void Matrix::floodfill(int i , int j)
+{
+  //this->voidfill();
+  this->input(i,j,PLAYER,7,PLAYER);
+  this->fill(i,j);
+  for(int k=0 ; k<SCREEN_X_MAX ; k++)
+	fill(i,k);
+}
+void main()
+{
+  clrscr();
+  fstream file;
+  file.open("l1.dat" , 131);
+  file.read( (char*)&matrix , sizeof(matrix));
+  matrix.input(14,30,PLAYER,7,PLAYER);//REMEMBER TO ADD BLOCKS TO AI ALGORITHM
+  matrix.input(23,70,ENEMY,7,ENEMY);    //I.E. ADD EM AFTER VOIDFILL
+  matrix.output();
+  matrix.floodfill(14,30);
+  matrix.AI(14,30,23,70,kbhit());
+  matrix.output();
+  getch();
+}

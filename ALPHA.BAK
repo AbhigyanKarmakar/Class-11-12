@@ -1,0 +1,13 @@
+#include<iostream.h>
+#include<conio.h>
+void main()
+{
+clrscr();
+for(char n=65;n<=70;n++)
+{
+ for(char i=65;i<=n;i++)
+ cout<<i;
+ cout<<"\n";
+ }
+ getch();
+}

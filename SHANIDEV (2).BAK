@@ -1,0 +1,42 @@
+#include<conio.h>
+#include<iostream.h>
+void main()
+{
+clrscr();
+char a, shanidev;
+cout<<"\t\t    ==============Cap_n cApS==============\n";
+cout<<"\t\t     Enter Alphabet                   :  ";
+cin>>a;
+if (a<91)
+{
+a=a+32;
+}
+else
+{
+a=a-32;
+}
+cout<<"\t\t     Converted Alphabet is            :  "<<a;
+cout<<"\n\t\t    ==============FaceCheck!==============\n";
+cout<<"\n\t\t      Enter Character                 :  ";
+cin>>shanidev;
+if (shanidev>47&&shanidev<58)
+{
+  cout<<"\n\t\t        IT IS A DIGIT               ";
+}
+else if (shanidev<91&&shanidev>64)
+{
+  cout<<"\n\t\t        IT IS AN ALPHABET   ";
+}
+else if (shanidev>96&&shanidev<123)
+{
+  cout<<"\n\t\t        IT IS AN ALPHABET " ;
+}
+else
+{
+  cout<<"\n\t\t         IT IS A SYMBOL ";
+}
+
+
+
+getch();
+}

@@ -1,0 +1,74 @@
+#include <stdio.h>
+#include <dos.h>
+#include <conio.h>
+#include <iostream.h>
+int j=0,c=0,l1,l2,outsz;
+void fill (int all[200],int one[100],int two[100])
+{
+ int i=0,la;
+ if (c==2)
+ la=l2;
+ else
+ la=l1;
+ do
+ {
+		all[i]=one[i];
+		i++;
+		all[i]=two[i];
+ }
+ while (i<=j&&i<=la);
+ if (c==2)
+ {
+	do
+	{
+		all[i]=two[i];
+		i++;
+	}
+	while (i<l2);
+ }
+ else
+ {
+	do
+	{
+		all[i]=one[i];
+		i++;
+	}
+	while (i<l1);
+	outsz=i;
+ }
+}
+void main()
+{
+	 clrscr();
+	 int all[100],one[100],two[200],i=0,k=0,choice;
+	 cout<<"Enter Size Of Array 1 : ";
+	 cin>>choice;
+	 do
+	 {
+		cout<<"Enter Elements Of 1st Array : ";
+		cin>>one[i];
+		i++;
+	 }
+	 while(i<choice);
+	 l1=i;
+	 clrscr();
+	 cout<<"Enter Size of 2nd Array : ";
+	 cin>>choice;
+	 do
+	 {
+		cout<<"Enter Elements Of 2nd Array : ";
+		cin>>two[k];
+		k++;
+	 }
+	 while(k<choice);
+	 l2=k;
+	 if (i>k)
+	 c=1;
+	 else
+	 c=2;
+	 fill(all,one,two);
+	 clrscr();
+	 for (int z=0 ; z<outsz ; z++)
+	 cout<<" "<<all[z];
+	 getch();
+}

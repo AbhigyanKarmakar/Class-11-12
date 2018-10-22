@@ -1,0 +1,24 @@
+#include<iostream.h>
+#include<conio.h>
+#include<string.h>
+void main()
+{
+clrscr();
+
+
+     int res=0, lim;
+     char nm[50], nem[50];
+     cout<<"Enter String : ";
+     cin>>nm;
+     lim=strlen(nm)-1;
+
+     for (int i=lim; i>=0; i--)
+	 cout<<nm[i];
+     for (int j=0, k=lim; j<=lim, k>=0; j++, k--)
+	 nem[j]=nm[k];
+     cout<<"\n\n"<<nem;
+
+
+
+getch();
+}

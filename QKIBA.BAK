@@ -1,0 +1,19 @@
+#include <conio.h>
+#include <iostream.h>
+void main()
+{
+ clrscr();
+ int input,sum=0;
+ cout<<"Enter a Number : ";
+ cin>>input;
+ for (int i=1 ; i<=input ; i++)
+   if (input%i==0)
+     sum+=i;
+ if (sum>(input*2))
+  cout<<"Given Number is an Abundant Number !!!";
+ else if (sum==(input*2))
+  cout<<"Given Number is a Perfect Number !!!";
+ else if (sum<(input*2))
+  cout<<"Given Number is a Deficient Number";
+ getch();
+}

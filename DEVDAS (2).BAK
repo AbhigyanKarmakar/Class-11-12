@@ -1,0 +1,62 @@
+#include<iostream.h>
+#include<conio.h>
+void main()
+{
+clrscr();
+int num11=0, num12=0, num13=0, num14=0, num15=0, num21=0, num22=0, num23=0, num24=0, num25=0, tot69=0;
+cout<<"\t\t      =============1st Term=============";
+cout<<"\n\t\t      Enter marks in English         = ";
+cin>>num11;
+cout<<"\n\t\t      Enter marks in Maths           = ";
+cin>>num12;
+cout<<"\n\t\t      Enter marks in Chemistry       = ";
+cin>>num13;
+cout<<"\n\t\t      Enter marks in Physics         = ";
+cin>>num14;
+cout<<"\n\t\t      Enter marks in Computer Science= ";
+cin>>num15;
+cout<<"\n";
+cout<<"\t\t      =============2nd Term=============";
+cout<<"\n\t\t      Enter marks in English         = ";
+cin>>num21;
+cout<<"\n\t\t      Enter marks in Maths           = ";
+cin>>num22;
+cout<<"\n\t\t      Enter marks in Chemistry       = ";
+cin>>num23;
+cout<<"\n\t\t      Enter marks in Physics         = ";
+cin>>num24;
+cout<<"\n\t\t      Enter marks in Computer Science= ";
+cin>>num25;
+clrscr();
+cout<<"\t\t      ================Mark Sheet================";
+cout<<"\n";
+cout<<"\n\t\t      ================ Averages ================";
+cout<<"\n\t\t       Your Average marks in English         = "<<(num11+num21)/2;
+cout<<"\n\t\t       Your Average marks in Maths           = "<<(num12+num22)/2;
+cout<<"\n\t\t       Your Average marks in Chemistry       = "<<(num13+num23)/2;
+cout<<"\n\t\t       Your Average marks in Physics         = "<<(num14+num24)/2;
+cout<<"\n\t\t       Your Average marks in Computer Science= "<<(num15+num25)/2;
+cout<<"\n\t\t      ================Percentages================";
+cout<<"\n\t\t       Your Percentage in English            = "<<(num11+num21)/200;
+cout<<"\n\t\t       Your Percentage in Maths              = "<<(num12+num22)/200;
+cout<<"\n\t\t       Your Percentage in Chemistry          = "<<(num13+num23)/200;
+cout<<"\n\t\t       Your Percentage in Physics            = "<<(num14+num24)/200;
+cout<<"\n\t\t       Your Percentage in Computer Science   = "<<(num15+num25)/200;
+
+
+
+
+
+
+
+
+
+getch();
+}
+
+
+
+
+
+
+

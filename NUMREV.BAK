@@ -1,0 +1,18 @@
+#include<iostream.h> //CODE BY ABHIGYAN KARMAKAR
+#include<conio.h>
+#include<stdio.h>
+#include<string.h>
+void main()
+{
+   clrscr();
+   char number[100],duplicate[100];
+   int len;
+   cout<<"Enter Number To Be Reversed : ";
+   gets(number);
+   len=strlen(number);
+   strcpy(duplicate,number);
+   for (int i=0, lenght=len; i<len ; i++,lenght--)
+     number[i]=duplicate[lenght-1];
+     cout<<"Reversed Number : "<<number;
+   getch();
+}

@@ -1,0 +1,16 @@
+#include<conio.h>
+#include<fstream.h>
+void main()
+{
+  clrscr();
+  cout<<"ios::in \t\t"<<ios::in
+      <<"\nios::out \t\t"<<ios::out
+      <<"\nios::ate \t\t"<<ios::ate
+      <<"\nios::app \t\t"<<ios::app
+      <<"\nios::trunc \t\t"<<ios::trunc
+      <<"\nios::nocreate\t\t"<<ios::nocreate
+      <<"\nios::noreplace\t\t"<<ios::noreplace
+      <<"\nios::binary \t\t"<<ios::binary;
+  getch();
+}
+

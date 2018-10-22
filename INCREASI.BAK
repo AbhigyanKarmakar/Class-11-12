@@ -1,0 +1,36 @@
+#include<iostream.h>
+#include<conio.h>
+#include<string.h>
+void main()
+{
+ clrscr();
+ int a[100],g,c=0;
+ cout<<"Enter Amount Of Numbers : ";
+ cin>>c;
+ cout<<"Enter Numbers : ";
+ for(int i=0 ; i<c ; i++)
+ {
+    cin>>a[i];
+    cout<<"\n";
+ }
+ cout<<"The Numbers in Increasing Order : ";
+ for( int n=0 ; n<c ; n++ )
+ {
+   for(int m=c ; m>=n ; --m)
+      {
+	 if(m!=0)
+	  if(a[m]<a[m-1])
+	   {
+	    g=a[m];
+	    a[m]=a[m-1];
+	    a[m-1]=g;
+	   }
+	 else
+	  {
+	   continue;
+	  }
+      }
+    cout<<a[n]<<" ";
+ }
+ getch();
+}

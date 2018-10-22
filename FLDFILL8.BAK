@@ -1,0 +1,78 @@
+#include<iostream.h>
+#include<conio.h>
+#include<stdio.h>
+#include<string.h>
+#include<fstream.h>
+void floodfill(int **array , int i , int j , int boundi , int boundj)
+{
+  if( i<0 || j<0 || i>boundi || j>boundj )
+	return;
+
+  int DOWN=0,UP=0,RIGHT=0,LEFT=0;
+
+  if( array[i][j] != ( array[i][j+1] + 1 )||!array[i][j] ) //If Current != Right+1
+  {
+	array[i][j+1]=array[i][j]+1;
+	RIGHT=1;
+  }
+
+  if( array[i][j] != ( array[i][j-1] + 1 )||!array[i][j] ) //If Current != Left+1
+  {
+	array[i][j-1]=array[i][j]+1;
+	LEFT=1;
+  }
+
+  if( array[i][j] != ( array[i+1][j] + 1 )||!array[i][j] ) //If Current != Lower+1
+  {
+	array[i+1][j]=array[i][j]+1;
+	DOWN=1;
+  }
+
+  if( array[i][j] != ( array[i-1][j] + 1 )||!array[i][j] ) //If Current != Upper+1
+  {
+	array[i-1][j]=array[i][j]+1;
+	UP=1;
+  }
+
+
+  if(DOWN)
+	floodfill(array , i+1 , j , boundi , boundj);
+  else
+	return;
+
+  if(UP)
+	floodfill(array , i-1 , j , boundi , boundj);
+  else
+	return;
+
+  if(RIGHT)
+	floodfill(array , i , j+1 , boundi , boundj);
+  else
+	return;
+
+  if(LEFT)
+	floodfill(array , i , j-1 , boundi , boundj);
+  else
+	return;
+}
+void main()
+{
+  clrscr();
+  int **array;
+  for(int i=0 ; i<25 ; ++i)
+	array[i]=new int [80];
+  for(i=0 ; i<15 ; ++i)
+	for(int j=0 ; j<27 ; ++j)
+	  array[i][j]=0;
+  array[5][8]=2;
+  floodfill(array,5,8,15,27);
+  for(i=0 ; i<15 ; ++i)
+  {
+	for(j=0 ; j<27 ; ++j)
+	  cout<<array[i][j]<<" ";
+	cout<<"\n";
+  }
+  getch();
+}
+
+

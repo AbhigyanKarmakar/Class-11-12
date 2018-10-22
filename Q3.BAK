@@ -1,0 +1,44 @@
+#include<iostream.h>
+#include<conio.h>
+#include<arrange.h>
+void arr_fill (int a[100],int b[100],int c[200],int sza,int szb)
+{
+  int i=0,size=0;
+  for (i=0 ; i<sza ; i++)
+  c[i]=a[i];
+  for (int j=0 ; j<szb ; i++,j++)
+  c[i]=b[j];
+}
+void main()
+{
+ clrscr();
+ int a[100],b[100],c[200],sza,szb;
+ cout<<"Enter Size Of Array 1 : ";
+ cin>>sza;
+ for (int i=0 ; i<sza ; i++)
+ {
+    cout<<"Enter Element : ";
+    cin>>a[i];
+ }
+ cout<<"\nEnter Size Of Array 2 : ";
+ cin>>szb;
+ for (int j=0 ; j<szb ; j++)
+ {
+    cout<<"Enter Element : ";
+    cin>>b[j];
+ }
+ arr_fill(a,b,c,sza,szb);
+ arr_increase(a,sza);
+ cout<<"\nSorted Array 1 : ";
+ for (int k=0 ; k<sza ; k++)
+ cout<<a[k]<<" ";
+ arr_decrease(b,szb);
+ cout<<"\nSorted Array 2 : ";
+ for (int l=0 ; l<szb ; l++)
+ cout<<b[l]<<" ";
+ arr_decrease(c,(szb+sza));
+ cout<<"\nSorted Array 3 : ";
+ for (int m=0 ; m<(sza+szb) ; m++)
+ cout<<c[m]<<" ";
+ getch();
+}

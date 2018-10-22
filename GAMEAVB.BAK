@@ -1,0 +1,108 @@
+#include<iostream.h>
+#include<stdlib.h>
+#include<dos.h>
+#include<conio.h>
+#include<process.h>
+void main()
+{
+   clrscr();
+   int col=4,row=4,c=0,r=0;
+   char ch;
+   ll:
+   c=random(25);
+   r=random(16);
+   if(c>=2 || r>=2 || c<=25 || row<=16)
+    {
+      gotoxy(c,r);
+      cout<<"X";
+    }
+   else
+     goto ll;
+   ii:
+   c=random(25);
+   r=random(16);
+    if(c>=2 || r>=2 || c<=25 || row<=16)
+    {
+      gotoxy(c,r);
+      cout<<"X";
+    }
+    else
+      goto ii;
+   cout<<"WELCOME TO A GAME IN C++"<<endl;
+   cout<<"-------------------------";
+   cout<<" \n|\t\t\t|\n|\t\t\t|\n|\t\t\t|\n|\t\t\t|\n|\t\t\t|\n|\t\t\t|\n|\t\t\t|\n|\t\t\t|\n|\t\t\t\|\n|\t\t\t|\n|\t\t\t|\n|\t\t\t|\n|\t\t\t|\n";
+   cout<<"-------------------------";
+   gotoxy(col,row);
+   cout<<(char)1;
+  for(int i=0;  ; i++)
+    {
+       getch();
+
+       if(getch()=='w')
+	{
+	   gotoxy(col,row);
+	   cout<<" ";
+	   row--;
+	   if(col<=2 || row<=2 || col>=25 || row>=16)
+	    {
+	     delay(1000);
+	     clrscr();
+	     cout<<"YOU ARE DEAD";
+	     delay(2000);
+	     exit(0);
+	    }
+	   gotoxy(col,row);
+	   cout<<(char)1;
+	}
+       else if(getch()=='s')
+	{
+	   gotoxy(col,row);
+	   cout<<" ";
+	   row++;
+	    if(col<=2 || row<=2 || col>=25 || row>=16)
+	    {
+	     delay(1000);
+	     clrscr();
+	     cout<<"YOU ARE DEAD";
+	     delay(2000);
+	     exit(0);
+	    }
+	   gotoxy(col,row);
+	   cout<<(char)1;
+	}
+       else if(getch()=='a')
+	{
+	  gotoxy(col,row);
+	  cout<<" ";
+	  col--;
+	   if(col<=2 || row<=2 || col>=25 || row>=16)
+	    {
+	     delay(1000);
+	     clrscr();
+	     cout<<"YOU ARE DEAD";
+	     delay(2000);
+	     exit(0);
+	    }
+	  gotoxy(col,row);
+	  cout<<(char)1;
+	}
+       else if(getch()=='d')
+	{
+	  gotoxy(col,row);
+	  cout<<" ";
+	  col++;
+	   if(col<=2 || row<=2 || col>=25 || row>=16)
+	    {
+	     delay(1000);
+	     clrscr();
+	     cout<<"YOU ARE DEAD";
+	     delay(2000);
+	     exit(0);
+	    }
+	  gotoxy(col,row);
+	  cout<<(char)1;
+	}
+       else if(getch()=='l')
+	break;
+    }
+}

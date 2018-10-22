@@ -1,0 +1,26 @@
+#include<iostream.h>
+#include<conio.h>
+void main()
+{
+clrscr();
+int y,a;
+//cout<<"Enter the number of letters in your name : ";
+//cin>>a;
+
+char name[100];
+cin>>name;
+int t,nm,bhata;
+t=y/2;
+for(int k=0,fn=nm;k<=nm,nm>=0;k++,nm-- )
+{
+ if (name[k]==name[nm])
+  bhata=1;
+  else
+  bhata=0;
+}
+if (bhata==1)
+cout<<"Palin";
+else
+cout<<"LOL";
+getch();
+}

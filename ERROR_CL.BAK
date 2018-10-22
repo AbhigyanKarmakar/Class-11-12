@@ -1,0 +1,39 @@
+#include<iostream.h>
+#include<conio.h>
+#include<stdio.h>
+#include<string.h>
+class X
+{
+  int a,b;
+  void count(void)
+  {
+    a++;
+  }
+  public:
+    int x;
+    void init(int,int,int);
+    void print(void);
+};
+void X::print(void)
+{
+  count();
+  //line with error omitted
+}
+void func(void);
+X ob1;
+int main()
+{
+  X ob2;
+  ob1.init(0,1,2);
+  ob2.init(2,3,4);
+  ob1.print();
+  ob2.print();
+  //ob1.count();
+  //ob2.count();
+  return 0;
+}
+void func(void);
+void func()
+{
+  X ob3;
+}

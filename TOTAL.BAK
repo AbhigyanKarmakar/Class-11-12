@@ -1,0 +1,106 @@
+#include<iostream.h>
+#include<conio.h>
+void main()
+{
+clrscr();
+int a[5],b,x=0,bang,choice,y;
+ cout<<"Enter any 6 numbers\n";
+for(int n=0 ;n<6;n++)
+{cin>>a[n];
+}
+bang:
+ cout<<"Enter any 6 numbers\n";
+ y=6
+for(int l=0 ;l<y;l++)
+{ cout<<a[l]<<"\n";
+}
+cout<<"|||||||||||||Numbers||||||||||||\n";
+cout<<"Press 1. To search any number \nPress 2. Delete any number \nPress 3. Replace \nPress 4. To exit \n";
+cin>>choice;
+
+  if(choice==1)
+    {
+	cout<<"Enter the no to be checked\n";
+	cin>>b;
+	for(int c=0;c<6;c++)
+	{ if(a[c]==b)
+	{ cout<<"\nThe position of the no. array is\n"<<c+1;
+	x=x+1;
+	}
+
+	else
+	{continue;
+	}
+	}
+	if(x<1)
+	{ cout<<"\nThe no you are searching is no available";
+	}
+	getch();
+	clrscr();
+	goto bang;
+    }
+else if(choice==2)
+   {
+     cout<<"Enter the no to be deleted\n";
+	cin>>b;
+	int d=0;
+	for(int c=0;c<6;c++)
+	{ if(a[c]==b)
+	 {
+	  if(a[5]==a[c])
+	   {  cout<<" \n";
+	   d=d+1;
+		}
+
+	  else
+   { for(int u=c;u<5;u++)
+     { if (a[c]!=a[u+1])
+      {a[c]=a[c+1];
+      cout<<a[c]<<"\n";
+      c++;
+      d=d+1;
+      }
+      else
+      { continue;
+      }
+    }
+  }
+}
+   else
+   { cout<<a[c]<<"\n";
+   }
+
+}
+if(d<1)
+{ cout<<"\nError......";
+}
+y=6-d;
+getch();
+clrscr();
+goto bang;
+}
+if(choice==3)
+{
+   int w,g;
+   cout<<"\nenter the no. to be replaced";
+   cin>>g;
+   cout<<" \nenter the no. which will replace it:";
+   cin>>w;
+   cout<<"\nthe new list\n";
+   for(int t=0;t<6;t++)
+   { if(a[t]==g)
+    { a[t]=w;
+     cout<<a[t]<<"  ";
+    }
+
+   else
+   { cout<<a[t]<<"  ";
+   }
+   }
+   getch();
+   clrscr();
+   goto bang;
+}
+if(choice==4)
+getch();
+}

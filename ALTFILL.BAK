@@ -1,0 +1,68 @@
+#include <iostream.h>    //Code By Abhigyan Karmakar
+#include <conio.h>
+int sizelow,ref,tsize;
+void altfill(int big[200],int array1[100],int array2[100])
+{
+  int i=0,j=0;
+  do
+  {
+    big[i++]=array1[j];
+    big[i++]=array2[j++];
+  }
+  while (j<sizelow);
+  if (ref==1) // This executes when array 1 is smaller
+    do
+      big[i++]=array2[j++];
+    while (i<tsize);
+  else        // This executes when array 2 is smaller
+    do
+      big[i++]=array1[j++];
+    while (i<tsize);
+}
+
+void main()
+{
+  int big[200],array1[100],array2[100],size,i;
+  Start:
+  clrscr();
+  cout<<"Enter Size of 1st Array : ";
+  cin>>size;
+  tsize=size;
+  i=0;
+  do
+  {
+     cout<<"Element "<<i+1<<" : ";
+     cin>>array1[i++];
+  }
+  while (i<size);
+    cout<<"\n\nEnter Size of 2nd Array : ";
+    cin>>size;
+    tsize+=size;
+  if (i<size)
+  {
+    sizelow=i;  //This executes when array 1 is smaller
+    ref=1;
+  }
+  else
+  {
+    sizelow=size;
+    ref=2;      // This tells the program that array 2 is smaller
+  }
+  i=0;
+  do
+  {
+    cout<<"Element "<<i+1<<" : ";
+    cin>>array2[i++];
+  }
+  while(i<size);
+  altfill(big,array1,array2);  //Fills array "Big" with elements
+  cout<<"\n\nNew Merged Array : "; //of array1 and array2
+  i=0;
+  do
+    cout<<" "<<big[i++];
+  while (i<tsize);
+  cout<<"\n\nRestart Program Press 1 for Yes Any Other Button for No\nChoice : ";
+  cin>>i;
+  if (i==1)
+    goto Start;
+}

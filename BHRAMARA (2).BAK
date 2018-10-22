@@ -1,0 +1,23 @@
+#include<conio.h>
+#include<iostream.h>
+void main()
+{
+int a=0,b=0,c=0;
+clrscr();
+cin>>a;
+clrscr();
+if (a %2==0 )
+{
+  cout<<"THIS NUMBER IS EVEN ";
+   c=a+1;
+   cout<<"\n NEXT ODD NUMBER BE LIKE...........I'm Fabulus so I'm = "<<c;
+}
+else
+{
+   cout<<"THIS NUMBER IS ODD";
+   cout<<"\n";
+   c=a+1;
+   cout<<"NEXT EVEN NUMBER BE LIKE...........I'm Fabulus so I'm = "<<c;
+}
+getch();
+}

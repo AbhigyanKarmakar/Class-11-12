@@ -1,0 +1,74 @@
+#include<iostream.h>
+#include<conio.h>
+#include<dos.h>
+int arradd(int array[10][10],int a,int b,char ak='+')
+{
+ int arkantos=0;
+ for(int calc=0 ; calc<b ; calc++)
+ {
+  for(int calc2=0 ; calc2<a ; calc2++)
+  {
+   if (array[calc][calc2]>=0&&ak=='+')
+   arkantos+=array[calc][calc2];
+   else if(array[calc][calc2]<0&&ak=='-')
+   arkantos+=array[calc][calc2];
+   else
+   continue;
+  }
+ }
+ return arkantos;
+}
+void main()
+{
+ int a=3,b=3,array[10][10],i=1,output=0;
+ char r,ak;
+ START:
+ clrscr();
+ cout<<"Enter Array Dimensions";
+ cout<<"\nRow Size : ";
+ cin>>a;
+ cout<<"Column Size : ";
+ cin>>b;
+ cout<<"Your "<<a<<" x "<<b<<" Array has been initialised !";
+ cout<<"\nIf You Want to re-initialise Array Press 'n' or 'N' to continue press ENTER";
+ r=getch();
+ if (r=='n'|| r=='N')
+ {
+  goto START;
+ }
+ else
+ WRONG:
+ clrscr();
+ cout<<"'+' = ADD ALL POSITIVE NUMBERS OF THE GIVEN ARRAY \n";
+ cout<<"'-' = ADD ALL NEGATIVE NUMBERS OF THE GIVEN ARRAY ";
+ cout<<"\nANY OTHER VALUE SETS CHOICE TO DEFAULT OF '+'";
+ cout<<"\nCHOICE : ";
+ cin>>ak;
+ clrscr();
+ for (int inp=0 ; inp<b ; inp++)
+ {
+  for (int inp2=0 ; inp2<a ; inp2++)
+  {
+   cout<<"Element "<<i<<" : ";
+   cin>>array[inp][inp2];
+   cout<<"\n";
+   i++;
+  }
+ }
+ if (ak=='+'||ak=='-')
+ output=arradd(array,a,b,ak);
+ else
+ output=arradd(array,a,b);
+ cout<<"ARRAY\n\n";
+ for (int out=0 ; out<b ; out++)
+ {
+  for (int out2=0 ; out2<a ; out2++)
+  {
+   cout<<array[out][out2]<<"\t";
+  }
+  cout<<"\n";
+ }
+ cout<<"\n------------------------------------------------------------------------------\nSum of All "<<ak<<"ve Numbers is "<<output;
+ delay(3000);
+ getch();
+}

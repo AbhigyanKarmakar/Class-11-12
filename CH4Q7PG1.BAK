@@ -1,0 +1,41 @@
+#include<iostream.h>
+#include<conio.h>
+#include<stdio.h>
+#include<string.h>
+int x=5;
+int y=3;
+class Outer
+{
+  public:
+    int x;
+    int y;
+    static int s;
+    class Inner
+    {
+      int a;
+      public:
+	void f(int i)
+	{
+	  x=i;
+	  s=i;   //<-- Syntatically correct but initial value is junk data
+	  y=i;
+	  a=i;
+	}
+    };
+    Inner I1;
+    void g(int i)
+    {
+      x=i;
+      y=i;
+      //a=i;
+      s=i;    //<-- Syntatically correct but initial value is junk data
+    }
+};
+Outer Ob1;
+void main()
+{
+  clrscr();
+  Ob1.I1.f(3);
+  Ob1.g(8);
+  getch();
+}

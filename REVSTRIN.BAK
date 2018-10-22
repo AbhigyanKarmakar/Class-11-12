@@ -1,0 +1,19 @@
+#include<iostream.h>
+#include<conio.h>
+#include<string.h>
+void main()
+{
+clrscr();
+char ch[10],b,ch1[10];
+cout<<"Enter the string\n";
+cin>>ch;
+b=strlen(ch);
+j=b-1;
+for(int n=0;n<b;n++)
+{ ch1[j-n]=ch[n];
+}
+for(int i=0;i<b;i++)
+{ cout<<ch[i];
+}
+getch();
+}

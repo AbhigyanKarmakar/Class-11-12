@@ -1,0 +1,54 @@
+#include<iostream.h>
+#include<conio.h>
+#include<string.h>
+void main()
+{
+clrscr();
+int a[5],b,x=0;
+cout<<"Enter any 6 numbers\n";
+
+for(int n=0 ;n<6;n++)
+{ cout<<"enter\n";
+  cin>>a[n];
+  cout<<"\n";
+
+}
+cout<<"Enter the no to be checked\n";
+cin>>b;
+for(int c=0;c<6;c++)
+{ if(a[c]==b)
+   { cout<<"\nthe position of the no. array is\n"<<c+1;
+    x=x+1;
+    }
+
+   else
+   {continue;
+   }
+}
+if(x<1)
+{ cout<<"\nthe no you are searching is no available";
+}
+int w,j=0;
+if(x>=1)
+{  cout<<" \nenter the no. which will replace it:";
+   cin>>w;
+   cout<<"\nThe original list ";
+   for(int o=0;o<6;o++)
+   { cout<<a[o]<<"  ";
+   }
+   cout<<"\nthe new list\n";
+   for(int t=0;t<6;t++)
+   { if(a[t]==b)
+   { a[t]=w;
+     j=j+1;
+     cout<<a[t]<<"\n";
+    }
+
+   else
+   { cout<<a[t]<<"\n";
+    }
+    }
+cout<<"\n the no. have been replaced :"<<j<<" times";
+}
+getch();
+}

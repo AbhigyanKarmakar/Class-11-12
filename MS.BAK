@@ -1,0 +1,76 @@
+#include <iostream.h>
+#include <conio.h>
+#include <ctype.h>
+#include <string.h>
+#include <stdio.h>
+#include <dos.h>
+void main ()
+{
+ clrscr();
+ int length ,a,n;
+ char string[100];
+ cout<<"Enter the sentence"<<"\n";
+ gets(string);
+ Retry:
+ cout<<"\n1. UPPERCASE";
+ cout<<"\n2. LOWERCASE";
+ cout<<"\n3. TOGGLE";
+ cout<<"\n4. CAPITALIZE EACH WORD";
+ cout<<"\n5. CAPITALIZE FIRST LETTER OF SENTENCE";
+ cout<<"\nCHOOSE :";
+ cin>>a;
+ length=strlen(string);
+ if (a==1)
+ {
+    for(int i=0 ; i<length ; i++)
+      string[i]=toupper(string[i]);
+    cout<<"\n"<<string;
+ }
+ else if(a==2)
+ {
+   for(int i=0;i<length; i++)
+     string[i]=tolower(string[i]);
+   cout<<"\n"<<string;
+ }
+ else if(a==3)
+ {
+     for(int i=0 ; i<length ; i++)
+     {
+      n=string[i];
+       if(n>=65&&n<=90)
+	  string[i]=tolower(string[i]);
+       else if(n>=97&&n<=122)
+	  string[i]=toupper(string[i]);
+     }
+    cout<<"\n"<<string;
+ }
+ else if(a==4)
+ {
+    for(int i=0 ; i<length ; i++)
+    {
+     n=string[i];
+     if(i==0)
+       string[i]=toupper(string[i]);
+     else if(n==32)
+      string[i+1]=toupper(string[i+1]);
+     else
+      continue;
+    }
+  cout<<"\n"<<string;
+ }
+ else if(a==5)
+ {
+   string[0]=toupper(string[0]);
+   cout<<"\n"<<string;
+ }
+ else
+ {
+   cout<<"\nERROR Wrong Number!!! Try Again!!!";
+   delay(1500);
+   clrscr();
+   cout<<"Enter the sentence\n";
+   cout<<string<<"\n";
+   goto Retry;
+ }
+ getch();
+}

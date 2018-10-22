@@ -1,0 +1,26 @@
+#include <stdio.h>
+#include <arrange.h>
+#include <conio.h>
+#include <iostream.h>
+void main()
+{
+	clrscr();
+	int array[30000],size;
+	cout<<"Enter Size of Array : ";
+	cin>>size;
+	for (int i=0 ; i<size ; i++)
+	{
+		cout<<"Enter Element : ";
+		cin>>array[i];
+	}
+	clrscr();
+	cout<<"Original Array : ";
+	for (int k=0 ; k<size ; k++)
+		cout<<array[k]<<" ";
+		arr_decrease(array,size);
+		clrscr();
+		cout<<"Array in decreasing order : ";
+	for (int j=0 ; j<size ; j++)
+		cout<<array[j]<<" ";
+	getch();
+}

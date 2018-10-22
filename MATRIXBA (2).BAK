@@ -1,0 +1,44 @@
+#include<iostream.h>
+#include<conio.h>
+//#include<hebi.h>
+void main()
+{
+ clrscr();
+  int hebi[100][100],a=0,k=0;
+  do
+  {
+   cin>>hebi[a][k];
+   k++;
+
+   if (k>9)
+   {
+    a++;
+    k=0;
+    break;
+   }
+
+ //   if (a>3&&k>3)
+ //   break;
+  }
+  while(k<5);
+  clrscr();
+  gotoxy(1,1);
+  cout<<hebi[0][0];
+  gotoxy(2,1);
+  cout<<hebi[0][1];
+  gotoxy(3,1);
+  cout<<hebi[0][2];
+  gotoxy(1,2);
+  cout<<hebi[0][3];
+  gotoxy(2,2);
+  cout<<hebi[0][1];
+  gotoxy(3,2);
+  cout<<hebi[1][2];
+  gotoxy(1,3);
+  cout<<hebi[1][3];
+  gotoxy(2,3);
+  cout<<hebi[1][7];
+  gotoxy(3,3);
+  cout<<hebi[1][8];
+ getch();
+}

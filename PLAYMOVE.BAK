@@ -1,0 +1,77 @@
+#include<iostream.h>       //NOTE:REMOVE ACCESS TO BOTTOM LEFT CORNER
+#include<conio.h>          //change logic of increment and decrement
+#include<stdio.h>          //before after stuff like that get it??
+#include<string.h>
+#include<fstream.h>
+void Draw_board(int array[25][80])
+{
+  for(int i=0 ; i<25 ; ++i)
+    for (int j=0 ; j<80 ; ++j)
+    {
+      gotoxy(j+1,i+1);
+      cout<<array[i][j];
+    }
+}
+void GUI(void)
+{
+  int array[25][80];
+  for (int i=0 ; i<25 ; ++i)
+    for (int j=0 ; j<80 ; ++j)
+      array[i][j]=0;     //Initialises array with zeros EXPLICITELY
+  char move='\0';
+  int x=1,y=1;
+  while(1)
+  {
+    move=getch();
+    switch(move)
+    {
+      case 'W':
+      case 'w': gotoxy(x,y);     //Move Cursor UP
+		cout<<' ';
+		y--;
+		if (y<1&&x!=80)
+		  y=25;
+		else if(y<1)
+		  y=24;
+		break;
+      case 'S':
+      case 's': gotoxy(x,y);     //Move Cursor DOWN
+		cout<<' ';
+		y++;
+		if (y>25||x==)
+		  y=1;
+		break;
+      case 'A':
+      case 'a': gotoxy(x,y);     //Move Cursor LEFT
+		cout<<' ';
+		x--;
+		if (x<1&&y!=25)
+		  x=80;
+		else if(x<1)
+		  x=79;
+		break;
+      case 'D':
+      case 'd': gotoxy(x,y);     //Move Cursor RIGHT
+		cout<<' ';
+		++x;
+		if (x>80||(x==79&&y==25))
+		  x=1;
+		break;
+
+      case 'X':
+      case 'x': goto EXIT;
+    }
+    gotoxy(x,y);  //Display currently selected block
+    cout<<char(move);
+    gotoxy(x,y);//Small beautification detail Places cursor underneath block
+  }
+  EXIT:
+}
+void main()
+{
+  clrscr();
+  GUI();
+  //gotoxy(80,25);
+  getch();
+}
+

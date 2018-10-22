@@ -1,0 +1,38 @@
+#include<iostream.h>
+#include<conio.h>
+#include<stdio.h>
+#include<string.h>
+#include<fstream.h>
+class Q_A
+{
+  public:
+  char question[50+1];
+  char answer[50+1];
+  Q_A()
+  {
+    for (int i=0 ; i<51 ; ++i)
+    {
+      question[i]=answer[i]='\0';
+    }
+  }
+}
+q;
+void main()
+{
+  clrscr();
+  fstream file;
+  file.open("database.txt" , ios::out|ios::in|ios::binary|ios::app);
+  while(!file.eof())
+  {
+    cout<<"Question : ";
+    gets(q.question);
+    if (!strcmpi(q.question,"exit"))
+      break;
+    cout<<"Answer : ";
+    gets(q.answer);
+    file.write((char*)&q , sizeof(q));
+    //if (!strcmpi(q.question , "what is your age?"))
+    //cout<<q.question<<"\n-->"<<q.answer<<"\n\n";
+    //cout<<"Answer : "<<q.answer;
+  }
+}

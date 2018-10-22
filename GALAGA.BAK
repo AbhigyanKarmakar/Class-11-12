@@ -1,0 +1,150 @@
+/*void draw_ship_enemy (int count=1)
+{
+  for (int i=0 ; i<count ; i++)
+  gotoxy(1,1);
+  cout<<char(186)<<char(236)<<char(186)<<" ";
+  if (i>78)
+    cout<<"\n";
+}
+void draw_ship_player (int x=1 , int y=1)
+{
+  gotoxy(x+1,y);
+  cout<<char(215);
+  gotoxy(x,y+1);
+  cout<<char(163)<<char(223)<<char(151);
+}*/
+#include<iostream.h>
+#include<conio.h>
+#include<stdio.h>
+#include<dos.h>
+#include<stdlib.h>
+void draw_GAME(int board[26][81])
+{
+  for (int i=1 ; i<26 ; i++)
+    for (int j=1 ; j<81 ; j++)
+    {
+      gotoxy(j,i);
+      if (board[i][j]&&board[i][j]==236||board[i][j]==186)
+      {
+	//textcolor(7);
+	cout<<char(board[i][j]);
+      }
+      else if(
+	      board[i][j]&&(board[i][j]==163||board[i][j]==223
+	      ||board[i][j]==151||board[i][j]==215)
+	     )
+      {
+	textcolor(15);
+	cout<<char(board[i][j]);
+      }
+      else if (board[i][j]==1)
+	cout<<" ";
+      else
+	cout<<"";
+    }
+}
+void board_fill(int board[26][81],int fill=0)
+{
+  for (int i=1 ; i<26 ; i++)
+    for (int j=1 ; j<81 ; j++)
+      board[i][j]=fill;
+}
+void create_enemy(int board[26][81],int count=1)
+{
+  for (int i=1,j=1,k=0 ; k<count&&j<13 ; i+=4,k++)
+  {
+    if (i>79)
+    {
+      j+=3;
+      i=1;
+    }
+    board[j][i+0]=186;
+    board[j][i+1]=236;
+    board[j][i+2]=186;
+  }
+}
+void create_player (int board[26][81],int x=37 ,int y=25)
+{
+  board[y][x+0]=163;
+  board[y][x+1]=223;
+  board[y][x+2]=151;
+  board[y-1][x+1]=215;
+}
+void left(int board[26][81],int &x,int &y)
+{
+  board[y][x+0]=0;
+  board[y][x+1]=0;
+  board[y][x+2]=0;
+  board[y-1][x+1]=0;
+  x--;
+  board[y][x+0]=163;
+  board[y][x+1]=223;
+  board[y][x+2]=151;
+  board[y-1][x+1]=215;
+}
+void right(int board[26][81],int &x,int &y)
+{
+  board[y][x+0]=0;
+  board[y][x+1]=0;
+  board[y][x+2]=0;
+  board[y-1][x+1]=0;
+  x++;
+  board[y][x+0]=163;
+  board[y][x+1]=223;
+  board[y][x+2]=151;
+  board[y-1][x+1]=215;
+}
+void shoot(int board[26][81],int x,int y)
+{
+  x++;
+  y-=3;
+  for ( ; !(board[y][x])&&!kbhit() ; y--)
+  {
+    gotoxy(x,y);
+    cout<<char(30);
+    gotoxy(x,y+1);
+    cout<<" ";
+    gotoxy(1,1);
+    delay(100);
+  }
+  board[y][x+0]=0;
+  board[y][x+1]=0;
+  board[y][x+2]=0;
+}
+void main()
+{
+  clrscr();
+  //textcolor(7);
+  char input;
+  int board[26][81],x=37,y=25;
+  board_fill(board);
+  create_enemy(board,40);
+  create_player(board,x,y);
+  draw_GAME(board);
+  delay(500);
+  left(board,x,y);
+  clrscr();
+  draw_GAME(board);
+  shoot(board,x,y);
+  right(board,x,y);
+  clrscr();
+  draw_GAME(board);
+  delay(500);
+  //right(board,x,y);
+  draw_GAME(board);
+  while (/*Something*/0)
+  {
+    input=getch();
+    switch(input)
+    {
+      case 'a':
+      case 'A': left(board,x,y);
+		break;
+      case 'd':
+      case 'D': right(board,x,y);
+		break;
+      case ' ': shoot(board,x,y);
+    }
+  }
+  getch();
+}

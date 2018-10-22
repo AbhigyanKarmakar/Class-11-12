@@ -1,0 +1,33 @@
+#include<iostream.h>
+#include<conio.h>
+void main()
+{
+int a=0,c=0,d=0,e=0;
+clrscr();
+cout<<"\t\t\t      Prime Number Checker";
+cout<<"\n\t\t     \tEnter a Number";
+cin>>a;
+for(int b=2; b<a; b=b+1)
+{
+  c=a%b;
+  if (c==0)
+  {
+     d=d+1;
+  }
+  else
+  {
+     d=d+0;
+  }
+}
+if (d!=0)
+{
+   cout<<"Not Prime";
+}
+else
+{
+   cout<<"Prime";
+}
+
+
+getch();
+}

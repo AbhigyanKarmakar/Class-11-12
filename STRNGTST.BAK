@@ -1,0 +1,15 @@
+#include<iostream.h>
+#include<incall.h>
+void main()
+{
+ int test (char*);
+ char a[100];
+ gets(a);
+ test (a);
+ getch();
+}
+int test (char a[100])
+{
+ clrscr();
+ cout<<a;
+}

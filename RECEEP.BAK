@@ -1,0 +1,49 @@
+#include<iostream.h>
+#include<conio.h>
+void main()
+{
+clrscr();
+int ob1=0,ob2=0,ob3=0,ob4=0,ob5=0,qn1=0,qn2=0,qn3=0,qn4=0,qn5=0,totla=0,voi1=0;
+cout<<"\t\t    ---------------PRICE INPUT---------------";
+cout<<"\n\t\t     Enter Price Of Item 1    \t\t=  ";
+cin>>ob1;
+cout<<"\t\t     Enter Price Of Item 2   \t\t=  ";
+cin>>ob2;
+cout<<"\t\t     Enter Price Of Item 3   \t\t=  ";
+cin>>ob3;
+cout<<"\t\t     Enter Price Of Item 4   \t\t=  ";
+cin>>ob4;
+cout<<"\t\t     Enter Price Of Item 5   \t\t=  ";
+cin>>ob5;
+clrscr();
+cout<<"                    --------------Item Quantity--------------";
+cout<<"\n\t\t\tEnter Quantity Of Item 1  =   ";
+cin>>qn1;
+cout<<"\t\t\tEnter Quantity Of Item 2  =   ";
+cin>>qn2;
+cout<<"\t\t\tEnter Quantity Of Item 3  =   ";
+cin>>qn3;
+cout<<"\t\t\tEnter Quantity Of Item 4  =   ";
+cin>>qn4;
+cout<<"\t\t\tEnter Quantity Of Item 5  =   ";
+cin>>qn5;
+totla=(ob1*qn1) + (ob2*qn2) + (ob3*qn3) + (ob4*qn4) + (ob5*qn5);
+cout<<"\n\n\n\t\t\tYour Total Expenditure Is =  "<<totla;
+cout<<"\n\t\t\tPress Any Button And Then Press Enter For Bill Statement ";
+cin>>voi1;
+clrscr();
+int t1=(ob1*qn1);
+int t2=(ob2*qn2);
+int t3=(ob3*qn3);
+int t4=(ob4*qn4);
+int t5=(ob5*qn5);
+cout<<"          ==========================BILL==========================";
+cout<<"\n           Item"<<"\t\t  Price"<<"\t\t  Quantity"<<"\t   Total";
+cout<<"\n           Item 1"<<"\t   "<<ob1<<"\t\t     "<<qn1<<"\t\t     "<<t1 ;
+cout<<"\n           Item 2"<<"\t   "<<ob2<<"\t\t     "<<qn2<<"\t\t     "<<t2;
+cout<<"\n           Item 3"<<"\t   "<<ob3<<"\t\t     "<<qn3<<"\t\t     "<<t3;
+cout<<"\n           Item 4"<<"\t   "<<ob4<<"\t\t     "<<qn4<<"\t\t     "<<t4;
+cout<<"\n           Item 5"<<"\t   "<<ob5<<"\t\t     "<<qn5<<"\t\t     "<<t5;
+cout<<"\n          ========================================================";
+getch();
+}

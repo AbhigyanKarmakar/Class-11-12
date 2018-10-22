@@ -1,0 +1,31 @@
+#include<iostream.h>
+#include<conio.h>
+void main()
+{
+ int array[100],a22[100],lim;
+ cout<<"Enter Amount Of Numbers : ";
+ cin>>lim;
+ for(int a=0 ; a<lim ; a++)
+ {
+  cout<<"Enter Number : ";
+  cin>>array[a];
+  cout<<"\n";
+ }
+
+ int odd[100],even[100];
+ for (int o=0,p=0,d=0 ; o<lim ; o++)
+ {
+  if (array[o]%2==0||array[o]==0)
+  {
+   even[p]=array[o];
+   p++;
+  }
+  else
+  {
+   odd[d]=array[o];
+   d++;
+  }
+ }
+
+ getch();
+}

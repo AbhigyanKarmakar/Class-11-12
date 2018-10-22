@@ -1,0 +1,27 @@
+#include<incall.h>
+#include<printpow.h>
+void main()
+{
+ clrscr();
+ int a,m,n;
+ char b;
+ /*cout<<"INPUT NUMBER TO BE RAISED TO A POWER : ";
+ cin>>m;
+ cout<<"\nENTER POWER : ";
+ cin>>n;
+ a=power(m);
+ */
+ /*cout<<"\n"<<m<<" RAISED TO "<<n<<" IS :"<<a;
+ getch();
+ clrscr();
+ cout<<"ENTER A CHARACTER : ";
+ cin>>b;
+ cout<<"\nENTER HOW MANY TIMES YOU WANNA PRINT IT : ";
+ cin>>n;
+ charprint(b,n);
+ */
+ clrscr();
+ a=power(3);
+ cout<<a;
+ getch();
+}

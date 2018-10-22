@@ -1,0 +1,30 @@
+#include<iostream.h>
+#include<conio.h>
+#include<arrange.h>
+#include<string.h>
+void arrange(int a[100],int c)
+{
+ int temp;
+ for (int i=0 ; i<c ; i++)
+ if (a[i-1]>a[i])
+ {
+  temp=a[i];
+  a[i]=a[i-1];
+  a[i-1]=temp;
+ }
+}
+void main()
+{
+ clrscr();
+ int a[100],c=5,j=0;
+ for(int i=0 ; i<5 ; i++)
+ cin>>a[i];
+ arr_increase(a,5);
+ do
+ {
+  cout<<a[j];
+  j++;
+ }
+ while (j<5);
+ getch();
+}

@@ -1,0 +1,204 @@
+#include<iostream.h>
+#include<conio.h>
+#include<iomanip.h>
+#include<stdlib.h>
+#include<stdio.h>
+#include<math.h>
+#include<string.h>
+#include<dos.h>
+#include<process.h>
+
+void main()
+{
+  hahuamar:
+  clrscr();
+  int bombx2,ax[30],bx[30],score=0,bombx[20],bomby[20],lvl=5;
+  int jibon=5;
+for (int i=0 ; i<=lvl ; i++)
+{
+    randomize();
+   {
+    ax[i]=random(80);
+    bx[i]=random(25);
+    gotoxy(ax[i],bx[i]);
+    cout<<char(2);
+    bombx[i]=random(80);
+    bomby[i]=random(24);
+    }
+}
+
+
+  char a ;
+  int d=1,f=1;
+  gotoxy(d,f);
+
+  do
+  {
+   gotoxy(1,1);
+   cout<<"Score = "<<score;
+   gotoxy(70,1);
+   cout<<"Lives : "<<jibon;
+   if
+    (d==bombx[i]&&f==bomby[i])
+
+    {
+      jibon-=1;
+      gotoxy(d,f);
+      cout<<"*";
+      if (d==bombx[i])
+      bombx[i]=0;
+      else if (f==bomby[i])
+      bomby[i]=0;
+     }
+
+    if(d==ax[i]&&f==bx[i])
+    {
+     score+=1;
+     if( d==ax[i])
+     {
+      ax[i]=0;
+     }
+     else if (f==bx[i])
+     {
+      bx[i]=0;
+     }
+     if (score>3)
+     goto hahuamar;
+    }
+   if (d==ax&&f==bx)
+   score=score+1;
+   a=getch();
+
+
+    if (a=='s')
+   {
+
+    f++;
+    if (f>24)
+    {
+     f=1;
+     gotoxy(d,24);
+     cout<<" ";
+    }
+    gotoxy(d,f);
+    cout<<char(1);
+    gotoxy(d,f-1);
+    cout<<" ";
+   }
+
+
+
+
+
+
+
+
+
+     else if (a=='a')
+   {
+
+
+    --d;
+    if (d<1)
+   {
+     d=80;
+     gotoxy(1,f);
+     cout<<" ";
+
+   }
+    gotoxy(d,f);
+    cout<<char(1);
+    gotoxy(d+1,f);
+    cout<<" ";
+   }
+
+
+
+
+
+
+
+
+
+      else if (a=='w')
+   {
+
+
+    --f;
+    if (f<1)
+   {
+     f=24;
+     gotoxy(d,1);
+     cout<<" ";
+   }
+
+    gotoxy(d,f);
+    cout<<char(1);
+     gotoxy(d,f+1);
+     cout<<" ";
+
+   }
+
+
+
+
+
+
+
+     else if (a=='d')
+    {
+     ++d;
+     if (d>80)
+    {
+     d=1;
+     gotoxy(80,f);
+     cout<<" ";
+
+    }
+     gotoxy(d,f);
+     cout<<char(1);
+     gotoxy(d-1,f);
+     cout<<" ";
+
+    }
+
+
+
+
+
+
+
+    else if (a=='f')
+    {
+     int hebix,hebiy;
+     hebix=d;
+     hebiy=f;
+     do
+     {
+      gotoxy(hebix,hebiy);
+      cout<<char(1);
+      gotoxy(d,f);
+      cout<<" ";
+      d++;
+      gotoxy(d,f);
+      cout<<"*";
+      delay(100);
+     }
+     while(d<80);
+     d=hebix;
+     f=hebiy;
+    }
+
+
+    else if (a=='m')
+    {
+     clrscr();
+     exit(0);
+
+    }
+
+ }
+ while(1==1);
+
+
+}

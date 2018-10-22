@@ -1,0 +1,24 @@
+#include <stdio.h>
+#include <dos.h>
+#include <conio.h>
+#include <iostream.h>
+#include <string.h>
+void main()
+{
+ /*struct swimmingclub
+ {
+  int memnumber;
+  char memname[20];
+  char memtype[20];
+ };
+ swimmingclub per1,per2;
+ cout<<"Member Number : ";
+ cin>>per1.memnumber;
+ per1.memtype={"HIG"};
+}*/
+do
+{
+ cout<<"TOPON TOPON TOPON TOPON TOPON TOPON TOPON TOPON TOPON TOPON TOPON!!!\n";
+
+}
+while(1);

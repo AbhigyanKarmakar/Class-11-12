@@ -1,0 +1,24 @@
+#include<iostream.h>
+#include<conio.h>
+void main()
+{
+clrscr();
+int long a,b=0,d=0;
+cout<<"enter the ";
+cin>>a;
+d=a;
+for(;a!=0;)
+{ b=b*10;
+  b=b+a%10;
+  a=a/10;
+}
+if(d==b)
+ {
+  cout<<"Given Number is a Pallindrome";
+ }
+else
+{
+ cout<<"Given Number is not a Pallindrom";
+}
+getch();
+}

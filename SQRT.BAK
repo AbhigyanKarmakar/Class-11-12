@@ -1,0 +1,77 @@
+#include<iostream.h>
+#include<conio.h>
+#include<math.h>
+void main()
+{
+
+clrscr();
+int a=0,z=0,b=0,paul=0;
+cout<<"Enter a number       :  ";
+cin>>a;
+cout<<"\n";
+z=sqrt(a);
+b=z*z;
+if (b!=a)
+{
+  cout<<a<<" is not a PERFECT SQUARE  ";
+}
+else
+{
+  cout<<a<<" IS a PERFECT SQUARE ";
+}
+cout<<" For the Pythogorian Triplet Decoder, enter any input and press Enter :";
+cin>>paul;
+
+clrscr();
+
+int d=0,e=0,f=0,shaamukaka=0,p=0,q=0,r=0,big=0;
+
+cout<<"Enter 1st number       :  ";
+cin>>d;
+cout<<"\n";
+cout<<"Enter 2nd number       :  ";
+cin>>e;
+cout<<"\n";
+cout<<"Enter 3rd number       :  ";
+cin>>f;
+cout<<"\n";
+if (d>e)
+{
+  if(d>f)
+  {
+    big=d;
+    cout<<big;
+  }
+  else
+  {
+  big=f;
+  cout<<big;
+  }
+}
+else
+{
+  if(e>f)
+  {
+    big=e;
+    cout<<big;
+  }
+  else
+  {
+    big=f;
+    cout<<big;
+  }
+}
+p=pow(big,2);
+q=pow(e,2);
+r=pow(f,2);
+shaamukaka=q+r;
+if (p=shaamukaka)
+{
+  cout<<"\t\t  IT IS A PYTHOGORIAN TRIPLET !!";
+}
+else
+{
+  cout<<"\t\t  NNNNOOOOOOOOOOO !!!!!!!";
+}
+getch();
+}

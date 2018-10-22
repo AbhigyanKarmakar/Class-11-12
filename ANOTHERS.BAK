@@ -1,0 +1,58 @@
+#include<iostream.h>
+#include<conio.h>
+void main()
+{
+clrscr();
+float num11, num12, num13,num14, num15, num21, num22, num23, num24, num25, tot69;
+cout<<"\t\t      -------------Delhi Public School, Duliajan ----------";
+cout<<"\t\t      =============1st Term=============";
+cout<<"\n\t\t      Enter marks in English         = ";
+cin>>num11;
+cout<<"\n\t\t      Enter marks in Maths           = ";
+cin>>num12;
+cout<<"\n\t\t      Enter marks in Science       = ";
+cin>>num13;
+cout<<"\n\t\t      Enter marks in Social Science         = ";
+cin>>num14;
+cout<<"\n\t\t      Enter marks in 2nd Language  = ";
+cin>>num15;
+cout<<"\n";
+cout<<"\t\t      =============2nd Term=============";
+cout<<"\n\t\t      Enter marks in English         = ";
+cin>>num21;
+cout<<"\n\t\t      Enter marks in Maths           = ";
+cin>>num22;
+cout<<"\n\t\t      Enter marks in Science       = ";
+cin>>num23;
+cout<<"\n\t\t      Enter marks in Social Science        = ";
+cin>>num24;
+cout<<"\n\t\t      Enter marks in 2nd Language= ";
+cin>>num25;
+clrscr();
+cout<<"\t\t      ================Mark Sheet================";
+cout<<"\n";
+cout<<"\n\t\t      ================ Averages ================";
+cout<<"\n\t\t       Your Average marks in English         = "<<(num11+num21)/2;
+cout<<"\n\t\t       Your Average marks in Maths           = "<<(num12+num22)/2;
+cout<<"\n\t\t       Your Average marks in Science       = "<<(num13+num23)/2;
+cout<<"\n\t\t       Your Average marks in Social Science         = "<<(num14+num24)/2;
+cout<<"\n\t\t       Your Average marks in 2nd Language = "<<(num15+num25)/2;
+cout<<"\n\t\t      ================Percentages================";
+cout<<"\n\t\t       Your Percentage in English            = "<<(num11+num21)/100;
+cout<<"\n\t\t       Your Percentage in Maths              = "<<(num12+num22)/100;
+cout<<"\n\t\t       Your Percentage in Science= "<<(num13+num23)/100;
+cout<<"\n\t\t       Your Percentage in Social Science=  "<<(num14+num24)/100;
+cout<<"\n\t\t       Your Percentage in 2nd Language   = "<<(num15+num25)/100;
+cout <<"\n";
+cout<< " \n\t\t      Your Overall Percentage is = "<<(num11+num12+num13+num14+num15+num21+num22+num23+num24+num25)/1000*100
+
+getch();
+
+}
+
+
+
+
+
+
+

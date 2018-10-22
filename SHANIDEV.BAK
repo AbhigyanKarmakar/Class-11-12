@@ -1,0 +1,21 @@
+#include<CTYPE.h>
+#include <string.h>
+#include <stdio.h>
+#include <iostream.h>
+#include <conio.h>
+void main()
+{
+   int length;
+   char *string; //Initialising pointer for String
+   gets(string); //Getting String From User
+   length = strlen(string);
+   for (i = 0; i < length; i++)
+   {
+      if ((string[i] >= 'a') && (string[i] <= 'z'))
+      {
+	 string[i] = toupper(string[i]);
+      }
+   }
+   cout<<string;
+   getch();
+}

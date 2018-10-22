@@ -1,0 +1,112 @@
+#include<iostream.h>
+#include<conio.h>
+#include<dos.h>
+int leapchk(int a) //Function To Check If User Inputed Year Was A Leap Year
+{
+ int b=0;
+ double d,e,f;
+ d=a%100;
+ e=a%400;
+ f=a%4;
+ if (a>400&&d==0)
+ {
+  if(e==0)
+  b=1;
+  else
+  b=0;
+ }
+ else if (a>400&&d!=0)
+  if (f==0)
+  b=1;
+  else
+  b=0;
+ else if (a<400&&f==0)
+ b=1;
+ else
+ b=0;
+ return b;
+}
+
+void main()
+{
+ clrscr();
+ float month[12],l=0,seqdate=0,skip=0,seqdate2=0;
+ month[0]=31;
+ month[1]=28;
+ month[2]=31;
+ month[3]=30;
+ month[4]=31;
+ month[5]=30;
+ month[6]=31;
+ month[7]=31;
+ month[8]=30;
+ month[9]=31;
+ month[10]=30;
+ month[11]=31;
+ struct date
+ {
+  float dd;
+  float mm;
+  float yy;
+ };
+ date day,in;
+ cout<<"Enter Date : ";
+ cin>>day.dd;
+ cout<<"Enter Month : ";
+ cin>>day.mm;
+ cout<<"Enter Year : ";
+ cin>>day.yy;
+ cout<<"Enter Days You Wanna Skip : ";
+ cin>>skip;
+ l=leapchk(day.yy);
+ in.dd=day.dd;
+ in.mm=day.mm;
+ in.yy=day.yy;
+ for (int i=0 ; i<day.mm-1 ; i++)
+ {
+  seqdate+=month[i];
+ }
+ seqdate+=in.dd+skip;
+  START:
+  if (seqdate>0&&seqdate<31)
+   day.mm=1;
+  else if (seqdate>31&&seqdate<59+l)
+   day.mm=2;
+  else if (seqdate>59+l&&seqdate<90+l)
+   day.mm=3;
+  else if (seqdate>90+l&&seqdate<120+l)
+   day.mm=4;
+  else if (seqdate>120+l&&seqdate<151+l)
+   day.mm=5;
+  else if (seqdate>151+l&&seqdate<181+l)
+   day.mm=6;
+  else if (seqdate>181+l&&seqdate<212+l)
+   day.mm=7;
+  else if (seqdate>212+l&&seqdate<243+l)
+   day.mm=8;
+  else if (seqdate>243+l&&seqdate<273+l)
+   day.mm=9;
+  else if (seqdate>273+l&&seqdate<304+l)
+   day.mm=10;
+  else if (seqdate>304+l&&seqdate<334+l)
+   day.mm=11;
+  else if (seqdate>334+l&&seqdate<365+l)
+   day.mm=12;
+  else if (seqdate>(365+l))
+  {
+   day.yy++;
+   seqdate-=(365);
+   goto START;
+  }
+ //decoding seqdate
+ for (int j=0 ; j<(day.mm-1) ; j++)
+ {
+   seqdate-=month[j];
+ }
+ clrscr();
+ cout<<"Your Input Date Was : "<<in.dd<<"/"<<in.mm<<"/"<<in.yy;
+ cout<<"\nDate After Skipping "<<skip<<" Days is : ";
+ cout<<seqdate<<"/"<<day.mm<<"/"<<day.yy;
+ delay(6000);
+ getch();
+}

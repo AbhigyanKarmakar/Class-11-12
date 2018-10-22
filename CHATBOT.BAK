@@ -1,0 +1,81 @@
+#include<iostream.h>
+#include<conio.h>
+#include<stdio.h>
+#include<string.h>
+#include<fstream.h>
+//template <class t>
+//t search()
+//{
+
+//}
+class Q_A
+{
+  private:
+    char Q[50+1];
+    char A[50+1];
+  public:
+    void voidfill(void);
+    //int operator < (Q_A &arbob)
+    //{
+    //  if(strcmpi)
+    //}
+    void input(char string[50+1])
+    {
+      strcpy(Q,string);
+    }
+    void output()
+    {
+      cout<<"Question : "<<Q<<"\n\n";
+      cout<<"Answer : "<<A<<"\n\n\n";
+    }
+    char* question(void)
+    {
+      return Q;
+    }
+    char* answer(void)
+    {
+      return A;
+    }
+    int Qdel(void)
+    {
+      int ret=1;
+      if(Q[12]=='*')
+	return 0;
+      return ret;
+    }
+}
+q;
+void Q_A::voidfill(void)
+{
+   for (int i=0 ; i<51 ; ++i)
+   {
+     Q[i]='*';
+     A[i]='*';
+   }
+}
+void main()
+{
+  clrscr();
+  char string[50+1];
+  fstream file;
+  file.open("database.txt" , ios::out|ios::in|ios::binary|ios::app);
+  file.seekg(0);
+  cin.getline(string,50);
+  while(!file.eof())
+  {
+    file.read((char*)&q , sizeof(q));
+    if (!strcmpi(string,q.question()))
+      q.output();
+    else if(file.eof())
+    {
+      cout<<"\nSorry But I dont Know.Could you tell me the answer??"
+	  <<"\nAnswer : ";
+      cin.getline(string,51);
+      q.input(string);
+      file.write((char*)&q , sizeof(q));
+      break;
+    }
+  }
+  getch();
+}
+

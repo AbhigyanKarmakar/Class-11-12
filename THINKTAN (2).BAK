@@ -1,0 +1,24 @@
+#include<iostream.h>
+#include<conio.h>
+void main()
+{
+clrscr();
+long double pro=0, dangor=0;
+cout<<"\t\t    =====Largest Number Finder ver6.9=====\n";
+for (long double n=1; n<11; n=n+1)
+{
+  cout<<"\t\t    Enter Any Number : ";
+  cin>>pro;
+  if (pro>dangor)
+  {
+    dangor =pro;
+  }
+  else if (pro<0)
+  {
+    pro=(-1)*pro
+    dangor
+  }
+}
+cout<<"Largest Number is : "<<dangor;
+getch();
+}

@@ -1,0 +1,56 @@
+#include<iostream.h>
+#include<conio.h>
+#include<stdio.h>
+#include<string.h>
+#include<dos.h>
+void main()
+{
+clrscr();
+int length,col=1,row=1;
+char string[80];
+cout<<"Enter the string"<<"\n";
+gets(string);
+length=strlen(string);
+clrscr();
+cout<<string;
+
+for(int i=0 ;i<length;i++)
+{ for(int l=1;l<=12;l++)
+
+ {  if(string[i]==32)
+   { continue;
+   }
+  gotoxy(col,row-1);
+  cout<<" ";
+  gotoxy(col,row);
+  cout<<string[i];
+  row++;
+   delay(100);
+    }
+for(int k=l;k>=8;k-- )
+{  if(string[i]==32)
+   { continue;
+   }
+  gotoxy(col,row+1);
+  cout<<" ";
+  gotoxy(col,row);
+  cout<<string[i];
+  row--;
+   delay(100);
+    }
+for(int n=k;n<=12;n++)
+{  if(string[i]==32)
+   { continue;
+   }
+  gotoxy(col,row-1);
+  cout<<" ";
+  gotoxy(col,row);
+  cout<<string[i];
+  row++;
+   delay(100);
+    }
+col++;
+row=1;
+}
+getch();
+}

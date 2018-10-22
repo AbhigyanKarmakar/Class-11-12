@@ -1,0 +1,31 @@
+#include<iostream.h>
+#include<conio.h>
+#include<stdio.h>
+#include<string.h>
+#include<fstream.h>
+class death
+{
+  long double array[10000];
+  public:
+  static int counter;
+  death()
+  {
+    ++counter;
+    cout<<counter<<"\n\n";
+    cout<<"Constructing\n";
+  }
+  ~death()
+  {
+    cout<<"Destructing\n";
+    death();
+  }
+};
+int death::counter=0;
+void main()
+{
+  clrscr();
+  death a;
+  cout<<death::counter;
+  getch();
+}
+

@@ -1,0 +1,28 @@
+#include<iostream.h>
+#include<conio.h>
+#include<stdio.h>
+#include<string.h>
+void main()
+{
+  clrscr();
+  int size=15;
+  int ***************ptr; //pointer to pointer to pointer to.............x15
+  **************ptr=new int [size];
+  *************ptr=new int *[size]; //Why the hell is this even legal??
+  ************ptr=new int **[size]; //UUUUUWWWWWHHHHHYYYYYYYY??????????
+  ***********ptr=new int ***[size]; //WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW
+  **********ptr=new int ****[size]; //WWWWWWWWWHHHHHHHHHHHHHHHHHHHHHHHH
+  *********ptr=new int *****[size]; //HHHHHHHHHHHHHHHHHHYYYYYYYYYYYYYYY
+  ********ptr=new int ******[size]; //YYYYYYYYY???????????????!!!!!!!!!
+  *******ptr=new int *******[size];
+  ******ptr=new int ********[size]; //A FREAKING 15 DIMENTIONAL ARRAY!!
+  *****ptr=new int *********[size]; //Why am I Allowed near Computers??
+  ****ptr=new int **********[size];
+  ***ptr=new int ***********[size]; //I'm Outta Here!
+  **ptr=new int ************[size]; //I'm too human for this....stuff
+  *ptr=new int *************[size];
+  ptr=new int **************[size];
+  ptr[1][2][3][4][5][6][7][8][9][10][11][12][13][14][15]=69;
+  cout<<ptr[1][2][3][4][5][6][7][8][9][10][11][12][13][14][15];
+  getch();
+}

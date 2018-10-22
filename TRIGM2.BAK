@@ -1,0 +1,148 @@
+#include<incall.h>
+void main()
+{
+ int ax[100],bx[100],i=1,d=1,f=1,score=0,lvlset=5,ay[100],by[100],life=0,points=0;
+ char a;
+ BACK:
+{
+ clrscr();
+ life=3+int(lvlset/5);
+ randomise:
+ {
+ randomize();
+ {
+  do
+   {
+    ax[i]=random(80);
+    bx[i]=random(25);
+    gotoxy(ax[i],bx[i]);
+    cout<<char(2);
+    i++;
+    if (i<lvlset)
+    goto randomise;
+   }
+  while(1==1);
+ }
+  i=1;
+  do
+  {
+   ay[i]=random(80);
+   by[i]=random(25);
+   i++;
+  }
+  while(i<=lvlset*6);
+ }
+   i=1;
+ do
+ {
+   gotoxy(1,1);
+   cout<<"Score = "<<score;
+   gotoxy(71,1);
+   cout<<"Lives : "<<life;
+   do
+   {
+    if(d==ax[i]&&f==bx[i])
+     {
+      ax[i]=0;
+      bx[i]=0;
+      score++;
+      if (score+points==(lvlset-1))
+      goto LEVELUP;
+      else
+      break;
+     }
+    else if(d==ay[i]&&f==by[i])
+     {
+      ay[i]=0;
+      by[i]=0;
+      life--;
+      if (life==0)
+      {
+       exit(0);
+      }
+      break;
+     }
+    else
+     i++;
+    }
+    while(i<=lvlset);
+    i=1;
+
+    a=getch();
+    if (a=='s')
+     {
+      f++;
+     if (f>24)
+       {
+	f=1;
+	gotoxy(d,24);
+	cout<<" ";
+       }
+      gotoxy(d,f);
+      cout<<char(1);
+      gotoxy(d,f-1);
+      cout<<" ";
+     }
+
+     else if (a=='a')
+      {
+       --d;
+	if (d<1)
+	{
+	 d=80;
+	 gotoxy(1,f);
+	 cout<<" ";
+	}
+	gotoxy(d,f);
+	cout<<char(1);
+	gotoxy(d+1,f);
+	cout<<" ";
+       }
+
+      else if (a=='w')
+       {
+	--f;
+	if (f<1)
+	{
+	 f=24;
+	 gotoxy(d,1);
+	 cout<<" ";
+	}
+	gotoxy(d,f);
+	cout<<char(1);
+	gotoxy(d,f+1);
+	cout<<" ";
+       }
+
+       else if (a=='d')
+	{
+	 ++d;
+	 if (d>80)
+	 {
+	  d=1;
+	  gotoxy(80,f);
+	  cout<<" ";
+	 }
+	 gotoxy(d,f);
+	 cout<<char(1);
+	 gotoxy(d-1,f);
+	 cout<<" ";
+	}
+      else if(a=='m')
+       {
+	exit(0);
+       }
+ }
+ while(1==1);
+ LEVELUP:
+ {
+  clrscr();
+  gotoxy(35,12);
+  cout<<"LEVEL UP !";
+  delay(4000);
+  lvlset++;
+  score=points;
+  goto BACK;
+ }
+}
+}

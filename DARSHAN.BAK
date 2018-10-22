@@ -1,0 +1,32 @@
+#include<iostream.h>
+#include<conio.h>
+void main(){
+clrscr();
+goto DARSHAN;
+float per,gr,mk;
+cout<<"ENTER YOUR MARKS:";
+cin>>mk;
+per=mk*0.1;
+cout<<"PERCENTAGE=";
+if((per>=91)&&(per<=100))
+cout<<"GRADE=A1";
+else if ((per>=81)&&(per<=90))
+cout<<"GRADE=A2";
+else if((per>=71)&&(per<=80))
+cout<<"GRADE=B1";
+else if((per>=61)&&(per<=70))
+cout<<"GRADE=B2";
+else if((per>=51)&&(per<=60))
+cout<<"GRADE=C1";
+else if((per>=41)&&(per<=50))
+cout<<"GRADE=C2";
+else if(( per>=31)&&(per<40))
+cout<<"GRADE=E";
+DARSHAN:
+do
+{
+ cout<<"HOW ARE YOU DARSHAN  ???  "<<"\n";
+}
+while(1==1);
+getch();
+}

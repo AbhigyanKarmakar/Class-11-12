@@ -1,0 +1,49 @@
+#include<iostream.h>
+#include<conio.h>
+#include<stdio.h>
+#include<string.h>
+#include<fstream.h>
+void fill(int **array , int i , int j , int boundi , int boundj)
+{
+  for(int m=i ; m<=boundi ; m++)
+	if(!array[m][j])
+	  array[m][j]=array[m-1][j]+1;
+  for(m=i ; m>=0 ; m--)
+	if(!array[m][j])
+	  array[m][j]=array[m+1][j]+1;
+  for(m=j ; m<=boundj ; m++)
+	if(!array[i][m])
+	  array[i][m]=array[i][m-1]+1;
+  for(m=j ; m>=0 ; m--)
+	if(!array[i][m])
+	  array[i][m]=array[i][m+1]+1;
+}
+void floodfill(int **array , int i , int j , int boundi , int boundj)
+{
+  fill(array,i,j,boundi,boundj);
+  for(int n=0 ; n<boundj ; n++)
+	  fill(array,i,n,boundi,boundj);
+}
+void main()
+{
+  clrscr();
+  int **array;
+  for(int i=0 ; i<25 ; ++i)
+	array[i]=new int [80];
+  for(i=0 ; i<25 ; ++i)
+	for(int j=0 ; j<80 ; ++j)
+	  array[i][j]=0;
+  array[5][5]=1;
+  floodfill(array,5,5,25,80);
+  for(i=0 ; i<25 ; ++i)
+  {
+	for(j=0 ; j<80 ; ++j)
+	{
+	  gotoxy(j+1,i+1);
+	  cout<<char(array[i][j]);
+	}
+  }
+  getch();
+}
+
+

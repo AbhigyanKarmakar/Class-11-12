@@ -1,0 +1,83 @@
+#include<iostream.h>
+#include<ctype.h>
+#include<conio.h>
+#include<stdio.h>
+#include<dos.h>
+#include<string.h>
+#include<process.h>
+void main()
+{
+clrscr();
+int control;
+
+     cout<<"    Manual Control or Automatic? Press 1 for Manual and 0 for automatic";
+     cin>>control;
+     if (control==1)
+     {
+      char nm[100];
+      cout<<"\t======================Character__Demotizer======================\n";
+      cout<<"\t Enter any word, or phrase, or sentence down below, and WATCH !:\n";
+      cout<<"\t                  ";
+      gets(nm);
+      clrscr();
+      int lim=strlen(nm)-1;
+      int limb=lim+30;
+      gotoxy(30,0.5);
+      for (int l=0; l<=lim; l++)
+	  cout<<nm[l];
+      for (int i=0, k=30; i<=lim, k<=limb; i++, k++)
+     {
+	 for (int j=2; j<=23; j++)
+	 {
+	     gotoxy(k,j-1);
+	     cout<<" ";
+	     gotoxy(k,j);
+	     cout<<nm[i];
+	     delay(100);
+	     getch();
+
+	 }
+     }
+
+     gotoxy(70,13);
+     cout<<"BYE-BYE !";
+     delay(2000);
+     exit(0);
+ }
+  else if(control==0)
+{
+     char nm[100];
+     cout<<"\t======================Character__Demotizer======================\n";
+     cout<<"\t Enter any word, or phrase, or sentence down below, and WATCH !:\n";
+     cout<<"\t                  ";
+     gets(nm);
+     clrscr();
+     int lim=strlen(nm)-1;
+     int limb=lim+30;
+     gotoxy(30,0.5);
+     for (int l=0; l<=lim; l++)
+	 cout<<nm[l];
+     for (int i=0, k=30; i<=lim, k<=limb; i++, k++)
+     {
+	 for (int j=2; j<=23; j++)
+	 {
+	     gotoxy(k,j-1);
+	     cout<<" ";
+	     gotoxy(k,j);
+	     cout<<nm[i];
+	     delay(100);
+
+
+	 }
+     }
+
+     gotoxy(70,13);
+     cout<<"BYE-BYE !";
+     delay(2000);
+     exit(0);
+
+
+
+}
+getch();
+}

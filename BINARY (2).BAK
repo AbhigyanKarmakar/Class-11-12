@@ -1,0 +1,68 @@
+#include<iostream.h>
+#include<conio.h>
+#include<math.h>
+void main()
+{
+clrscr();
+long double usu;
+cout<<"PLEASE ENTER USAGE PASSWORD TO PROCEED TO THE PROGRAM SCREEN :";
+cin>>usu;
+if(usu==132)
+{
+clrscr();
+long int gha,bhup , a , o=0, sum=0, q=69, d,n=0,no=0;
+cout<<"\t\t=================SAMBAR NUMBER RECOG==================\n";
+cout<<"\n           Press 2 to convert Decimal to Binary and 8 for octal conversion \n";
+
+int choi;
+cout<<"\n              Choice                                          : ";
+cin>>choi;
+clrscr();
+if (choi==2)
+{
+ cout<<"\t       ================DIGIT BINARY RECOG 2.0================\n";
+ cout<<"\t\t Enter Number                               : ";
+}
+if (choi==8)
+{
+ cout<<"\t       ===============DIGIT OCTAL RECOG 2.0================\n";
+ cout<<"\t\t Enter Number                               : ";
+}
+cin>>a;
+for ( d=choi; q!=0; d=d*1)
+{
+  q=a/d;
+  o=a%d;
+  sum=sum+o;
+  //cout<<" "<<sum;
+  a=q;
+  no=no+(o*pow(10,n));
+  cout<<" "<<(o*pow(10,n));
+  cout<<" "<<no;
+  n=n+1;
+}
+if (choi==8)
+{
+cout<<"\n\t\t=====================================================\n";
+cout<<"\t\t Sum of Digits of Octal Form                 : "<<sum;
+cout<<"\n\t\t=====================================================";
+cout<<"\n\n\t\t The Number in Octal Form is\t\t     : "<<no;
+}
+else if (choi==2)
+{
+cout<<"\n\t\t=====================================================\n";
+cout<<"\t\t Sum of Digits of Binary Form                : "<<sum;
+cout<<"\n\t\t=====================================================";
+cout<<"\n\n\t\t The Number in Binary Form is\t\t    : "<<no;
+}
+
+}
+else
+{
+ for(long int rt=1; rt>0; rt++)
+ {
+  cout<<"\nDEATH TO THE TRAITOR!!     DEATH TO THE TRAITOR!!     DEATH TO THE TRAITOR!!";
+ }
+}
+ getch();
+}

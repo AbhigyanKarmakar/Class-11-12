@@ -1,0 +1,94 @@
+#include<dos.h>
+#include<conio.h>
+#include<stdlib.h>
+#include<string.h>
+#include<fstream.h>
+const int BULLET_SPEED=50;
+const int HIT_DELAY=1250;
+const int GUN1=4,GUN2=19,GUN3=34,GUN4=49,GUN5=64,GUN6=77;//x coordinate
+const int GUN_Y=6;
+struct cl_matrix   //Matrix with color
+{
+  int val;
+  int color;
+};
+class Matrix
+{
+  private:
+	cl_matrix ARRAY[25][80];//Main maze matrix  Console screen is 80x25
+  public:
+	void input(int i , int j ,int val , int color);
+	void output(void);
+	Matrix(void);
+}
+matrix;
+void Matrix::output(void)
+{
+  for (int i=0 ; i<25 ; ++i)
+	for (int j=0 ; j<80 ; ++j)
+	  if (ARRAY[i][j].val)
+	  {
+		textcolor(ARRAY[i][j].color);//cprintf is better suited to printing
+		gotoxy(j+1,i+1);             //diff colors
+		cprintf("%c",ARRAY[i][j].val);
+	  }
+}
+Matrix::Matrix(void)             //Constructor
+{
+  for (int i=0 ; i<25 ; ++i)
+	for (int j=0 ; j<80 ; ++j)
+	{
+	  ARRAY[i][j].val=0;
+	  ARRAY[i][j].color=0;
+	}
+}
+
+void Matrix::input(int i , int j , int val , int color)
+{
+  ARRAY[i][j].val=val;
+  ARRAY[i][j].color=color;
+}
+int Bullet_Move()
+{
+  fstream file;
+  int tempX;
+  int x,y=GUN_Y;
+  int hands=3;
+  int choice=0;
+  file.open("guns.dat",131);
+  file.read((char*)&matrix , sizeof(matrix));
+  matrix.output();
+  randomize();
+  x=1+rand()%6;
+  tempX=x;
+  if(x==1)x=GUN1;
+  if(x==2)x=GUN2;
+  if(x==3)x=GUN3;
+  if(x==4)x=GUN4;
+  if(x==5)x=GUN5;
+  if(x==6)x=GUN6;
+  gotoxy(x,y);
+  cprintf("%c",206);
+  delay(HIT_DELAY);
+  if (kbhit())
+	choice=getch();
+  choice-=48;
+  while(!(kbhit())&&y<24)
+  {
+	gotoxy(x,y-1);
+	cout<<' ';
+	gotoxy(x,y++);
+	cprintf("%c",206);     //ASCII CODE OF BULLET IS 206
+	delay(BULLET_SPEED);
+  }
+  if(choice==tempX)
+	return 1;
+  return 0;
+}
+void main()
+{
+  clrscr();
+  cout<<Bullet_Move();
+  getch();
+}
+

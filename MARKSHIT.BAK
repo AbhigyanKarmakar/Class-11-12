@@ -1,0 +1,36 @@
+#include<iostream.h>
+#include<conio.h>
+void main()
+{
+clrscr();
+int num1=0,num2=0,num3=0,num4=0,num5=0 ,sum=0,per=0;
+cout<<"\n\t\t    ---------------Mark Statement---------------";
+cout<<"\n";
+cout<<"\n\t\t    Marks Entered Should Be Out Of 100";
+cout<<"\n";
+cout<<"\n\t\t  \t  Marks of First Subject          = ";
+cin>>num1;
+cout<<"\n\t\t  \t  Marks Of Second Subject         = ";
+cin>>num2;
+cout<<"\n\t\t  \t  Marks Of Third Subject          = ";
+cin>>num3;
+cout<<"\n\t\t  \t  Marks Of Fourth Subject         = ";
+cin>>num4;
+cout<<"\n\t\t  \t  Marks Of Fifth Subject          = ";
+cin>>num5;
+clrscr();
+cout<<"\n\t\t       ---------------Results----------------";
+cout<<"\n\n\t\t\t      First Subject Marks   = "<<num1;
+cout<<"\n\n\t\t\t      Second Subject Marks  = "<<num2;
+cout<<"\n\n\t\t\t      Third Subject Marks   = "<<num3;
+cout<<"\n\n\t\t\t      Fourth Subject Marks  = "<<num4;
+cout<<"\n\n\t\t\t      Fifth Subject Marks   = "<<num5;
+sum=num1+num2+num3+num4+num5;
+per=(num1+num2+num3+num4+num5)/5;
+cout<<"\n\n\t\t\t      Total Marks = "<<sum;
+cout<<"\n\n\t\t\t      Percentage = "<<per;
+cout<<"%";
+cout<<"\n\t\t       --------------------------------------";
+
+getch();
+}

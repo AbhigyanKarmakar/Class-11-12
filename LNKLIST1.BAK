@@ -1,0 +1,122 @@
+#include<iostream.h>
+#include<conio.h>
+struct linklist
+{
+  int data;
+  linklist *next;
+}*start , *last;
+void delete_node_start(void)
+{
+  if(start==NULL)
+  {
+	cout<<"UNDERFLOW!!";
+	return;
+  }
+  linklist *temp;
+  temp=start;
+  start=start->next;
+  delete temp;
+}
+void delete_node_end(void)
+{
+  if(last==NULL)
+  {
+	cout<<"UNDERFLOW!!";
+	return;
+  }
+  linklist *temp=start;
+  while(temp->next!=last)
+	temp=temp->next;
+  last=temp;
+  last->next=NULL;
+  delete temp->next;
+}
+void create_node_end (int data)
+{
+  linklist *new_node;
+  new_node=new linklist;
+  if(new_node==NULL)
+  {
+	cout<<"OVERFLOW!!";
+	return;
+  }
+  new_node->data=data;
+  new_node->next=NULL;
+  if (start==NULL)
+  {
+	start=new_node;
+	last=start;
+  }
+  else
+  {
+	last->next=new_node;
+	last=new_node;
+  }
+}
+void create_node_start (int data)
+{
+  linklist *new_node;
+  new_node=new linklist;
+  if(new_node==NULL)
+  {
+	cout<<"OVERFLOW!!";
+	return;
+  }
+  new_node->data=data;
+  new_node->next=start;
+  if (start==NULL)
+  {
+	start=new_node;
+	last=start;
+  }
+  else
+	start=new_node;
+}
+void display(linklist *start)
+{
+  while(start!=NULL)
+  {
+	cout<<" , "<<start->data<<endl;
+	start=start->next;
+  }
+}
+void menu()
+{
+  START:
+  clrscr();
+  int choice=0 , data=0;
+  cout<<"\n1.Show existing list"
+	  <<"\n2.Enter at beginning of list"
+	  <<"\n3.Enter at end of list"
+	  <<"\n4.Delete a beginning"
+	  <<"\n5.Delete at end"
+	  <<"\n6.Exit";
+  cout<<"\nChoice : ";
+  cin>>choice;
+  if(choice==2||choice==3)
+  {
+	cout<<"\nENTER DATA : ";
+	cin>>data;
+  }
+  if(choice==2)
+	create_node_start (data);
+  else if(choice==3)
+	create_node_end (data);
+  else if(choice==1)
+	display(start);
+  else if(choice==4)
+	create_node_start (data);
+  else if(choice==5)
+	create_node_end (data);
+  else;
+  if (choice!=6)
+  {
+	getch();
+	goto START;
+  }
+}
+void main()
+{
+  menu();
+}
+

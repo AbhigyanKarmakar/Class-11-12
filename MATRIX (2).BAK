@@ -1,0 +1,64 @@
+#include<iostream.h>
+#include<conio.h>
+void main()
+{
+clrscr();
+
+     int row, column;
+     cout<<"Enter no. of rows : ";
+     cin>>row;
+     cout<<"Enter no. of columns : ";
+     cin>>column;
+     int lim=column*row;
+     int xcor=60/column;
+     int ycor=17/row;
+     int matrix[100][100];
+     for (int i=0; i<row; i++)
+     {
+	 for (int m=1; m<=column; m++)
+	    cin>>matrix[i][m]
+     }
+     for (int j=0; j<row; j++)
+     {
+	 for (int k=1, l=xcor; k<=column, l<=60; k++, l+=xcor)
+	 {
+	    // gotoxy (10,10);
+	     cout<<matrix[j][k]<<"\t";
+	 }
+	 cout<<"\n\n";
+     }
+     cout<<"\n\n\n";
+     cout<<"Diagonal nambar ek : ";
+     for (int p=0, q=1; p<=row, q<=column; p++, q++)
+     {
+	 cout<<matrix[p][q]<<" ";
+
+     }
+     cout<<"\n\n";
+     cout<<"Diagonal nambar do : ";
+     for (int r=0, s=column; r<=row, s>=1; r++, s--)
+     {
+	 cout<<matrix[r][s]<<" ";
+     }
+
+
+     cout<<"\n\n";
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+getch();
+}
+
+

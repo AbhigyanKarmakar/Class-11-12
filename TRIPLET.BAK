@@ -1,0 +1,16 @@
+#include <iostream.h>
+#include <conio.h>
+void main()
+{
+ unsigned short max;
+ long double i,j,k;
+ clrscr();
+ cout<<"Enter Limit Upto Which Pythagorian Triplet will be calculated : ";
+ cin>>max;
+ for (i=1 ; i<=max ; i++)
+   for (j=1 ; j<=max ; j++)
+     for ( k=1 ; k<=max ; k++)
+       if (((k*k)+(j*j))==(i*i))
+	 cout<<j<<"^2 +\t"<<k<<"^2 =\t"<<i<<"^2 \n";
+ getch();
+}

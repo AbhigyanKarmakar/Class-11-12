@@ -1,0 +1,70 @@
+Q.WRITE AN IMPLENTATION OF MERGESORT.
+
+#include<iostream.h>
+#include<conio.h>
+void swap (int &a , int &b)
+{
+  int temp;
+  temp=a;
+  a=b;
+  b=temp;
+}
+void bubble_sort(int array[] , int size)
+{
+   while(--size)
+	 for(int i=0 ; i<size ; ++i)
+	   if(array[i]>array[i+1])
+		 swap(array[i],array[i+1]);
+}
+void merge(int array1[],int size1,int array2[],int size2,int array3[])
+{
+  int counter1=0 , counter2=0 , counter3=0;
+  int size3=size1+size2;
+  while(counter1<size1&&counter2<size2)
+  {
+	if(array1[counter1]<=array2[counter2])
+	  array3[counter3++]=array1[counter1++];
+
+	else if(array1[counter1]>array2[counter2])
+	  array3[counter3++]=array2[counter2++];
+  }
+  if(counter1<size1)
+	while(counter1<size1)
+	  array3[counter3++]=array1[counter1++];
+
+  if(counter2<size2)
+	while(counter2<size2)
+	  array3[counter3++]=array2[counter2++];
+}
+void input(int array[] , int size)
+{
+  for(int i=0 ; i<size ; ++i)
+  {
+	cout<<"Enter Element "<<i+1<<" : ";
+	cin>>array[i];
+  }
+}
+void output(int array[] , int size)
+{
+  for(int i=0 ; i<size ; ++i)
+	cout<<"Element "<<i+1<<" : "<<array[i]<<'\n';
+}
+
+void main()
+{
+  clrscr();
+  int array1[5] , array2[3] , array3[8];
+  input(array1,5);
+  input(array2,3);
+  bubble_sort(array1,5);
+  bubble_sort(array2,3);
+  output(array1,5);
+  getch();
+  clrscr();
+  output(array2,3);
+  getch();
+  clrscr();
+  merge(array1,5,array2,3,array3);
+  output(array3,8);
+  getch();
+}

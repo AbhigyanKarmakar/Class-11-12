@@ -1,0 +1,48 @@
+#include<iostream.h>
+#include<conio.h>
+#include<string.h>
+#include<stdio.h>
+#include<arrange.h>
+struct examinee
+{
+ long int roll;
+ char name[50];
+ float score;
+}a[100];
+void sortscore (examinee a[100],int size)
+{
+ int temp,temp2,temp2;
+ for (int i=0 ; i<size ; i++)
+ {
+	if (a[i].score<a[i+1].score)
+	{
+		temp=a[i].;
+		a[i]=a[i+1];
+		a[i]=temp;
+	}
+ }
+
+}
+void main()
+{
+ clrscr();
+ int ext;
+ examinee a[100];
+ for (int i=0 ; 1 ; i++)
+	{
+		cout<<"Examinee "<<i+1;
+		gets(a[i].name);
+		ext=strcmpi("Exit",a[i].name);
+		if (a==0)
+			break;
+		cout<<"      Enter Roll Number : ";
+		cin>>a[i].roll;
+		cout<<"      Enter Score/Marks : ";
+		cin>>a[i].score;
+		clrscr();
+	}
+
+
+
+ getch();
+}

@@ -1,0 +1,92 @@
+#include<iostream.h>
+#include<conio.h>
+#include<stdio.h>
+#include<string.h>
+#include<fstream.h>
+#include<process.h>
+#include<dos.h>
+class Q_A
+{
+  private:
+    char Q[50+1];
+    char A[50+1];
+  public:
+    void voidfill(void);
+    void input(char string[50+1])
+    {
+      strcpy(Q,string);
+    }
+    void output()
+    {
+      cout<<"Question : "<<Q<<"\n\n";
+      cout<<"Answer : "<<A<<"\n\n\n";
+    }
+    char* question(void)
+    {
+      return Q;
+    }
+    char* answer(void)
+    {
+      return A;
+    }
+    int Qdel(void)
+    {
+      int ret=1;
+      if(Q[12]=='*')
+	return 0;
+      return ret;
+    }
+};
+void Q_A::voidfill(void)
+{
+   for (int i=0 ; i<51 ; ++i)
+   {
+     Q[i]='*';
+     A[i]='*';
+   }
+}
+void main()
+{
+  clrscr();
+  Q_A arbob1;
+  fstream file;
+  char choice='\0';
+  char filename[15];
+  short pointer=0;
+  cout<<"Enter Database Name : ";
+  cin.getline(filename,15);
+  clrscr();
+  file.open(filename,ios::in|ios::out|ios::binary);
+  file.seekg(0);
+  while(!file.eof())
+  {
+    pointer=file.tellg();
+    file.read((char*)&arbob1 , sizeof(arbob1));
+    if(!file.eof())
+    {
+      arbob1.output();
+      choice=getch();
+      if(choice=='d')
+      {
+	file.seekp(pointer);
+	arbob1.voidfill();
+	file.write((char*)&arbob1 , sizeof(arbob1));
+	file.seekg(pointer+sizeof(arbob1));
+      }
+      clrscr();
+    }
+  }
+  file.close();
+  fstream file2;
+  file.open(filename,ios::in|ios::out|ios::binary);
+  file2.open("temp.txt" , ios::in|ios::out|ios::binary);
+  while(!file.eof())
+  {
+    file.read((char*)&arbob1 , sizeof(arbob1));
+    if (!file.eof()&&(!arbob1.Qdel()))
+      file2.write((char*)&arbob1 , sizeof(arbob1));
+  }
+  remove(filename);
+  rename("temp.txt" , filename);
+}
+

@@ -1,0 +1,24 @@
+#include<iostream.h>
+#include<conio.h>
+
+
+void main()
+{
+clrscr();
+int qun;
+cout<<"\t=======Summer...of the bea....just summer.....=======\n";
+cout<<"\t Enter How many numbers u wanna sum up            :  \n";
+cin>>qun;
+int num[10],sum;
+for (int i=0;i<qun;i++)
+{
+    cout<<"\t  Enter Number "<<i<<" : ";
+    cin>>num[i];
+    sum+=num[i];
+}
+cout<<"\t "<<num[1];
+for (int j=1;j<qun;j++)
+    cout<<" + "<<num[j];
+cout<<" = "<<sum;
+getch();
+}

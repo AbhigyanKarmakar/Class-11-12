@@ -1,0 +1,15 @@
+#include<iostream.h>
+#include<conio.h>
+void main(){
+clrscr();
+int p,r,t,si;
+cout<<"p";
+cin>>p;
+cout<<"r";
+cin>>r;
+cout<<"t";
+cin>>t;
+si=p*r*t/100;
+cout<<"si="<<si;
+getch();
+}

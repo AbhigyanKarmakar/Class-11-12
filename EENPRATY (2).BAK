@@ -1,0 +1,39 @@
+#include<iostream.h>
+#include<conio.h>
+#include<math.h>
+//use pow(bhaji,somethin)
+//een pratya+variable use
+void main()
+{
+clrscr();
+int din, bin, qin;       //d+eeen=din and so on
+cin>>din;
+din=din/2;
+for (int iin=2; qin!=0; iin=iin*1)
+{
+  qin=din/2;
+  bin=din%2;
+  cout<<bin;
+  din=qin;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+getch();
+}

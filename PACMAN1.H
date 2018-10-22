@@ -1,0 +1,185 @@
+long int block_check(long int input)
+{
+  long int block[]={221,222,215,22,61,45,95,205,240,46};
+  for(long int i=0 ; i<10/*No. of blocks*/ ; ++i)
+    if (input==block[i])
+      return 1;
+  return 0;
+}
+struct cl_matrix   //Matrix with long intrinsic color properties
+{
+  long int val;
+  long int color;
+};
+class Matrix
+{
+  private:
+    cl_matrix ARRAY[25][80];//Main maze matrix  Console screen is 80x25
+  public:
+    void input(long int i , long int j ,long int val , long int color);
+    void output(void);
+    void AI(long int , long int , long int , long int , long int);
+    void floodfill(long int , long int);
+    void voidfill(void);
+    long int Matrixreturn(long int,long int);
+    Matrix(void);
+}
+matrix;
+long int Matrix::Matrixreturn(long int i , long int j)
+{
+  return ARRAY[i][j].val;
+}
+
+void Matrix::output(void)
+{
+  for (long int i=0 ; i<25 ; ++i)
+    for (long int j=0 ; j<80 ; ++j)
+      //if (ARRAY[i][j].val)
+      {
+	//textcolor(ARRAY[i][j].color);//cprlong intf is better suited to prlong inting
+	gotoxy(j+1,i+1);             //diff colors
+	cout<<(ARRAY[i][j].val);       //RAW AWESOMENESS OF ALGORITHM
+	//cprlong intf("%c",ARRAY[i][j].val);
+      }
+}
+
+Matrix::Matrix(void)             //Constructor
+{
+  for (long int i=0 ; i<25 ; ++i)
+    for (long int j=0 ; j<80 ; ++j)
+    {
+      ARRAY[i][j].val=0;
+      ARRAY[i][j].color=0;
+    }
+}
+
+void Matrix::input(long int i , long int j , long int val , long int color)
+{
+  ARRAY[i][j].val=val;
+  ARRAY[i][j].color=color;
+}
+void Matrix::voidfill(void)
+{
+  for (long int i=0 ; i<25 ; ++i)
+    for (long int j=0 ; j<80 ; ++j)
+    {
+      ARRAY[i][j].val=0;
+      ARRAY[i][j].color=0;
+    }
+}
+void Matrix::floodfill(long int i , long int j)
+{
+  if( !i || !j || i==25 || j==80 ) //Boundary Conditions
+    return;
+
+  long int DOWN=0,UP=0,RIGHT=0,LEFT=0;
+
+  if(
+      ARRAY[i][j].val != ( ARRAY[i+1][j].val + 1 )
+      &&(!block_check(ARRAY[i+1][j].val))
+    ) //If Current != Lower+1
+  {
+    ARRAY[i+1][j].val=ARRAY[i][j].val+1;
+    DOWN=1;
+  }
+
+  if(
+      ARRAY[i][j].val != ( ARRAY[i-1][j].val + 1 )
+      &&(!block_check(ARRAY[i-1][j].val))
+    ) //If Current != Upper+1
+  {
+    ARRAY[i-1][j].val=ARRAY[i][j].val+1;
+    UP=1;
+  }
+
+  if(
+      ARRAY[i][j].val != ( ARRAY[i][j+1].val + 1 )
+      &&(!block_check(ARRAY[i][j+1].val))
+    ) //If Current != Right+1
+  {
+    ARRAY[i][j+1].val=ARRAY[i][j].val+1;
+    RIGHT=1;
+  }
+
+  if(
+      ARRAY[i][j].val != ( ARRAY[i][j-1].val + 1 )
+      &&(!block_check(ARRAY[i][j-1].val))
+    ) //If Current != Left+1
+  {
+    ARRAY[i][j-1].val=ARRAY[i][j].val+1;
+    LEFT=1;
+  }
+
+  if(DOWN)
+    floodfill(i+1 , j);
+  else
+    return;
+
+  if(UP)
+    floodfill(i-1 , j);
+  else
+    return;
+
+  if(RIGHT)
+    floodfill(i , j+1);
+  else
+    return;
+
+  if(LEFT)
+    floodfill(i , j-1);
+  else
+    return;
+}
+
+void Matrix::AI(long int Playeri , long int Playerj , long int i , long int j , long int hit)
+{               //call with AI(....., kbhit())
+  if (hit)
+    return;
+  delay(300);
+  this->floodfill(Playeri,Playerj); //All other i,j is for the enemy
+  long int a[4];
+  a[0]=ARRAY[i+1][j].val;
+  a[1]=ARRAY[i-1][j].val;
+  a[2]=ARRAY[i][j+1].val;
+  a[3]=ARRAY[i][j-1].val;
+  for(long int n=0 ; n<4 ; ++n)
+    if(a[n]==2)  //2 is player character ascii code
+      return;
+  long int small=32000;
+  for(n=0 ; n<4 ; ++n)
+    if(a[n]<small&&a[n]!=0)
+      small=a[n];
+
+  if(ARRAY[i+1][j].val==small)
+  {
+    this->input(i+1 , j , ARRAY[i][j].val , ARRAY[i][j].color);
+    this->input(i , j , 0 , 0);
+    this->output();
+    this->AI(Playeri, Playerj , i+1 , j , kbhit());
+  }
+
+  else if(ARRAY[i-1][j].val==small)
+  {
+    this->input(i-1 , j , ARRAY[i][j].val , ARRAY[i][j].color);
+    this->input(i , j , 0 , 0);
+    this->output();
+    this->AI(Playeri, Playerj , i-1 , j , kbhit());
+  }
+
+  else if(ARRAY[i][j+1].val==small)
+  {
+    this->input(i , j+1 , ARRAY[i][j].val , ARRAY[i][j].color);
+    this->input(i , j , 0 , 0);
+    this->output();
+    this->AI(Playeri, Playerj , i , j+1 , kbhit());
+  }
+
+  else if(ARRAY[i][j-1].val==small)
+  {
+    this->input(i , j-1 , ARRAY[i][j].val , ARRAY[i][j].color);
+    this->input(i , j , 0 , 0);
+    this->output();
+    this->AI(Playeri, Playerj , i , j-1 , kbhit());
+  }
+  else return;
+}

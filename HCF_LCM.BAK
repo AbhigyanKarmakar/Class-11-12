@@ -1,0 +1,26 @@
+#include<iostream.h>
+#include<conio.h>
+void main()
+{
+clrscr();
+int a,b,max;
+cout<<"Enter the first no";
+cin>>a;
+cout<<"Enter the second no";
+cin>>b;
+max=a*b;
+for(int n=a;n<=max; n++)
+{ if(n%a==0 && n%b==0)
+   { cout<<" \n LCM "<<n;
+    break;
+    }
+for(int i=a;i>=1; i--)
+{ if(a%i==0 && b%i==0)
+   { cout<<" \n HCF"<<n;
+    break;
+    }
+
+
+
+getch();
+}

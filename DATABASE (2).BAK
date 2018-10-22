@@ -1,0 +1,48 @@
+#include <stdio.h>
+#include <dos.h>
+#include <conio.h>
+#include <iostream.h>
+#include <string.h>
+void main()
+{
+ clrscr();
+ char cname[20];
+ int select=0;
+ struct country
+ {
+  int gdp;
+  char capital[30];
+  char name[20];
+ } cont[50];
+ for(int i=0; i<2 ; i++)
+ {
+  cout<<"Enter Name Of Country : ";
+  gets(cont[i].name);
+  cout<<"\nEnter Capital : ";
+  gets(cont[i].capital);
+  cout<<"\nEnter Gross Income : ";
+  cin>>cont[i].gdp;
+ }
+ //SEARCH
+ cout<<"\n\nSearch : ";
+ gets(cname);
+ for (int s=0 ; s<2 ; s++ )
+ {
+  if(strcmpi(cont[s].name,cname)==0)
+  {
+   select=s;
+   break;
+  }
+  else
+  continue;
+ }
+ if (select==0)
+ cout<<"WRONG INPUT YOU MUST NOW DIE!!!!!!";
+ else
+ {
+  cout<<"Country : "<<cont[select].name;
+  cout<<"\nGDP : "<<cont[select].gdp;
+  cout<<"\nCapital : "<<cont[select].capital;
+ }
+ getch();
+}

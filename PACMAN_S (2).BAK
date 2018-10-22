@@ -1,0 +1,819 @@
+#include<iostream.h>
+#include<conio.h>
+#include<process.h>
+#include<stdlib.h>
+#include<dos.h>
+void main()
+{
+clrscr();
+
+   int lvl=0;
+   int score=0;
+   START:
+   clrscr();
+   int xb=3, yb=4;
+   for (int p=yb+1; p<=20; p++)
+   {
+       gotoxy (xb,p);
+       cout<<char(124);
+   }
+   for (int q=yb+1; q<=20; q++)
+   {
+       gotoxy (xb+69,q);
+       cout<<char(124);
+   }
+   for (int r=xb; r<=72; r++)
+   {
+       gotoxy (r,yb);
+       cout<<"-";
+   }
+   for (int s=xb; s<=72; s++)
+   {
+       gotoxy (s,yb+17);
+       cout<<"-";
+   }
+   gotoxy (3,4);
+   cout<<"0";
+   gotoxy (72,4);
+   cout<<"0";
+   gotoxy (3,21);
+   cout<<"0";
+   gotoxy (72,21);
+   cout<<"0";
+   gotoxy (1,24);
+   cout<<"PRESS 'b' TO QUIT.....";
+   ++lvl;
+   char inp;
+   int x=30, y=10, rndmx1, rndmy1, rndmx2, rndmy2;
+   int rndmx3, rndmy3, rndmx4, rndmy4, rndmx5, rndmy5;
+   int bmx1, bmy1, bmx2, bmy2, bmx3, bmy3;
+   int bmx4, bmy4, bmx5, bmy5;
+   gotoxy (1,2);
+   cout<<"SCORE :"<<score;
+   gotoxy (75,24);
+   cout<<"LVL-1";
+   randomize();
+   rndmx1=random(60)+9;
+   rndmy1=random(14)+5;
+   gotoxy (rndmx1,rndmy1);
+   cout<<"B";
+   rndmx2=random(60)+9;
+   rndmy2=random(14)+5;
+   gotoxy (rndmx2,rndmy2);
+   cout<<"B";
+   rndmx3=random(60)+9;
+   rndmy3=random(14)+5;
+   gotoxy (rndmx3,rndmy3);
+   cout<<"B";
+   rndmx4=random(60)+9;
+   rndmy4=random(14)+5;
+   gotoxy (rndmx4,rndmy4);
+   cout<<"B";
+   rndmx5=random(60)+9;
+   rndmy5=random(14)+5;
+   gotoxy (rndmx5,rndmy5);
+   cout<<"B";
+   bmx1=random(60)+9;
+   bmy1=random(14)+5;
+   gotoxy (bmx1,bmy1);
+   cout<<"X";
+   bmx2=random(60)+9;
+   bmy2=random(14)+5;
+   gotoxy (bmx2,bmy2);
+   cout<<"X";
+   if (lvl>=5)
+   {
+      bmx3=random(60)+9;
+      bmy3=random(14)+5;
+      gotoxy (bmx3,bmy3);
+      cout<<"X";
+      bmx5=random(60)+9;
+      bmy5=random(14)+5;
+      gotoxy (bmx5,bmy5);
+      cout<<"X";
+      bmx4=random(60)+9;
+      bmy4=random(14)+5;
+      gotoxy (bmx4,bmy4);
+      cout<<"X";
+   }
+   gotoxy (30,10);
+   cout<<"A";
+   while (1==1)
+   {
+     inp=getch();
+     if (inp=='w')
+     {
+	if (y==5)
+	{
+	   gotoxy (x,5);
+	   cout<<" ";
+	   gotoxy (x,20);
+	   cout<<"A";
+	   y=20;
+	   gotoxy (75,24);
+	   cout<<"LVL-"<<lvl;
+	   gotoxy (1,2);
+	   cout<<"SCORE :"<<score;
+	}
+	else
+	{
+	   if (x==rndmx1&&y==rndmy1)
+	   {
+	      ++score;
+	      rndmx1=100;
+	      rndmy1=100;
+	      if (score%3==0)
+		 goto START;
+	   }
+	   if (x==rndmx2&&y==rndmy2)
+	   {
+	      ++score;
+	      rndmx2=100;
+	      rndmy2=100;
+	      if (score%3==0)
+		 goto START;
+	   }
+	   if (x==rndmx3&&y==rndmy3)
+	   {
+	      ++score;
+	      rndmx3=100;
+	      rndmy3=100;
+	      if (score%3==0)
+		 goto START;
+	   }
+	   if (x==rndmx4&&y==rndmy4)
+	   {
+	      ++score;
+	      rndmx4=100;
+	      rndmy4=100;
+	      if (score%3==0)
+		 goto START;
+	   }
+	   if (x==rndmx5&&y==rndmy5)
+	   {
+	      ++score;
+	      rndmx5=100;
+	      rndmy5=100;
+	      if (score%3==0)
+		 goto START;
+	   }
+	   if (x==bmx1&&y==bmy1)
+	   {
+	      gotoxy (35,13);
+	      cout<<"KABOOM !!";
+	      bmx1=100;
+	      bmy1=100;
+	      delay (2000);
+	      score=0;
+	      lvl=0;
+	      goto START;
+	   }
+	   if (x==bmx2&&y==bmy2)
+	   {
+	      gotoxy (35,13);
+	      cout<<"KABOOM !!";
+	      bmx2=100;
+	      bmy2=100;
+	      delay (2000);
+	      score=0;
+	      lvl=0;
+	      goto START;
+	   }
+	   if (x==bmx3&&y==bmy3)
+	   {
+	      gotoxy (35,13);
+	      cout<<"KABOOM !!";
+	      bmx3=100;
+	      bmy3=100;
+	      delay (2000);
+	      score=0;
+	      lvl=0;
+	      goto START;
+	   }
+	   if (x==bmx4&&y==bmy4)
+	   {
+	      gotoxy (35,13);
+	      cout<<"KABOOM !!";
+	      bmx4=100;
+	      bmy4=100;
+	      delay (2000);
+	      score=0;
+	      lvl=0;
+	      goto START;
+	   }
+	   if (x==bmx5&&y==bmy5)
+	   {
+	      gotoxy (35,13);
+	      cout<<"KABOOM !!";
+	      bmx5=100;
+	      bmy5=100;
+	      delay (2000);
+	      score=0;
+	      lvl=0;
+	      goto START;
+	   }
+	   gotoxy (x,y);
+	   cout<<" ";
+	   gotoxy (x,--y);
+	   cout<<"A";
+	   gotoxy (75,24);
+	   cout<<"LVL-"<<lvl;
+	   gotoxy (1,2);
+	   cout<<"SCORE :"<<score;
+	}
+     }
+     if (inp=='a')
+     {
+	if (x==5)
+	{
+	   gotoxy (5,y);
+	   cout<<" ";
+	   gotoxy (70,y);
+	   cout<<"A";
+	   x=70;
+	   gotoxy (75,24);
+	   cout<<"LVL-"<<lvl;
+	   gotoxy (1,2);
+	   cout<<"SCORE :"<<score;
+	}
+	else
+	{
+	   if (x==rndmx1&&y==rndmy1)
+	   {
+	      ++score;
+	      rndmx1=100;
+	      rndmy1=100;
+	      if (score%3==0)
+		 goto START;
+	   }
+	   if (x==rndmx2&&y==rndmy2)
+	   {
+	      ++score;
+	      rndmx2=100;
+	      rndmy2=100;
+	      if (score%3==0)
+		 goto START;
+	   }
+	   if (x==rndmx3&&y==rndmy3)
+	   {
+	      ++score;
+	      rndmx3=100;
+	      rndmy3=100;
+	      if (score%3==0)
+		 goto START;
+	   }
+	   if (x==rndmx4&&y==rndmy4)
+	   {
+	      ++score;
+	      rndmx4=100;
+	      rndmy4=100;
+	      if (score%3==0)
+		 goto START;
+	   }
+	   if (x==rndmx5&&y==rndmy5)
+	   {
+	      ++score;
+	      rndmx5=100;
+	      rndmy5=100;
+	      if (score%3==0)
+		 goto START;
+	   }
+	   if (x==bmx1&&y==bmy1)
+	   {
+	      gotoxy (35,13);
+	      cout<<"KABOOM !!";
+	      bmx1=100;
+	      bmy1=100;
+	      delay (2000);
+	      score=0;
+	      lvl=0;
+	      goto START;
+	   }
+	   if (x==bmx2&&y==bmy2)
+	   {
+	      gotoxy (35,13);
+	      cout<<"KABOOM !!";
+	      bmx2=100;
+	      bmy2=100;
+	      delay (2000);
+	      score=0;
+	      lvl=0;
+	      goto START;
+	   }
+	   if (x==bmx3&&y==bmy3)
+	   {
+	      gotoxy (35,13);
+	      cout<<"KABOOM !!";
+	      bmx3=100;
+	      bmy3=100;
+	      delay (2000);
+	      score=0;
+	      lvl=0;
+	      goto START;
+	   }
+	   if (x==bmx4&&y==bmy4)
+	   {
+	      gotoxy (35,13);
+	      cout<<"KABOOM !!";
+	      bmx4=100;
+	      bmy4=100;
+	      delay (2000);
+	      score=0;
+	      lvl=0;
+	      goto START;
+	   }
+	   if (x==bmx5&&y==bmy5)
+	   {
+	      gotoxy (35,13);
+	      cout<<"KABOOM !!";
+	      bmx5=100;
+	      bmy5=100;
+	      delay (2000);
+	      score=0;
+	      lvl=0;
+	      goto START;
+	   }
+	   gotoxy (x,y);
+	   cout<<" ";
+	   gotoxy (--x,y);
+	   cout<<"A";
+	   gotoxy (75,24);
+	   cout<<"LVL-"<<lvl;
+	   gotoxy (1,2);
+	   cout<<"SCORE :"<<score;
+	}
+     }
+     if (inp=='d')
+     {
+	if (x==70)
+	{
+	   gotoxy (70,y);
+	   cout<<" ";
+	   gotoxy (5,y);
+	   cout<<"A";
+	   x=5;
+	   gotoxy (75,24);
+	   gotoxy (1,2);
+	   cout<<"SCORE :"<<score;
+	}
+	else
+	{
+	   if (x==rndmx1&&y==rndmy1)
+	   {
+	      ++score;
+	      rndmx1=100;
+	      rndmy1=100;
+	      if (score%3==0)
+		 goto START;
+	   }
+	   if (x==rndmx2&&y==rndmy2)
+	   {
+	      ++score;
+	      rndmx2=100;
+	      rndmy2=100;
+	      if (score%3==0)
+		 goto START;
+	   }
+	   if (x==rndmx3&&y==rndmy3)
+	   {
+	      ++score;
+	      rndmx3=100;
+	      rndmy3=100;
+	      if (score%3==0)
+		 goto START;
+	   }
+	   if (x==rndmx4&&y==rndmy4)
+	   {
+	      ++score;
+	      rndmx4=100;
+	      rndmy4=100;
+	      if (score%3==0)
+		 goto START;
+	   }
+	   if (x==rndmx5&&y==rndmy5)
+	   {
+	      ++score;
+	      rndmx5=100;
+	      rndmy5=100;
+	      if (score%3==0)
+		 goto START;
+	   }
+	   if (x==bmx1&&y==bmy1)
+	   {
+	      gotoxy (35,13);
+	      cout<<"KABOOM !!";
+	      bmx1=100;
+	      bmy1=100;
+	      delay (2000);
+	      score=0;
+	      lvl=0;
+	      goto START;
+	   }
+	   if (x==bmx2&&y==bmy2)
+	   {
+	      gotoxy (35,13);
+	      cout<<"KABOOM !!";
+	      bmx2=100;
+	      bmy2=100;
+	      delay (2000);
+	      score=0;
+	      lvl=0;
+	      goto START;
+	   }
+	   if (x==bmx3&&y==bmy3)
+	   {
+	      gotoxy (35,13);
+	      cout<<"KABOOM !!";
+	      bmx3=100;
+	      bmy3=100;
+	      delay (2000);
+	      score=0;
+	      lvl=0;
+	      goto START;
+	   }
+	   if (x==bmx4&&y==bmy4)
+	   {
+	      gotoxy (35,13);
+	      cout<<"KABOOM !!";
+	      bmx4=100;
+	      bmy4=100;
+	      delay (2000);
+	      score=0;
+	      lvl=0;
+	      goto START;
+	   }
+	   if (x==bmx5&&y==bmy5)
+	   {
+	      gotoxy (35,13);
+	      cout<<"KABOOM !!";
+	      bmx5=100;
+	      bmy5=100;
+	      delay (2000);
+	      score=0;
+	      lvl=0;
+	      goto START;
+	   }
+	   gotoxy (x,y);
+	   cout<<" ";
+	   gotoxy (++x,y);
+	   cout<<"A";
+	   gotoxy (75,24);
+	   cout<<"LVL-"<<lvl;
+	   gotoxy (1,2);
+	   cout<<"SCORE :"<<score;
+	}
+     }
+     if (inp=='s')
+     {
+	if (y==20)
+	{
+	   gotoxy (x,20);
+	   cout<<" ";
+	   gotoxy (x,5);
+	   cout<<"A";
+	   y=5;
+	   gotoxy (75,24);
+	   gotoxy (1,2);
+	   cout<<"SCORE :"<<score;
+	}
+	else
+	{
+	   if (x==rndmx1&&y==rndmy1)
+	   {
+	      ++score;
+	      rndmx1=100;
+	      rndmy1=100;
+	      if (score%3==0)
+		 goto START;
+	   }
+	   if (x==rndmx2&&y==rndmy2)
+	   {
+	      ++score;
+	      rndmx2=100;
+	      rndmy2=100;
+	      if (score%3==0)
+		 goto START;
+	   }
+	   if (x==rndmx3&&y==rndmy3)
+	   {
+	      ++score;
+	      rndmx3=100;
+	      rndmy3=100;
+	      if (score%3==0)
+		 goto START;
+	   }
+	   if (x==rndmx4&&y==rndmy4)
+	   {
+	      ++score;
+	      rndmx4=100;
+	      rndmy4=100;
+	      if (score%3==0)
+		 goto START;
+	   }
+	   if (x==rndmx5&&y==rndmy5)
+	   {
+	      ++score;
+	      rndmx5=100;
+	      rndmy5=100;
+	      if (score%3==0)
+		 goto START;
+	   }
+	   if (x==bmx1&&y==bmy1)
+	   {
+	      gotoxy (35,13);
+	      cout<<"KABOOM !!";
+	      bmx1=100;
+	      bmy1=100;
+	      delay (2000);
+	      score=0;
+	      lvl=0;
+	      goto START;
+	   }
+	   if (x==bmx2&&y==bmy2)
+	   {
+	      gotoxy (35,13);
+	      cout<<"KABOOM !!";
+	      bmx2=100;
+	      bmy2=100;
+	      delay (2000);
+	      score=0;
+	      lvl=0;
+	      goto START;
+	   }
+	   if (x==bmx3&&y==bmy3)
+	   {
+	      gotoxy (35,13);
+	      cout<<"KABOOM !!";
+	      bmx3=100;
+	      bmy3=100;
+	      delay (2000);
+	      score=0;
+	      lvl=0;
+	      goto START;
+	   }
+	   if (x==bmx4&&y==bmy4)
+	   {
+	      gotoxy (35,13);
+	      cout<<"KABOOM !!";
+	      bmx4=100;
+	      bmy4=100;
+	      delay (2000);
+	      score=0;
+	      lvl=0;
+	      goto START;
+	   }
+	   if (x==bmx5&&y==bmy5)
+	   {
+	      gotoxy (35,13);
+	      cout<<"KABOOM !!";
+	      bmx5=100;
+	      bmy5=100;
+	      delay (2000);
+	      score=0;
+	      lvl=0;
+	      goto START;
+	   }
+	   gotoxy (x,y);
+	   cout<<" ";
+	   gotoxy (x,++y);
+	   cout<<"A";
+	   gotoxy (75,24);
+	   cout<<"LVL-"<<lvl;
+	   gotoxy (1,2);
+	   cout<<"SCORE :"<<score;
+	}
+     }
+     if (inp=='b')
+     {
+	clrscr();
+	gotoxy(35,13);
+	cout<<"YOUR SCORE : "<<score;
+	delay (2000);
+	exit(0);
+     }
+
+
+ if (lvl>=5)
+ {
+   LEVEL_5:
+     if (inp=='l')
+     {
+	gotoxy (x+1,y);
+	cout<<"o";
+	delay(20);
+	for (int j=x+1; j<=69; j++)
+	{
+
+	    gotoxy (j,y);
+	    cout<<" ";
+	    delay (10);
+	    if (j==rndmx1&&y==rndmy1)
+	    {
+	       ++score;
+	       if (score%3==0)
+		  goto START;
+	    }
+	    if (j==rndmx2&&y==rndmy2)
+	    {
+	       ++score;
+	       if (score%3==0)
+		  goto START;
+	    }
+	    if (j==rndmx3&&y==rndmy3)
+	    {
+	       ++score;
+	       if (score%3==0)
+		  goto START;
+	    }
+	    if (j==rndmx4&&y==rndmy4)
+	    {
+	       ++score;
+	       if (score%3==0)
+		  goto START;
+	    }
+	    if (j==rndmx5&&y==rndmy5)
+	    {
+	       ++score;
+	       if (score%3==0)
+		  goto START;
+	    }
+	    gotoxy (j+1,y);
+	    cout<<"o";
+	    delay (20);
+	    gotoxy (75,24);
+	    cout<<"LVL-"<<lvl;
+	    gotoxy (1,2);
+	    cout<<"SCORE :"<<score;
+	}
+	gotoxy (70,y);
+	cout<<" ";
+	gotoxy (x,y);
+     }
+     if (inp=='i')
+     {
+	gotoxy (x,y-1);
+	cout<<"o";
+	delay(20);
+	for (int k=y-1; k>=6; k--)
+	{
+
+	    gotoxy (x,k);
+	    cout<<" ";
+	    delay (10);
+	    if (x==rndmx1&&k==rndmy1)
+	    {
+	       ++score;
+	       if (score%3==0)
+		  goto START;
+	    }
+	    if (x==rndmx2&&k==rndmy2)
+	    {
+	       ++score;
+	       if (score%3==0)
+		  goto START;
+	    }
+	    if (x==rndmx3&&k==rndmy3)
+	    {
+	       ++score;
+	       if (score%3==0)
+		  goto START;
+	    }
+	    if (x==rndmx4&&k==rndmy4)
+	    {
+	       ++score;
+	       if (score%3==0)
+		  goto START;
+	    }
+	    if (x==rndmx5&&k==rndmy5)
+	    {
+	       ++score;
+	       if (score%3==0)
+		  goto START;
+	    }
+	    gotoxy (x,k-1);
+	    cout<<"o";
+	    delay (20);
+	    gotoxy (75,24);
+	    cout<<"LVL-"<<lvl;
+	    gotoxy (1,2);
+	    cout<<"SCORE :"<<score;
+	}
+	gotoxy (x,5);
+	cout<<" ";
+	gotoxy (x,y);
+     }
+     if (inp=='k')
+     {
+	gotoxy (x,y+1);
+	cout<<"o";
+	delay(20);
+	for (int l=y+1; l<=19; l++)
+	{
+
+	    gotoxy (x,l);
+	    cout<<" ";
+	    delay (10);
+	    if (x==rndmx1&&l==rndmy1)
+	    {
+	       ++score;
+	       if (score%3==0)
+		  goto START;
+	    }
+	    if (x==rndmx2&&l==rndmy2)
+	    {
+	       ++score;
+	       if (score%3==0)
+		  goto START;
+	    }
+	    if (x==rndmx3&&l==rndmy3)
+	    {
+	       ++score;
+	       if (score%3==0)
+		  goto START;
+	    }
+	    if (x==rndmx4&&l==rndmy4)
+	    {
+	       ++score;
+	       if (score%3==0)
+		  goto START;
+	    }
+	    if (x==rndmx5&&l==rndmy5)
+	    {
+	       ++score;
+	       if (score%3==0)
+		  goto START;
+	    }
+	    gotoxy (x,l+1);
+	    cout<<"o";
+	    delay (20);
+	    gotoxy (75,24);
+	    cout<<"LVL-"<<lvl;
+	    gotoxy (1,2);
+	    cout<<"SCORE :"<<score;
+	}
+	gotoxy (x,20);
+	cout<<" ";
+	gotoxy (x,y);
+     }
+     if (inp=='j')
+     {
+	gotoxy (x-1,y);
+	cout<<"o";
+	delay(20);
+	for (int m=x-1; m>=6; m--)
+	{
+
+	    gotoxy (m,y);
+	    cout<<" ";
+	    delay (10);
+	    if (m==rndmx1&&y==rndmy1)
+	    {
+	       ++score;
+	       if (score%3==0)
+		  goto START;
+	    }
+	    if (m==rndmx2&&y==rndmy2)
+	    {
+	       ++score;
+	       if (score%3==0)
+		  goto START;
+	    }
+	    if (m==rndmx3&&y==rndmy3)
+	    {
+	       ++score;
+	       if (score%3==0)
+		  goto START;
+	    }
+	    if (m==rndmx4&&y==rndmy4)
+	    {
+	       ++score;
+	       if (score%3==0)
+		  goto START;
+	    }
+	    if (m==rndmx5&&y==rndmy5)
+	    {
+	       ++score;
+	       if (score%3==0)
+		  goto START;
+	    }
+	    gotoxy (m-1,y);
+	    cout<<"o";
+	    delay (20);
+	    gotoxy (75,24);
+	    cout<<"LVL-"<<lvl;
+	    gotoxy (1,2);
+	    cout<<"SCORE :"<<score;
+	}
+	gotoxy (5,y);
+	cout<<" ";
+	gotoxy (x,y);
+     }
+
+   }
+ }
+
+
+getch();
+}
+
+

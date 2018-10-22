@@ -1,0 +1,16 @@
+#include<iostream.h>
+#include<conio.h>
+void main()
+{
+ clrscr();
+ int sum=0;
+ long int input;
+ cin>>input;
+ for ( ; input!=0 ; )
+ {
+  sum+=input%10;
+  input/=10;
+ }
+ cout<<sum;
+ getch();
+}

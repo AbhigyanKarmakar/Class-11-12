@@ -1,0 +1,133 @@
+#include<iostream.h>
+#include<conio.h>
+#include<stdio.h>
+#include<string.h>
+#include<fstream.h>
+struct cl_matrix   //Matrix with intrinsic color properties
+{
+  int val;
+  int color;
+};
+int global_filepointer=0;    //<-----Slight shortcut
+			     //Although I prefer explicit logic
+class Matrix                 //rather than implicit ones
+{                            //had to use this method
+  private:
+    cl_matrix ARRAY[25][80];//Main maze matrix  Console screen is 80x25
+  public:
+    void input(int i , int j , int val , int color);
+    void output(void);
+    void floodfill(int,int);
+    int Matrixreturn(int,int);
+    Matrix(void);
+}
+matrix;
+
+int Matrix::Matrixreturn(int i , int j)
+{
+  return ARRAY[i][j].val;
+}
+
+void Matrix::output(void)
+{
+  for (int i=0 ; i<25 ; ++i)
+    for (int j=0 ; j<80 ; ++j)
+      if (ARRAY[i][j].val)
+      {
+	textcolor(ARRAY[i][j].color);//cprintf is better suited to printing
+	gotoxy(j+1,i+1);             //diff colors
+	cprintf("%c",ARRAY[i][j].val);
+      }
+}
+
+Matrix::Matrix(void)             //Constructor
+{
+  for (int i=0 ; i<25 ; ++i)
+    for (int j=0 ; j<80 ; ++j)
+    {
+      ARRAY[i][j].val=0;
+      ARRAY[i][j].color=0;
+    }
+}
+
+void Matrix::input(int i , int j , int val , int color)
+{
+  ARRAY[i][j].val=val;
+  ARRAY[i][j].color=color;
+}
+
+void Matrix::floodfill(int i , int j)
+{
+  if( !i || !j || i==25 || j==80 )
+    return;
+
+  int DOWN=0,UP=0,RIGHT=0,LEFT=0;
+
+  if( ARRAY[i][j].val != ( ARRAY[i+1][j].val + 1 ) ) //If Current != Lower+1
+  {
+    ARRAY[i+1][j].val=ARRAY[i][j].val+1;
+    DOWN=1;
+  }
+
+  if( ARRAY[i][j].val != ( ARRAY[i-1][j].val + 1 ) ) //If Current != Upper+1
+  {
+    ARRAY[i-1][j].val=ARRAY[i][j].val+1;
+    UP=1;
+  }
+
+  if( ARRAY[i][j].val != ( ARRAY[i][j+1].val + 1 ) ) //If Current != Right+1
+  {
+    ARRAY[i][j+1].val=ARRAY[i][j].val+1;
+    RIGHT=1;
+  }
+
+  if( ARRAY[i][j].val != ( ARRAY[i][j-1].val + 1 ) ) //If Current != Left+1
+  {
+    ARRAY[i][j-1].val=ARRAY[i][j].val+1;
+    LEFT=1;
+  }
+
+  if(DOWN)
+    floodfill(i+1 , j);
+  else
+    return;
+
+  if(UP)
+    floodfill(i-1 , j);
+  else
+    return;
+
+  if(RIGHT)
+    floodfill(i , j+1);
+  else
+    return;
+
+  if(LEFT)
+    floodfill(i , j-1);
+  else
+    return;
+}
+
+void main()
+{
+  clrscr();
+  int array[25][80];
+  matrix.input(2,2,2,7);
+  matrix.output();
+  getch();
+  matrix.floodfill(2,2);
+  clrscr();
+  for(int i=0 ; i<8 ; i++)
+  {
+    for(int j=0 ; j<8 ; j++)
+      array[i][j]=matrix.Matrixreturn(i,j);
+  }
+  for(i=0 ; i<8 ; i++)
+  {
+    for(int j=0 ; j<8 ; j++)
+      cout<<array[i][j]<<'\t';
+    cout<<"\n";
+  }
+  getch();
+}
+

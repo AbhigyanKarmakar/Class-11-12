@@ -1,0 +1,28 @@
+#include<iostream.h>
+#include<conio.h>
+#include<stdio.h>
+#include<string.h>
+class trial
+{
+  int k;
+  long int l;
+  short array[10];
+  public:
+    trial()
+    {
+      k=999;
+      l=9999;
+      for(int i=0 ; i<10 ; i++)
+	array[i]=99+i;
+    }
+}*ptr , t1;
+void main()
+{
+  clrscr();
+  int *pptr;
+  ptr=&t1;
+  pptr=&(int)ptr;
+  for (int i=0 ; i<sizeof(t1) ; i++)
+    printf("%d\n",*(pptr+i));
+  getch();
+}
